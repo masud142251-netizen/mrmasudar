@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR MASUDAR ENTERPRISE | Global Ecosystem</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #040404;
+            --surface-color: #0c0c0c;
+            --gold-primary: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --text-main: #FFFFFF;
+            --border-luxury: rgba(212, 175, 55, 0.35);
+        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; text-align: center; }
+        .hero { padding: 40px 20px; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold-primary); text-transform: uppercase; margin-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        
+        .luxury-card { 
+            background: var(--surface-color); border: 1px solid var(--border-luxury); border-radius: 16px; 
+            padding: 30px; text-align: center; cursor: pointer; transition: 0.3s; 
+            text-decoration: none; display: block; color: #fff;
+        }
+        .luxury-card:hover { border-color: var(--gold-primary); box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+        .luxury-card i { font-size: 40px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; display: inline-block; }
+        .luxury-card h3 { font-size: 15px; margin-bottom: 15px; text-transform: uppercase; }
+        .btn { display: inline-block; background: var(--gold-gradient); color: #000; padding: 10px 25px; border-radius: 25px; font-weight: 800; text-transform: uppercase; font-size: 10px; }
+    </style>
+</head>
+<body>
 
+    <div class="hero">
+        <h1>MR MASUDAR ENTERPRISE</h1>
+        <p style="color: #888; font-size: 12px;">All-in-One Global Ecosystem</p>
+    </div>
+
+    <div class="grid">
+        <!-- BD Market -->
+        <a href="bd.html" class="luxury-card">
+            <i class="fa-solid fa-house-chimney"></i>
+            <h3>BD MARKET</h3>
+            <span class="btn">Shop Local</span>
+        </a>
+
+        <!-- Global Marketplace -->
+        <a href="global.html" class="luxury-card">
+            <i class="fa-solid fa-earth-americas"></i>
+            <h3>GLOBAL MARKETPLACE</h3>
+            <span class="btn">Explore Global</span>
+        </a>
+
+        <!-- B2B Market -->
+        <a href="b2b.html" class="luxury-card">
+            <i class="fa-solid fa-warehouse"></i>
+            <h3>B2B MARKET</h3>
+            <span class="btn">Bulk Order</span>
+        </a>
+    </div>
+
+</body>
+</html>
