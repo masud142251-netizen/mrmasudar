@@ -3,70 +3,567 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR MASUDAR ENTERPRISE | Executive Recruitment</title>
+    <title>MR MASUDAR ENTERPRISE | Elite Career Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold-primary: #D4AF37; --bg: #030303; --card: #0c0c0c; }
-        body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        :root {
+            --bg-color: #030303;
+            --surface-color: #0b0b0b;
+            --surface-card: #111111;
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --text-main: #FFFFFF;
+            --text-muted: #AAAAAA;
+            --border-luxury: rgba(212, 175, 55, 0.4);
+        }
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        /* Luxury Header */
-        .header-bar { display: flex; justify-content: space-between; padding: 20px 30px; align-items: center; }
-        .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--gold-primary); letter-spacing: 2px; }
-        .lock-btn { color: var(--gold-primary); font-size: 20px; cursor: pointer; }
+        /* Top Bar with Lock Icon for Admin */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            background: rgba(5,5,5,0.9);
+            border-bottom: 1px solid var(--border-luxury);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .brand-mini {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .lock-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 10px 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(212,175,55,0.25);
+        }
+        .lock-btn:hover {
+            background: var(--gold-primary);
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(212,175,55,0.6);
+        }
 
-        /* Entrance Animation Area */
-        .hero-section { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh; text-align: center; }
-        .large-logo { width: 120px; margin-bottom: 20px; }
-        .title-main { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #fff; margin-bottom: 10px; }
-        .sub-title { font-size: 10px; color: #888; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; }
+        /* Main Container */
+        .portal-wrapper {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Luxury Card UI */
+        .luxury-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-luxury);
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.95);
+            width: 100%;
+            position: relative;
+            animation: fadeInCard 0.8s ease-out;
+        }
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-logo {
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            border: 1px solid var(--gold-primary);
+            object-fit: cover;
+            margin-bottom: 18px;
+            box-shadow: 0 0 25px rgba(212,175,55,0.4);
+            animation: logoPulse 2.5s infinite ease-in-out;
+        }
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.3)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(212,175,55,0.7)); }
+        }
+
+        .luxury-card h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 8px 0;
+        }
+        .luxury-card p {
+            color: var(--text-muted);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            font-weight: 600;
+        }
+
+        /* Luxury Pulse Button Animation */
+        .apply-btn {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 35px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(212,175,55,0.3);
+            transition: 0.3s;
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(212,175,55,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+        }
+        .apply-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(212,175,55,0.7);
+            animation: none;
+        }
+
+        /* Form Layout Styles */
+        .form-section, .preview-section, .admin-section {
+            display: none;
+            text-align: left;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .full-width { grid-column: span 2; }
         
-        .apply-btn { background: var(--gold-primary); color: #000; padding: 15px 50px; border-radius: 50px; font-weight: 800; cursor: pointer; animation: pulse 2s infinite; border: none; }
-        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(212,175,55,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0); } }
+        .input-group { margin-bottom: 5px; }
+        .input-group label {
+            display: block;
+            font-size: 10px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            padding: 12px 14px;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 12px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212,175,55,0.4);
+        }
 
-        /* Form Styling */
-        #form-wrapper { display: none; max-width: 600px; margin: 20px auto; padding: 30px; background: var(--card); border: 1px solid #333; border-radius: 20px; }
-        .form-header { font-size: 16px; color: var(--gold-primary); text-align: center; margin-bottom: 25px; }
-        .input-box { margin-bottom: 15px; }
-        label { display: block; font-size: 9px; color: var(--gold-primary); margin-bottom: 5px; }
-        input, select { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; }
+        .phone-group {
+            display: flex;
+            gap: 8px;
+        }
+        .phone-group select {
+            width: 120px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            color: var(--gold-primary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px dashed var(--border-luxury);
+            padding-bottom: 6px;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+        }
+
+        /* Admin Table */
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin-top: 15px;
+        }
+        .admin-table th, .admin-table td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+        .admin-table th {
+            background: rgba(212,175,55,0.15);
+            color: var(--gold-primary);
+        }
+        .wa-chat-link {
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .wa-chat-link:hover { text-decoration: underline; }
+
+        @media(max-width: 700px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
 
-<div class="header-bar" id="nav-bar">
-    <div class="logo-text">MR MASUDAR ENTERPRISE</div>
-    <div class="lock-btn" onclick="openAdmin()"><i class="fa-solid fa-lock"></i></div>
-</div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="brand-mini">MR MASUDAR ENTERPRISE</div>
+        <button class="lock-btn" onclick="openAdminModal()" title="Admin Panel"><i class="fa-solid fa-lock"></i></button>
+    </div>
 
-<!-- Entrance -->
-<div id="entrance" class="hero-section">
-    <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" class="large-logo">
-    <h2 class="title-main">MR MASUDAR ENTERPRISE</h2>
-    <p class="sub-title">ELITE GLOBAL CAREER OPPORTUNITIES & EXECUTIVE RECRUITMENT</p>
-    <button class="apply-btn" onclick="showForm()">APPLY NOW</button>
-</div>
+    <div class="portal-wrapper">
+        
+        <!-- 1. Entrance Card -->
+        <div class="luxury-card" id="entranceCard">
+            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
+            <h1>MR MASUDAR ENTERPRISE</h1>
+            <p>Elite Global Career Opportunities & Executive Recruitment</p>
+            <button class="apply-btn" onclick="showApplicationForm()">Apply Now</button>
+        </div>
 
-<!-- Application Form -->
-<div id="form-wrapper">
-    <h3 class="form-header">EXECUTIVE APPLICATION FORM</h3>
-    <div class="input-box"><label>FULL NAME</label><input type="text"></div>
-    <div class="input-box"><label>FATHER'S NAME</label><input type="text"></div>
-    <div class="input-box"><label>MOTHER'S NAME</label><input type="text"></div>
-    <div class="input-box"><label>OFFICIAL GMAIL</label><input type="email"></div>
-    <!-- বাকি সব ফিল্ড এই একই স্টাইলে থাকবে -->
-    <button class="apply-btn" style="width:100%">SUBMIT APPLICATION</button>
-</div>
+        <!-- 2. Detailed Luxury Application Form -->
+        <div class="luxury-card form-section" id="formSection">
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:25px; font-size:20px; text-transform:uppercase; letter-spacing:1px;">Candidate Application Form</h2>
+            
+            <div class="form-grid">
+                <!-- Personal Info -->
+                <div class="input-group full-width">
+                    <label>Full Name (As per NID/Passport) *</label>
+                    <input type="text" id="fullName" placeholder="Enter your full legal name" required>
+                </div>
+                
+                <!-- Father & Mother Name Separated -->
+                <div class="input-group">
+                    <label>Father's Name *</label>
+                    <input type="text" id="fatherName" placeholder="Enter father's name" required>
+                </div>
+                <div class="input-group">
+                    <label>Mother's Name *</label>
+                    <input type="text" id="motherName" placeholder="Enter mother's name" required>
+                </div>
 
-<script>
-    function showForm() {
-        document.getElementById('entrance').style.display = 'none';
-        document.getElementById('form-wrapper').style.display = 'block';
-    }
-    function openAdmin() {
-        let pass = prompt("Enter Admin Password:");
-        if(pass === "masudar99") alert("Welcome to Admin Panel");
-    }
-</script>
+                <div class="input-group">
+                    <label>Official Gmail Address *</label>
+                    <input type="email" id="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth *</label>
+                    <input type="date" id="dob" required>
+                </div>
+                
+                <!-- WhatsApp with Country Code -->
+                <div class="input-group">
+                    <label>WhatsApp Number (Active) *</label>
+                    <div class="phone-group">
+                        <select id="countryCode1">
+                            <option value="+880">🇧🇩 +880 (BD)</option>
+                            <option value="+91">🇮🇳 +91 (IN)</option>
+                            <option value="+1">🇺🇸 +1 (US)</option>
+                            <option value="+44">🇬🇧 +44 (UK)</option>
+                            <option value="+971">🇦🇪 +971 (UAE)</option>
+                            <option value="+966">🇸🇦 +966 (KSA)</option>
+                            <option value="+60">🇲🇾 +60 (MY)</option>
+                            <option value="+65">🇸🇬 +65 (SG)</option>
+                        </select>
+                        <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                    </div>
+                </div>
+
+                <!-- Emergency WhatsApp with Country Code -->
+                <div class="input-group">
+                    <label>Emergency WhatsApp Number *</label>
+                    <div class="phone-group">
+                        <select id="countryCode2">
+                            <option value="+880">🇧🇩 +880 (BD)</option>
+                            <option value="+91">🇮🇳 +91 (IN)</option>
+                            <option value="+1">🇺🇸 +1 (US)</option>
+                            <option value="+44">🇬🇧 +44 (UK)</option>
+                            <option value="+971">🇦🇪 +971 (UAE)</option>
+                            <option value="+966">🇸🇦 +966 (KSA)</option>
+                        </select>
+                        <input type="text" id="emergencyWa" placeholder="18XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                    </div>
+                </div>
+
+                <!-- NID Number (Strict Numbers Only) -->
+                <div class="input-group">
+                    <label>National ID (NID) / Birth Reg. No (Numbers Only) *</label>
+                    <input type="text" id="nidNumber" placeholder="Enter NID/Registration number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Gender *</label>
+                    <select id="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group full-width">
+                    <label>Complete Residential Address (City, District, Country) *</label>
+                    <textarea id="address" rows="2" placeholder="House/Road, City, District, Country" required></textarea>
+                </div>
+
+                <!-- Job Sector Selection -->
+                <div class="input-group full-width">
+                    <div class="section-title">Target Job Sector / Position</div>
+                    <label>Select Your Professional Expertise *</label>
+                    <select id="jobSector">
+                        <option>Digital Marketing Specialist</option>
+                        <option>Computer Operator & Data Entry</option>
+                        <option>Video Editing & Motion Graphics</option>
+                        <option>Graphics Design & 3D Rendering</option>
+                        <option>Full-Stack Web Developer</option>
+                        <option>Factory Operations Worker</option>
+                        <option>Office Administration Worker</option>
+                    </select>
+                </div>
+
+                <!-- Educational Qualifications -->
+                <div class="input-group full-width">
+                    <div class="section-title">Educational Background</div>
+                </div>
+                <div class="input-group">
+                    <label>SSC / Equivalent (Batch Year & GPA)</label>
+                    <input type="text" id="sscInfo" placeholder="e.g. 2018, GPA 5.00">
+                </div>
+                <div class="input-group">
+                    <label>HSC / Equivalent (Batch Year & GPA)</label>
+                    <input type="text" id="hscInfo" placeholder="e.g. 2020, GPA 4.50">
+                </div>
+                <div class="input-group">
+                    <label>Honors / Graduation (Subject, CGPA & Year)</label>
+                    <input type="text" id="honorsInfo" placeholder="e.g. CSE, CGPA 3.75 (2024)">
+                </div>
+                <div class="input-group">
+                    <label>Masters / Post-Graduation (If applicable)</label>
+                    <input type="text" id="mastersInfo" placeholder="Optional / e.g. MBA">
+                </div>
+
+                <!-- Photo & Auto Tracking -->
+                <div class="input-group full-width">
+                    <div class="section-title">Verification & Tracking</div>
+                    <label>Upload Professional Passport Size Photo *</label>
+                    <input type="file" id="applicantPhoto" accept="image/*" required>
+                </div>
+                <div class="input-group full-width">
+                    <label>Auto-Tracked Location & Network IP</label>
+                    <input type="text" id="autoLocation" value="Bangladesh (Secured Global IP Auto-Tracked)" readonly style="color:var(--gold-primary); font-weight:bold;">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="apply-btn" onclick="previewCV()">Review Complete CV</button>
+            </div>
+        </div>
+
+        <!-- 3. CV Preview & Confirmation Section -->
+        <div class="luxury-card preview-section" id="previewSection">
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Executive CV Review</h2>
+            <div id="cvPreviewContent" style="background:#000; padding:20px; border-radius:12px; border:1px solid var(--border-luxury); font-size:11px; line-height:1.7; text-align:left; max-height:280px; overflow-y:auto; margin-bottom:25px; color:#ddd;"></div>
+            <div style="display:flex; gap:15px; justify-content:center;">
+                <button class="apply-btn" style="background:#222; color:#fff;" onclick="backToForm()">Modify Info</button>
+                <button class="apply-btn" onclick="submitApplication()">Confirm & Finalize Application</button>
+            </div>
+        </div>
+
+        <!-- 4. Admin Panel Section -->
+        <div class="luxury-card admin-section" id="adminSection">
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Admin Security Portal</h2>
+            <div id="adminLoginBox">
+                <div class="input-group" style="max-width:350px; margin:0 auto 20px auto;">
+                    <label>Enter Master Admin Password</label>
+                    <input type="password" id="adminPassInput" placeholder="Enter secure password">
+                </div>
+                <button class="apply-btn" onclick="verifyAdmin()">Authenticate Access</button>
+            </div>
+            <div id="adminDashboard" style="display:none;">
+                <p style="font-size:11px; color:#2ecc71; margin-bottom:15px; font-weight:bold;">Total Verified Applicants: <span id="applicantCount">0</span></p>
+                <div style="max-height: 300px; overflow-y: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate ID & Name</th>
+                                <th>WhatsApp Contact</th>
+                                <th>Job Sector</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicantTableBody">
+                            <!-- Dynamic Data -->
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <button class="apply-btn" style="background:#222; color:#fff; font-size:10px; padding:10px 20px;" onclick="closeAdmin()">Lock & Exit</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showApplicationForm() {
+            document.getElementById('entranceCard').style.display = 'none';
+            document.getElementById('formSection').style.display = 'block';
+        }
+
+        function backToForm() {
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('formSection').style.display = 'block';
+        }
+
+        function previewCV() {
+            const name = document.getElementById('fullName').value;
+            const father = document.getElementById('fatherName').value;
+            const mother = document.getElementById('motherName').value;
+            const email = document.getElementById('email').value;
+            const waCode = document.getElementById('countryCode1').value;
+            const waNum = document.getElementById('whatsapp').value;
+            const sector = document.getElementById('jobSector').value;
+            const nid = document.getElementById('nidNumber').value;
+            const dob = document.getElementById('dob').value;
+            const address = document.getElementById('address').value;
+            const location = document.getElementById('autoLocation').value;
+
+            if(!name || !father || !mother || !email || !waNum || !nid || !dob || !address) {
+                alert("Please fill in all mandatory (*) fields correctly.");
+                return;
+            }
+
+            const previewHtml = `
+                <b>Full Name:</b> ${name}<br>
+                <b>Father's Name:</b> ${father}<br>
+                <b>Mother's Name:</b> ${mother}<br>
+                <b>Email:</b> ${email}<br>
+                <b>Date of Birth:</b> ${dob}<br>
+                <b>WhatsApp:</b> ${waCode} ${waNum}<br>
+                <b>NID/Registration No:</b> ${nid}<br>
+                <b>Address:</b> ${address}<br>
+                <b>Target Sector:</b> ${sector}<br>
+                <b>Auto-Tracked Location:</b> ${location}
+            `;
+            document.getElementById('cvPreviewContent').innerHTML = previewHtml;
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('previewSection').style.display = 'block';
+        }
+
+        function submitApplication() {
+            const waCode = document.getElementById('countryCode1').value;
+            const waNum = document.getElementById('whatsapp').value;
+            const fullWa = waCode + waNum;
+
+            const applicant = {
+                id: 'MME-' + Math.floor(1000 + Math.random() * 9000),
+                name: document.getElementById('fullName').value,
+                whatsapp: fullWa,
+                sector: document.getElementById('jobSector').value,
+                url: window.location.href
+            };
+
+            let applicants = JSON.parse(localStorage.getItem('mme_applicants') || '[]');
+            applicants.push(applicant);
+            localStorage.setItem('mme_applicants', JSON.stringify(applicants));
+
+            alert("Application successfully submitted and securely registered in our enterprise database!");
+            location.reload();
+        }
+
+        function openAdminModal() {
+            document.getElementById('entranceCard').style.display = 'none';
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('adminSection').style.display = 'block';
+        }
+
+        function verifyAdmin() {
+            const pass = document.getElementById('adminPassInput').value;
+            if(pass === 'masudar99') {
+                document.getElementById('adminLoginBox').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadApplicantsTable();
+            } else {
+                alert("Incorrect Master Password! Access Denied.");
+            }
+        }
+
+        function loadApplicantsTable() {
+            let applicants = JSON.parse(localStorage.getItem('mme_applicants') || '[]');
+            document.getElementById('applicantCount').innerText = applicants.length;
+            let tbody = document.getElementById('applicantTableBody');
+            tbody.innerHTML = '';
+            
+            if(applicants.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#777;">No applications recorded yet.</td></tr>`;
+                return;
+            }
+
+            applicants.forEach(app => {
+                let cleanWa = app.whatsapp.replace(/[^0-9]/g, '');
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><b>[${app.id}]</b><br><span style="color:#fff; font-weight:bold;">${app.name}</span></td>
+                    <td><a href="https://wa.me/${cleanWa}" target="_blank" class="wa-chat-link"><i class="fa-brands fa-whatsapp"></i> ${app.whatsapp}</a></td>
+                    <td>${app.sector}</td>
+                    <td><a href="${app.url}" target="_blank" style="color:var(--gold-primary); text-decoration:none; font-weight:bold;">View Details</a></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminSection').style.display = 'none';
+            document.getElementById('entranceCard').style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>
