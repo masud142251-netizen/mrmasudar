@@ -81,7 +81,8 @@
             padding: 0 6px;
         }
 
-        /* 5 Identical Categories for Seller & Buyer */
+        /* Scrollable Category Menu with Hand Hint */
+        .hand-scroll-hint { text-align: center; font-size: 9px; color: var(--gold-primary); margin-bottom: 5px; opacity: 0.8; }
         .category-menu {
             display: flex;
             gap: 8px;
@@ -90,6 +91,8 @@
             overflow-x: auto;
             padding: 5px;
             scrollbar-width: none;
+            cursor: grab;
+            user-select: none;
         }
         .category-menu::-webkit-scrollbar { display: none; }
         .cat-chip {
@@ -103,6 +106,7 @@
             cursor: pointer;
             white-space: nowrap;
             transition: 0.2s;
+            flex-shrink: 0;
         }
         .cat-chip:hover, .cat-chip.active {
             background: var(--gold-gradient);
@@ -110,35 +114,35 @@
             border-color: #fff;
         }
 
-        /* Larger Draggable & Floating Luxury Basket with Center Pop Effect */
+        /* Medium Sized Draggable & Floating Luxury Basket */
         .floating-basket {
             position: fixed;
             top: 20px;
             right: 20px;
             background: var(--gold-gradient);
             color: #000;
-            width: 70px;
-            height: 70px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.9);
+            font-size: 20px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
             cursor: grab;
             z-index: 9999;
             user-select: none;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.5s ease, top 0.5s ease;
+            touch-action: none;
+            transition: transform 0.2s ease;
         }
         .floating-basket:active { cursor: grabbing; }
         
-        /* Central Screen Focus Effect class */
         .basket-center-focus {
             position: fixed !important;
             top: 50% !important;
             left: 50% !important;
-            transform: translate(-50%, -50%) scale(1.8) !important;
-            box-shadow: 0 0 70px #fff, 0 0 50px var(--gold-primary) !important;
+            transform: translate(-50%, -50%) scale(1.6) !important;
+            box-shadow: 0 0 60px #fff, 0 0 40px var(--gold-primary) !important;
             z-index: 99999 !important;
         }
 
@@ -150,7 +154,7 @@
             color: #000;
             font-size: 10px;
             font-weight: 800;
-            padding: 3px 6px;
+            padding: 2px 5px;
             border-radius: 50%;
             border: 2px solid #000;
         }
@@ -171,8 +175,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            will-change: transform;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: 0.2s;
         }
         .product-card:hover { border-color: var(--gold-primary); transform: translateY(-2px); }
         .product-img-box {
@@ -190,8 +193,8 @@
         .product-title { font-size: 10px; font-weight: 700; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
         .stars { color: var(--gold-primary); font-size: 8px; margin-bottom: 4px; }
         .card-actions { display: flex; border-top: 1px solid #222; }
-        .card-btn { flex: 1; background: transparent; border: none; padding: 8px; color: var(--gold-primary); font-size: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; will-change: background; }
-        .card-btn:active { background: rgba(212, 175, 55, 0.3); }
+        .card-btn { flex: 1; background: transparent; border: none; padding: 8px; color: var(--gold-primary); font-size: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .card-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
         /* Modal Details & Checkout */
         .modal-overlay {
@@ -273,7 +276,7 @@
         .qty-box { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
         .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: bold; }
 
-        /* Fast & Smooth Flying Coin Animation */
+        /* Flying Coin Animation */
         .flying-coin {
             position: fixed;
             width: 35px;
@@ -309,7 +312,7 @@
     <!-- Admin Lock -->
     <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
 
-    <!-- Larger Floating Basket -->
+    <!-- Medium Sized Draggable Floating Basket -->
     <div class="floating-basket" id="floatingBasket" title="Checkout">
         <i class="fa-solid fa-basket-shopping"></i>
         <span class="basket-count" id="cartBadge">0</span>
@@ -322,15 +325,16 @@
         
         <div class="search-bar-container">
             <i class="fa-solid fa-magnifying-glass" style="color:var(--gold-primary); margin-left: 4px;"></i>
-            <input type="text" id="searchInput" placeholder="Search luxury products (বাংলায় বলুন)..." onkeyup="filterProducts()">
+            <input type="text" id="searchInput" placeholder="Search luxury products..." onkeyup="filterProducts()">
             <button class="search-icon-btn" onclick="startVoiceSearch()"><i class="fa-solid fa-microphone"></i></button>
             <button class="search-icon-btn" onclick="triggerImageSearch()"><i class="fa-solid fa-camera"></i></button>
             <input type="file" id="imageUploadInput" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
         </div>
     </div>
 
-    <!-- 5 Identical Categories for Buyer & Seller -->
-    <div class="category-menu">
+    <!-- Horizontal Scrollable Category Menu with Hand Icon -->
+    <div class="hand-scroll-hint"><i class="fa-solid fa-hand-pointer"></i> Swipe left/right to view categories</div>
+    <div class="category-menu" id="catMenu">
         <div class="cat-chip active" onclick="filterCategory('All', this)">🌟 All</div>
         <div class="cat-chip" onclick="filterCategory("Women's Fashion", this)">👗 Women's Fashion</div>
         <div class="cat-chip" onclick="filterCategory("Men's Fashion", this)">👔 Men's Fashion</div>
@@ -348,7 +352,7 @@
     </div>
 
     <script>
-        // Bangla to English Search Translation
+        // Bangla to English Search Translation Mapping
         const searchMap = {
             "বিছানা": "Bed", "পোশাক": "Suit", "শাড়ি": "Saree", "বেবি": "Baby", "উপহার": "Gift", "সাজসজ্জা": "Decor", "ঘড়ি": "Watch"
         };
@@ -361,15 +365,58 @@
             return lower;
         }
 
-        // Draggable & Smooth Floating Basket
+        // Draggable & Smooth Floating Basket (Touch & Mouse support)
         const basket = document.getElementById('floatingBasket');
         let isDragging = false, startX, startY, initialX, initialY;
-        basket.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX; startY = e.clientY; let r = basket.getBoundingClientRect(); initialX = r.left; initialY = r.top; basket.style.right = 'auto'; basket.style.top = initialY + 'px'; basket.style.left = initialX + 'px'; });
-        document.addEventListener('mousemove', (e) => { if(!isDragging) return; basket.style.left = (initialX + (e.clientX - startX)) + 'px'; basket.style.top = (initialY + (e.clientY - startY)) + 'px'; });
-        document.addEventListener('mouseup', () => { isDragging = false; });
-        basket.onclick = () => { if(!isDragging) openCheckoutModal(); };
 
-        // 5 Identical Categories Product Data
+        basket.addEventListener('mousedown', dragStart);
+        basket.addEventListener('touchstart', dragStart, {passive: true});
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag, {passive: true});
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('touchend', dragEnd);
+
+        function dragStart(e) {
+            isDragging = true;
+            startX = e.clientX || e.touches[0].clientX;
+            startY = e.clientY || e.touches[0].clientY;
+            let r = basket.getBoundingClientRect();
+            initialX = r.left;
+            initialY = r.top;
+            basket.style.right = 'auto';
+            basket.style.top = initialY + 'px';
+            basket.style.left = initialX + 'px';
+        }
+
+        function drag(e) {
+            if(!isDragging) return;
+            let currentX = e.clientX || e.touches[0].clientX;
+            let currentY = e.clientY || e.touches[0].clientY;
+            basket.style.left = (initialX + (currentX - startX)) + 'px';
+            basket.style.top = (initialY + (currentY - startY)) + 'px';
+        }
+
+        function dragEnd() { isDragging = false; }
+
+        basket.onclick = function() {
+            if(!isDragging) { openCheckoutModal(); }
+        };
+
+        // Horizontal Category Scrolling with mouse drag support
+        const catMenu = document.getElementById('catMenu');
+        let isCatDragging = false, catStartX, catScrollLeft;
+        catMenu.addEventListener('mousedown', (e) => { isCatDragging = true; catStartX = e.pageX - catMenu.offsetLeft; catScrollLeft = catMenu.scrollLeft; });
+        catMenu.addEventListener('mouseleave', () => { isCatDragging = false; });
+        catMenu.addEventListener('mouseup', () => { isCatDragging = false; });
+        catMenu.addEventListener('mousemove', (e) => {
+            if(!isCatDragging) return;
+            e.preventDefault();
+            let x = e.pageX - catMenu.offsetLeft;
+            let walk = (x - catStartX) * 2;
+            catMenu.scrollLeft = catScrollLeft - walk;
+        });
+
+        // Products Data
         function getProducts() {
             let p = JSON.parse(localStorage.getItem('mme_products') || '[]');
             if(p.length === 0) {
@@ -435,18 +482,19 @@
                 let rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
                 rec.lang = 'bn-BD';
                 rec.onresult = (e) => {
-                    document.getElementById('searchInput').value = e.results[0][0].transcript;
+                    let spoken = e.results[0][0].transcript;
+                    document.getElementById('searchInput').value = translateSearch(spoken);
                     filterProducts();
                 };
                 rec.start();
             } catch(e) {
                 let txt = prompt("প্রোডাক্টের নাম বলুন:");
-                if(txt) { document.getElementById('searchInput').value = txt; filterProducts(); }
+                if(txt) { document.getElementById('searchInput').value = translateSearch(txt); filterProducts(); }
             }
         }
 
         function triggerImageSearch() { document.getElementById('imageUploadInput').click(); }
-        function handleImageUpload(e) { alert("AI Visual Match Found!"); document.getElementById('searchInput').value = "Silk"; filterProducts(); }
+        function handleImageUpload(e) { alert("AI Visual Match Found!"); document.getElementById('searchInput').value = "Royal"; filterProducts(); }
 
         let currentQty = 1;
         let activePrice = 0;
@@ -501,7 +549,7 @@
             document.getElementById('totalItemPrice').innerText = subtotal.toLocaleString();
         }
 
-        // Fast Animation: Coin flies to basket, then basket pops to center screen & returns smoothly
+        // Flying Coin Animation + Central Basket Pop Effect
         function addCartAndAnimate(event, name, price, shipping) {
             let badge = document.getElementById('cartBadge');
             badge.innerText = parseInt(badge.innerText) + currentQty;
@@ -523,15 +571,14 @@
             document.body.appendChild(coin);
 
             setTimeout(() => {
-                coin.style.left = (basketRect.left + 20) + 'px';
-                coin.style.top = (basketRect.top + 20) + 'px';
+                coin.style.left = (basketRect.left + 15) + 'px';
+                coin.style.top = (basketRect.top + 15) + 'px';
                 coin.style.transform = 'scale(0.2) rotate(720deg)';
                 coin.style.opacity = '0';
             }, 30);
 
             setTimeout(() => {
                 coin.remove();
-                // Basket pops to center screen for luxury effect
                 let oldLeft = basket.style.left;
                 let oldTop = basket.style.top;
                 basket.classList.add('basket-center-focus');
@@ -540,8 +587,8 @@
                     basket.classList.remove('basket-center-focus');
                     basket.style.left = oldLeft;
                     basket.style.top = oldTop;
-                }, 900);
-            }, 650);
+                }, 800);
+            }, 600);
         }
 
         function playCoinSound() {
