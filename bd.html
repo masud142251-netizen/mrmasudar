@@ -334,7 +334,7 @@
         <span class="basket-count" id="cartBadge">0</span>
     </div>
 
-    <!-- Header & Search Bar -->
+    <!-- Header & Search Bar (English Only) -->
     <div class="market-header">
         <h1>MR MASUDAR ENTERPRISE</h1>
         <p style="color: var(--text-gray); font-size: 7px; letter-spacing: 1px; text-transform: uppercase; margin: 0;">Elite Luxury Bangladesh Market</p>
@@ -348,16 +348,16 @@
         </div>
     </div>
 
-    <!-- Auto-Sliding Luxury Categories Menu (Does not stop on click) -->
+    <!-- Auto-Sliding Luxury Categories Menu -->
     <div class="category-menu-wrap">
         <div class="category-menu" id="catMenu">
-            <div class="cat-chip" onclick="filterCategory(\"Women's Fashion\", this)">👗 Women's Fashion</div>
-            <div class="cat-chip" onclick="filterCategory(\"Men's Fashion\", this)">👔 Men's Fashion</div>
+            <div class="cat-chip" onclick="filterCategory('Women\'s Fashion', this)">👗 Women's Fashion</div>
+            <div class="cat-chip" onclick="filterCategory('Men\'s Fashion', this)">👔 Men's Fashion</div>
             <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
             <div class="cat-chip" onclick="filterCategory('Gift', this)">🎁 Gift</div>
             <div class="cat-chip" onclick="filterCategory('Decor', this)">🏺 Decor</div>
-            <div class="cat-chip" onclick="filterCategory(\"Women's Fashion\", this)">👗 Women's Fashion</div>
-            <div class="cat-chip" onclick="filterCategory(\"Men's Fashion\", this)">👔 Men's Fashion</div>
+            <div class="cat-chip" onclick="filterCategory('Women\'s Fashion', this)">👗 Women's Fashion</div>
+            <div class="cat-chip" onclick="filterCategory('Men\'s Fashion', this)">👔 Men's Fashion</div>
             <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
             <div class="cat-chip" onclick="filterCategory('Gift', this)">🎁 Gift</div>
             <div class="cat-chip" onclick="filterCategory('Decor', this)">🏺 Decor</div>
@@ -373,18 +373,6 @@
     </div>
 
     <script>
-        const searchMap = {
-            "বিছানা": "Bed", "পোশাক": "Suit", "শাড়ি": "Saree", "বেবি": "Baby", "উপহার": "Gift", "সাজসজ্জা": "Decor", "ঘড়ি": "Watch", "স্যুট": "Suit"
-        };
-
-        function translateSearch(text) {
-            let lower = text.toLowerCase();
-            for(let bn in searchMap) {
-                if(lower.includes(bn)) lower = lower.replace(bn, searchMap[bn].toLowerCase());
-            }
-            return lower;
-        }
-
         // 5 Minutes Inactivity Timer
         let idleTimer;
         function resetIdleTimer() {
@@ -483,7 +471,7 @@
         }
 
         function filterProducts() {
-            let query = translateSearch(document.getElementById('searchInput').value);
+            let query = document.getElementById('searchInput').value.toLowerCase();
             let products = getProducts();
             let grid = document.getElementById('marketProductGrid');
             grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => `
@@ -502,15 +490,15 @@
         function startVoiceSearch() {
             try {
                 let rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-                rec.lang = 'bn-BD';
+                rec.lang = 'en-US';
                 rec.onresult = (e) => {
-                    document.getElementById('searchInput').value = translateSearch(e.results[0][0].transcript);
+                    document.getElementById('searchInput').value = e.results[0][0].transcript;
                     filterProducts();
                 };
                 rec.start();
             } catch(e) {
-                let txt = prompt("প্রোডাক্টের নাম বলুন:");
-                if(txt) { document.getElementById('searchInput').value = translateSearch(txt); filterProducts(); }
+                let txt = prompt("Type product name:");
+                if(txt) { document.getElementById('searchInput').value = txt; filterProducts(); }
             }
         }
 
@@ -636,7 +624,7 @@
         function openCheckoutModal() {
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
             if(cart.length === 0) {
-                alert("আপনার ঝুড়িটি বর্তমানে খালি রয়েছে।");
+                alert("Your cart is currently empty.");
                 return;
             }
 
@@ -732,7 +720,7 @@
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
 
             if(!name || !phone || !city || !addr || (!payment.includes('International') && !trx)) {
-                alert("দয়া করে সমস্ত তথ্য এবং পেমেন্ট ট্রানজেকশন আইডি পূরণ করুন।");
+                alert("Please fill in all required fields and payment transaction ID.");
                 return;
             }
 
@@ -752,7 +740,7 @@
 
             localStorage.removeItem('mme_cart_details');
             updateCartBadgeCount();
-            alert("অর্ডার সফলভাবে সম্পন্ন হয়েছে!");
+            alert("Order placed successfully!");
             closeModal();
         }
 
@@ -769,7 +757,7 @@
                 `;
                 document.getElementById('productModal').style.display = 'flex';
             } else if(p) {
-                alert("ভুল পাসওয়ার্ড!");
+                alert("Incorrect Password!");
             }
         }
 
