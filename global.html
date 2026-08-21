@@ -325,7 +325,7 @@
 </head>
 <body>
 
-    <!-- Admin Lock -->
+    <!-- Admin Lock (Password: mrbtrmlc) -->
     <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
 
     <!-- Floating Basket -->
@@ -373,7 +373,7 @@
     </div>
 
     <script>
-        // Automatic IP Country & City Tracking (237+ Countries Support)
+        // Automatic IP Country & City Tracking (Accurate Region & Shipping Calculation)
         let detectedCountry = "United States";
         let detectedCity = "New York";
         let detectedPhoneCode = "+1";
@@ -385,12 +385,19 @@
                 let data = await res.json();
                 if(data && data.country_name) {
                     detectedCountry = data.country_name;
-                    detectedCity = data.city || "Global City";
+                    detectedCity = data.city || "Metropolitan City";
                     detectedPhoneCode = data.country_calling_code || "+1";
                     
-                    if(data.continent_code === 'AS') autoShippingRate = 18;
-                    else if(data.continent_code === 'EU' || data.continent_code === 'NA') autoShippingRate = 25;
-                    else autoShippingRate = 35;
+                    // Exact Shipping calculations based on regions
+                    if(data.country_name === "Bangladesh") {
+                        autoShippingRate = 5; // Local/Regional expedited rate
+                    } else if(data.continent_code === 'AS') {
+                        autoShippingRate = 18;
+                    } else if(data.continent_code === 'EU' || data.continent_code === 'NA') {
+                        autoShippingRate = 25;
+                    } else {
+                        autoShippingRate = 35;
+                    }
                 }
             } catch(e) {
                 detectedCountry = "United States";
@@ -543,7 +550,7 @@
         function openProductDetails(title) {
             let p = getProducts().find(item => item.title === title) || getProducts()[0];
             activePrice = p.price;
-            activeShipping = p.shipping;
+            activeShipping = autoShippingRate;
             activeTitle = p.title;
             currentQty = 1;
 
@@ -564,7 +571,7 @@
                         <p style="color:#aaa; font-size:10px; line-height:1.5; margin:8px 0;">${p.desc}</p>
                         
                         <div style="font-size:14px; color:var(--gold-primary); font-weight:bold;">Unit Price: $ <span id="unitPrice">${activePrice}</span></div>
-                        <div style="font-size:10px; color:#aaa;">Clear International Shipping (${detectedCountry}): $ <span id="shippingFee">${activeShipping}</span></div>
+                        <div style="font-size:10px; color:#aaa;">Auto-Tracked Shipping (${detectedCountry}): $ <span id="shippingFee">${activeShipping}</span></div>
 
                         <div class="qty-box">
                             <span style="font-size:10px; color:var(--gold-light);">Quantity:</span>
@@ -590,7 +597,7 @@
             currentQty += change;
             if(currentQty < 1) currentQty = 1;
             document.getElementById('prodQty').innerText = currentQty;
-            let subtotal = (activePrice * currentQty) + activeShipping;
+            let subtotal = (activePrice * currentQty) + autoShippingRate;
             document.getElementById('totalItemPrice').innerText = subtotal;
         }
 
@@ -674,7 +681,7 @@
                 <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:20px; text-align:center; margin-bottom:5px;">Global Secure Checkout</h3>
                 
                 <div style="margin-bottom: 10px; font-size:9px; color:var(--gold-light); text-align:center;">
-                    Auto-Tracked Location: <b>${detectedCountry}, ${detectedCity}</b> | Clear Intl. Shipping: <b>$${shipCost}</b>
+                    Live Tracked Location: <b>${detectedCountry}, ${detectedCity}</b> | Explicit Shipping: <b>$${shipCost}</b>
                 </div>
 
                 <div style="margin-bottom: 15px;">
@@ -683,7 +690,7 @@
                 </div>
 
                 <div class="grand-total-box">
-                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Clear Shipping)</div>
+                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Explicit Shipping)</div>
                     <div class="grand-total-price">$ ${grandTotal}</div>
                     <div style="font-size:9px; color:var(--gold-light);">Items: ${cart.length} | Shipping Included: $ ${shipCost}</div>
                 </div>
@@ -700,7 +707,7 @@
                     <div>
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">WhatsApp Number *</label>
                         <div style="display:flex; gap:4px; margin-top:3px;">
-                            <select id="countryPhoneCode" style="width:85px; background:#000; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:10px;">
+                            <select id="countryPhoneCode" style="width:95px; background:#000; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:10px;">
                                 <option value="${detectedPhoneCode}">${detectedPhoneCode} (Auto)</option>
                                 <option value="+93">+93 (Afghanistan)</option>
                                 <option value="+355">+355 (Albania)</option>
@@ -715,9 +722,12 @@
                                 <option value="+32">+32 (Belgium)</option>
                                 <option value="+55">+55 (Brazil)</option>
                                 <option value="+1">+1 (Canada)</option>
+                                <option value="+56">+56 (Chile)</option>
                                 <option value="+86">+86 (China)</option>
+                                <option value="+57">+57 (Colombia)</option>
                                 <option value="+45">+45 (Denmark)</option>
                                 <option value="+20">+20 (Egypt)</option>
+                                <option value="+358">+358 (Finland)</option>
                                 <option value="+33">+33 (France)</option>
                                 <option value="+49">+49 (Germany)</option>
                                 <option value="+30">+30 (Greece)</option>
@@ -788,7 +798,7 @@
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Global Cards Accepted *</label>
                         <select id="paymentMethod" class="input-box">
                             <option value="Global Cards Accepted">Global Cards Accepted (All Major Cards)</option>
-                            <option value="Visa / MasterCard">Visa / MasterCard / Maestro</option>
+                            <option value="Visa / Mastercard">Visa / MasterCard / Maestro</option>
                             <option value="American Express">American Express (AMEX)</option>
                             <option value="Discover / JCB">Discover / JCB / UnionPay</option>
                             <option value="PayPal Global">PayPal Global Secure</option>
@@ -841,7 +851,7 @@
 
             localStorage.removeItem('mme_global_cart');
             updateCartBadgeCount();
-            alert("Global Order Placed Successfully via Global Secure Cards!");
+            alert("Global Order Placed Successfully via Global Cards Accepted!");
             closeModal();
         }
 
