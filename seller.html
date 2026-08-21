@@ -2,95 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MR MASUDAR | ELITE SELLER ECOSYSTEM</title>
+    <title>MR MASUDAR ENTERPRISE | Global Seller Ecosystem</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --bg: #000; --text: #fff; --gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #AA771C); }
-        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; }
-        .card { background: #0a0a0a; border: 1px solid var(--gold); border-radius: 20px; padding: 30px; margin: 20px auto; width: 90%; max-width: 800px; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
-        .btn { background: var(--gradient); border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        :root { --bg: #000; --gold: #D4AF37; --white: #fff; --gradient: linear-gradient(135deg, #BF953F, #AA771C); }
+        body { background: var(--bg); color: var(--white); font-family: 'Montserrat', sans-serif; margin: 0; }
+        .lock-btn-fixed { position: fixed; bottom: 10px; left: 10px; opacity: 0.1; cursor: pointer; color: var(--gold); }
+        .lock-btn-fixed:hover { opacity: 1; }
+        .card { background: #0a0a0a; border: 1px solid var(--gold); border-radius: 20px; padding: 40px; margin: 50px auto; width: 85%; max-width: 700px; box-shadow: 0 0 40px rgba(212,175,55,0.15); }
+        h1 { font-family: 'Cormorant Garamond', serif; text-align: center; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 32px; }
         .input-group { margin-bottom: 15px; }
-        input, select, textarea { width: 100%; background: #000; border: 1px solid #333; padding: 10px; color: #fff; border-radius: 8px; }
-        .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .stat-card { background: #111; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #222; }
+        label { font-size: 10px; color: var(--gold); text-transform: uppercase; font-weight: bold; }
+        input, select, textarea { width: 100%; background: #000; border: 1px solid #333; padding: 12px; color: #fff; border-radius: 8px; box-sizing: border-box; }
+        .btn { background: var(--gradient); border: none; padding: 15px 30px; border-radius: 30px; color: #000; font-weight: bold; cursor: pointer; width: 100%; text-transform: uppercase; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <!-- Admin Lock -->
-    <div onclick="openAdmin()" style="position:fixed; bottom:10px; left:10px; opacity:0.1; cursor:pointer;"><i class="fa fa-lock"></i></div>
+    <div class="lock-btn-fixed" onclick="openAdmin()"><i class="fa fa-lock"></i></div>
 
     <div id="app" class="card">
-        <h1>SELLER PORTAL</h1>
-        <div id="dynamicContent">
-            <!-- Content will be injected via JS -->
-            <button class="btn" onclick="showForm()">REGISTER AS GLOBAL SELLER</button>
+        <div id="content">
+            <h1>MR MASUDAR ENTERPRISE</h1>
+            <p style="text-align:center; font-size:10px; letter-spacing:2px;">GLOBAL VENDOR PORTAL</p>
+            <button class="btn" onclick="showForm()">REGISTER AS A GLOBAL SELLER</button>
         </div>
     </div>
 
     <script>
-        // Data Handling
-        let sellers = JSON.parse(localStorage.getItem('sellers') || '[]');
-        let affiliates = JSON.parse(localStorage.getItem('affiliates') || '[]');
+        let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
 
         function showForm() {
-            document.getElementById('dynamicContent').innerHTML = `
-                <div class="input-group"><label>Full Name</label><input type="text" id="name"></div>
-                <div class="input-group"><label>Gmail</label><input type="email" id="email"></div>
-                <div class="input-group"><label>WhatsApp</label><input type="text" id="phone"></div>
-                <div class="input-group"><label>Password</label><input type="password" id="pass"></div>
-                <button class="btn" onclick="register()">REGISTER</button>
+            document.getElementById('content').innerHTML = `
+                <div class="input-group"><label>Store Name</label><input type="text" id="bizName"></div>
+                <div class="input-group"><label>Product Title</label><input type="text" id="pTitle"></div>
+                <div class="input-group"><label>Select Category</label>
+                    <select id="pCat">
+                        <option>FASHION (MEN)</option><option>FASHION (WOMEN)</option>
+                        <option>👶 BABY</option><option>🎁 LUXURY GIFTS</option>
+                        <option>🏡 HOME DECOR</option><option>🎨 ART & CRAFT</option>
+                    </select>
+                </div>
+                <div class="input-group"><label>Price (BDT - 5% Commission)</label><input type="number" id="pBDT"></div>
+                <div class="input-group"><label>Price (Global Retail USD - 20% Commission)</label><input type="number" id="pUSD"></div>
+                <div class="input-group"><label>Price (Wholesale USD - 5% Commission)</label><input type="number" id="pWhole"></div>
+                <button class="btn" onclick="submit()">PUBLISH TO MARKETPLACE</button>
             `;
         }
 
-        function register() {
-            let email = document.getElementById('email').value;
-            let phone = document.getElementById('phone').value;
-            
-            // Duplicate Check
-            if(affiliates.find(a => a.email === email || a.whatsapp === phone)) {
-                return alert("Email or Phone already registered as Affiliate!");
-            }
-            
-            let newSeller = {
-                id: 'VEN-' + Math.floor(Math.random()*9000),
-                name: document.getElementById('name').value,
-                email: email,
-                phone: phone,
-                pass: document.getElementById('pass').value,
-                status: 'Pending',
-                products: 0,
-                earnings: 0
+        function submit() {
+            let p = {
+                title: document.getElementById('pTitle').value,
+                cat: document.getElementById('pCat').value,
+                bd: document.getElementById('pBDT').value,
+                global: document.getElementById('pUSD').value,
+                whole: document.getElementById('pWhole').value
             };
-            sellers.push(newSeller);
-            localStorage.setItem('sellers', JSON.stringify(sellers));
-            alert("Registered! Awaiting Admin Approval.");
-            location.reload();
+            let products = JSON.parse(localStorage.getItem('products') || '[]');
+            products.push(p);
+            localStorage.setItem('products', JSON.stringify(products));
+            alert("Product published successfully to respective global market segments!");
         }
 
         function openAdmin() {
             let pass = prompt("Admin Password:");
             if(pass === 'mrseller.html' || pass === 'mrseller.htmld') {
-                let html = "<h2>Admin Control Panel</h2><table>";
-                sellers.forEach((s, i) => {
-                    html += `<tr><td>${s.biz || s.name}</td><td>${s.status}</td>
-                    <td><button onclick="toggle(${i})">Approve/Block</button>
-                    <button onclick="del(${i})">Delete</button></td></tr>`;
-                });
-                document.getElementById('dynamicContent').innerHTML = html + "</table>";
+                alert("Admin Access Granted");
+                // এখানে আপনার সেলারদের লিস্ট ও কমিশন রিপোর্ট দেখানোর কোড যুক্ত করুন
             }
-        }
-
-        function toggle(i) {
-            sellers[i].status = sellers[i].status === 'Active' ? 'Pending' : 'Active';
-            localStorage.setItem('sellers', JSON.stringify(sellers));
-            location.reload();
-        }
-
-        function del(i) {
-            sellers.splice(i, 1);
-            localStorage.setItem('sellers', JSON.stringify(sellers));
-            location.reload();
         }
     </script>
 </body>
