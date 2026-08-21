@@ -115,7 +115,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Vertical Stacked Scrollable Layout */
+        /* Vertical Stacked Scrollable Layout with Zoom-In/Out Animations */
         .vertical-container { 
             display: flex;
             flex-direction: column;
@@ -190,57 +190,58 @@
             box-shadow: 0 0 25px rgba(255,255,255,0.5);
         }
 
-        /* --- Floating AI Live Chat Widget --- */
-        .chat-widget-wrapper {
+        /* --- Floating Bubble Live Chat Widget (Movable & Glowing Effect) --- */
+        .chat-bubble-wrapper {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 30px;
+            right: 30px;
             z-index: 9999;
+            cursor: pointer;
         }
-        .live-chat-launcher {
+        .live-chat-bubble {
             background: var(--gold-gradient);
             color: #000;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: 900;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-decoration: none;
-            box-shadow: 0 5px 25px rgba(212,175,55,0.5);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            border: 1px solid #fff;
-            animation: pulseGlow 2s infinite;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 0 20px rgba(212,175,55,0.6);
+            border: 2px solid #fff;
             transition: 0.3s;
+            animation: bubblePulse 2s infinite;
         }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px rgba(212,175,55,0.4); }
-            50% { box-shadow: 0 0 25px rgba(212,175,55,0.8); transform: scale(1.03); }
-            100% { box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        @keyframes bubblePulse {
+            0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(212,175,55,0); }
+            100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+        }
+        .live-chat-bubble:hover {
+            transform: scale(1.1);
         }
 
-        /* Chat Popup Box */
-        .chat-popup {
+        /* Human Support Chat Box (Interactive & Popup) */
+        .human-chat-box {
             display: none;
             position: absolute;
-            bottom: 60px;
+            bottom: 80px;
             right: 0;
             width: 320px;
             background: var(--surface-color);
             border: 1px solid var(--gold-primary);
             border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.95);
             overflow: hidden;
             text-align: left;
-            animation: slideUp 0.3s ease;
+            animation: popupBounce 0.3s ease;
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes popupBounce {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
-        .chat-header-box {
+        .chat-header-bar {
             background: #000;
             padding: 12px 15px;
             border-bottom: 1px solid var(--border-luxury);
@@ -248,38 +249,56 @@
             justify-content: space-between;
             align-items: center;
         }
-        .chat-title {
+        .agent-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 11px;
             color: var(--gold-primary);
             font-weight: bold;
-            letter-spacing: 1px;
         }
-        .close-chat {
+        .agent-status-dot {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+        }
+        .close-btn {
             color: #aaa;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
         }
-        .close-chat:hover { color: #fff; }
+        .close-btn:hover { color: #fff; }
 
-        .chat-body {
-            height: 220px;
+        .chat-message-area {
+            height: 240px;
             padding: 15px;
             overflow-y: auto;
             font-size: 11px;
             color: #ddd;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
-        .ai-msg {
-            background: rgba(212,175,55,0.1);
+        .agent-msg {
+            background: rgba(212,175,55,0.12);
             border-left: 2px solid var(--gold-primary);
-            padding: 8px 10px;
+            padding: 8px 12px;
             border-radius: 4px;
-            max-width: 85%;
+            max-width: 88%;
+            line-height: 1.4;
+        }
+        .user-msg {
+            background: #222;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            max-width: 88%;
+            align-self: flex-end;
+            border-right: 2px solid #fff;
         }
 
-        .chat-footer-box {
+        .chat-input-bar {
             padding: 10px;
             background: #000;
             border-top: 1px solid var(--border-luxury);
@@ -287,7 +306,7 @@
             align-items: center;
             gap: 8px;
         }
-        .chat-footer-box input {
+        .chat-input-bar input {
             background: #111;
             border: 1px solid #333;
             border-radius: 20px;
@@ -297,13 +316,13 @@
             outline: none;
             font-size: 11px;
         }
-        .chat-footer-box i {
+        .chat-input-bar i {
             color: var(--gold-primary);
-            font-size: 14px;
+            font-size: 15px;
             cursor: pointer;
             transition: 0.2s;
         }
-        .chat-footer-box i:hover { color: #fff; transform: scale(1.1); }
+        .chat-input-bar i:hover { color: #fff; transform: scale(1.15); }
     </style>
 </head>
 <body>
@@ -311,7 +330,7 @@
     <!-- Top Header -->
     <div class="top-header">
         <div class="brand-box">
-            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo-img" onerror="this.src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/lock.svg'">
+            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo-img">
             <div class="brand-text">
                 <h1>MR MASUDAR Enterprise</h1>
                 <span>ALL-IN-ONE . LESS IS MORE</span>
@@ -326,7 +345,7 @@
     <!-- Hero Section -->
     <div class="hero">
         <h2>ALL-IN-ONE GLOBAL ECOSYSTEM</h2>
-        <p>Explore elite gateways & shop instantly via live chat</p>
+        <p>Explore elite gateways & shop instantly via live human support</p>
     </div>
 
     <!-- Vertical Stacked Cards Layout -->
@@ -388,58 +407,86 @@
         </a>
     </div>
 
-    <!-- Floating AI Live Chat Widget with Popup Box -->
-    <div class="chat-widget-wrapper">
-        <div class="live-chat-launcher" onclick="toggleChatBox()">
-            <i class="fa-solid fa-comments"></i> LIVE CHAT
+    <!-- Floating Bubble Live Human Support Widget -->
+    <div class="chat-bubble-wrapper" id="chatWrapper">
+        <div class="live-chat-bubble" onclick="toggleHumanChat()" title="Live Support">
+            <i class="fa-solid fa-headset"></i>
         </div>
 
-        <div class="chat-popup" id="chatPopup">
-            <div class="chat-header-box">
-                <span class="chat-title"><i class="fa-solid fa-robot"></i> 24/7 AI SUPPORT</span>
-                <span class="close-chat" onclick="toggleChatBox()">&times;</span>
+        <div class="human-chat-box" id="humanChatBox">
+            <div class="chat-header-bar">
+                <div class="agent-info">
+                    <span class="agent-status-dot"></span> <span>Masudar Enterprise Support (Online)</span>
+                </div>
+                <span class="close-btn" onclick="toggleHumanChat()">&times;</span>
             </div>
-            <div class="chat-body" id="chatBody">
-                <div class="ai-msg">Welcome to Mr Masudar Enterprise! How can I assist you with our global ecosystem today?</div>
+            <div class="chat-message-area" id="chatArea">
+                <div class="agent-msg">Hello! Welcome to Mr Masudar Enterprise. Our support executive is online. How can we help you with your order or global store today?</div>
             </div>
-            <div class="chat-footer-box">
-                <input type="text" id="chatInput" placeholder="Ask AI or search products...">
-                <i class="fa-solid fa-microphone" title="Voice Search Audio" onclick="alert('Voice search activated...')"></i>
-                <i class="fa-solid fa-camera" title="Upload Product Image" onclick="alert('Camera / Image search activated...')"></i>
-                <i class="fa-solid fa-paper-plane" title="Send" onclick="sendUserMessage()"></i>
+            <div class="chat-input-bar">
+                <input type="text" id="userInputMsg" placeholder="Type your message to support..." onkeypress="checkEnter(event)">
+                <i class="fa-solid fa-microphone" title="Voice Audio Message" onclick="triggerVoiceInput()"></i>
+                <i class="fa-solid fa-camera" title="Upload Product Image / Snapshot" onclick="triggerImageUpload()"></i>
+                <i class="fa-solid fa-paper-plane" title="Send" onclick="sendHumanMessage()"></i>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleChatBox() {
-            const popup = document.getElementById('chatPopup');
-            popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+        // Toggle Chat Box
+        function toggleHumanChat() {
+            const box = document.getElementById('humanChatBox');
+            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
         }
 
-        function sendUserMessage() {
-            const input = document.getElementById('chatInput');
-            const chatBody = document.getElementById('chatBody');
+        // Send Message Function mimicking Human Agent response
+        function sendHumanMessage() {
+            const input = document.getElementById('userInputMsg');
+            const area = document.getElementById('chatArea');
             if(input.value.trim() !== '') {
-                // User message
+                // User Bubble
                 const userDiv = document.createElement('div');
-                userDiv.style.textAlign = 'right';
-                userDiv.style.color = '#D4AF37';
+                userDiv.className = 'user-msg';
                 userDiv.innerText = input.value;
-                chatBody.appendChild(userDiv);
+                area.appendChild(userDiv);
 
-                let query = input.value;
+                let text = input.value;
                 input.value = '';
+                area.scrollTop = area.scrollHeight;
 
-                // Simulated AI response
+                // Manual Support Agent Response simulation
                 setTimeout(() => {
-                    const aiDiv = document.createElement('div');
-                    aiDiv.className = 'ai-msg';
-                    aiDiv.innerText = "I'm checking our 237+ country network and products for: '" + query + "'. Let me guide you instantly!";
-                    chatBody.appendChild(aiDiv);
-                    chatBody.scrollTop = chatBody.scrollHeight;
-                }, 600);
+                    const agentDiv = document.createElement('div');
+                    agentDiv.className = 'agent-msg';
+                    agentDiv.innerText = "Thanks for your message regarding '" + text + "'. Our team is checking your request across our 237+ country network. Please hold on a moment!";
+                    area.appendChild(agentDiv);
+                    area.scrollTop = area.scrollHeight;
+                }, 1000);
             }
+        }
+
+        function checkEnter(e) {
+            if(e.key === 'Enter') {
+                sendHumanMessage();
+            }
+        }
+
+        function triggerVoiceInput() {
+            const area = document.getElementById('chatArea');
+            const msg = document.createElement('div');
+            msg.className = 'agent-msg';
+            msg.innerText = "🎙️ Voice recording feature active. Please speak your requirements clearly to our support team.";
+            area.appendChild(msg);
+            area.scrollTop = area.scrollHeight;
+        }
+
+        function triggerImageUpload() {
+            const area = document.getElementById('chatArea');
+            const msg = document.createElement('div');
+            msg.className = 'agent-msg';
+            msg.innerText = "📷 Camera / Product image scanner active. You can snap or upload a photo to find matching products instantly.";
+            area.appendChild(msg);
+            area.scrollTop = area.scrollHeight;
         }
     </script>
 
