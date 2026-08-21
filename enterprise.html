@@ -23,9 +23,8 @@
         h1 { font-family: 'Cormorant Garamond', serif; font-size: 24px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin: 0; letter-spacing: 2px; }
         .tagline { font-size: 9px; letter-spacing: 4px; color: #888; margin-bottom: 50px; font-weight: 600; }
 
-        /* Dynamic Service Section */
-        .service-section { margin-bottom: 80px; padding: 40px 25px; background: var(--surface-color); border: 1px solid var(--border-luxury); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; overflow: hidden; }
-        .service-section.visible { opacity: 1; transform: translateY(0); }
+        /* Instant Visible Service Section (Super Fast Load) */
+        .service-section { margin-bottom: 80px; padding: 40px 25px; background: var(--surface-color); border: 1px solid var(--border-luxury); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); position: relative; overflow: hidden; }
         
         .service-icon { font-size: 42px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; animation: floatIcon 3s infinite ease-in-out; }
         @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
@@ -70,7 +69,7 @@
         /* 8. Affiliate Network (Commissions Peak) */
         .peak-bar { width: 10px; background: var(--gold-gradient); border-radius: 2px; }
 
-        /* 9. Elite Talent (Radar Pulse - NEW UNIQUE GRAPH) */
+        /* 9. Elite Talent (Radar Pulse) */
         .radar-box { position: relative; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
         .radar-core { width: 14px; height: 14px; background: var(--gold-primary); border-radius: 50%; box-shadow: 0 0 10px var(--gold-primary); }
         .radar-pulse { position: absolute; width: 100%; height: 100%; border: 2px solid var(--gold-primary); border-radius: 50%; animation: radarExpand 1.5s infinite ease-out; }
@@ -199,14 +198,6 @@
             ${graphHTML}
         `;
         container.appendChild(section);
-    });
-
-    window.addEventListener('scroll', () => {
-        document.querySelectorAll('.service-section').forEach(sec => {
-            if(sec.getBoundingClientRect().top < window.innerHeight - 80) {
-                sec.classList.add('visible');
-            }
-        });
     });
 </script>
 
