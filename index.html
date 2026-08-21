@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* Top Header with Original Logo & Badges */
+        /* Top Header matching your screenshot */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -39,7 +39,6 @@
             gap: 15px;
             text-align: left;
         }
-        /* Original Logo Image container or custom icon */
         .brand-logo-img {
             width: 45px;
             height: 45px;
@@ -66,15 +65,16 @@
 
         .top-badges {
             display: flex;
-            gap: 10px;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-end;
         }
         .badge {
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid var(--border-luxury);
             color: var(--gold-primary);
             font-size: 9px;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-weight: bold;
             letter-spacing: 1px;
@@ -82,10 +82,10 @@
         }
 
         /* Hero Section with Animation */
-        .hero { padding: 40px 20px 30px 20px; }
+        .hero { padding: 35px 20px 30px 20px; }
         .hero h2 { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 34px; 
+            font-size: 32px; 
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -97,7 +97,7 @@
         .hero p { 
             color: #888; 
             font-size: 11px; 
-            letter-spacing: 2px; 
+            letter-spacing: 1.5px; 
             text-transform: uppercase; 
             animation: fadeInUp 1s ease;
         }
@@ -111,12 +111,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Vertical Stacked Layout (Top-to-Bottom Scrollable) */
+        /* Vertical Stacked Scrollable Layout */
         .vertical-container { 
             display: flex;
             flex-direction: column;
             gap: 25px; 
-            max-width: 900px; 
+            max-width: 950px; 
             margin: 0 auto; 
             padding: 0 20px 80px 20px;
         }
@@ -165,23 +165,23 @@
             transform: scale(1.15);
         }
         .luxury-card h3 { 
-            font-size: 16px; 
-            margin-bottom: 8px; 
+            font-size: 15px; 
+            margin-bottom: 6px; 
             color: #fff;
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
         .luxury-card p {
             color: #888;
-            font-size: 12px;
-            margin-bottom: 25px;
+            font-size: 11px;
+            margin-bottom: 22px;
             letter-spacing: 0.5px;
         }
         .btn { 
             display: inline-block; 
             background: var(--gold-gradient); 
             color: #000; 
-            padding: 11px 28px; 
+            padding: 10px 26px; 
             border-radius: 25px; 
             font-weight: 800; 
             text-transform: uppercase; 
@@ -196,17 +196,14 @@
             box-shadow: 0 0 20px rgba(255,255,255,0.4);
         }
 
-        /* Advanced Floating Live Chat Widget with Search, Audio & Camera */
-        .live-chat-container {
+        /* Floating Live Chat Button matching screenshot */
+        .live-chat-btn {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            z-index: 1000;
-        }
-        .live-chat-btn {
             background: var(--gold-gradient);
             color: #000;
-            padding: 12px 25px;
+            padding: 12px 26px;
             border-radius: 30px;
             font-weight: 900;
             font-size: 11px;
@@ -215,7 +212,8 @@
             box-shadow: 0 5px 25px rgba(212,175,55,0.4);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            z-index: 1000;
             transition: 0.3s;
             border: 1px solid #fff;
         }
@@ -230,8 +228,8 @@
     <!-- Top Header -->
     <div class="top-header">
         <div class="brand-box">
-            <!-- Replace 'YOUR_DRIVE_LOGO_LINK' with your actual Google Drive direct image link if needed -->
-            <img src="YOUR_DRIVE_LOGO_LINK" alt="Logo" class="brand-logo-img" onerror="this.style.display='none'">
+            <!-- Google Drive direct view/image link incorporated -->
+            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="MR MASUDAR Logo" class="brand-logo-img" onerror="this.src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/lock.svg'">
             <div class="brand-text">
                 <h1>MR MASUDAR Enterprise</h1>
                 <span>ALL-IN-ONE . LESS IS MORE</span>
@@ -245,26 +243,26 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <h2>All-in-One Global Ecosystem</h2>
+        <h2>ALL-IN-ONE GLOBAL ECOSYSTEM</h2>
         <p>Explore elite gateways & shop instantly via live chat</p>
     </div>
 
-    <!-- Vertical Stacked Cards Layout (Top to Bottom) -->
+    <!-- Vertical Stacked Cards Layout -->
     <div class="vertical-container">
         <!-- 1. Bangladesh Market -->
         <a href="bd.html" class="luxury-card">
             <i class="fa-solid fa-house-chimney"></i>
             <h3>BANGLADESH MARKET</h3>
             <p>Local Retail & Daily Essentials</p>
-            <span class="btn">Shop Local</span>
+            <span class="btn">SHOP LOCAL</span>
         </a>
 
         <!-- 2. Global Marketplace -->
         <a href="global.html" class="luxury-card">
             <i class="fa-solid fa-earth-americas"></i>
             <h3>GLOBAL MARKETPLACE</h3>
-            <p>Premium Products Worldwide & 10+ Categories</p>
-            <span class="btn">Explore Global</span>
+            <p>Premium Products Worldwide</p>
+            <span class="btn">EXPLORE GLOBAL</span>
         </a>
 
         <!-- 3. Wholesale Market -->
@@ -272,50 +270,46 @@
             <i class="fa-solid fa-warehouse"></i>
             <h3>WHOLESALE MARKET</h3>
             <p>Bulk Business & B2B Solutions</p>
-            <span class="btn">Bulk Order</span>
+            <span class="btn">BULK ORDER</span>
         </a>
 
         <!-- 4. Seller Ecosystem -->
         <a href="seller.html" class="luxury-card">
             <i class="fa-solid fa-store"></i>
             <h3>SELLER ECOSYSTEM</h3>
-            <p>Onboard, Store Management & Expand Business</p>
-            <span class="btn">Join Now</span>
+            <p>Onboard & Expand Business</p>
+            <span class="btn">JOIN NOW</span>
         </a>
 
         <!-- 5. Affiliate Network -->
         <a href="affiliate.html" class="luxury-card">
             <i class="fa-solid fa-chart-line"></i>
             <h3>AFFILIATE NETWORK</h3>
-            <p>Global Earnings, Registration Portal & Analytics (10%)</p>
-            <span class="btn">Open Portal</span>
+            <p>Global Earnings & Analytics (10%)</p>
+            <span class="btn">OPEN PORTAL</span>
         </a>
 
         <!-- 6. Careers & Talent -->
         <a href="career.html" class="luxury-card">
             <i class="fa-solid fa-users-gear"></i>
             <h3>CAREERS & TALENT</h3>
-            <p>Elite Workforce & Professional CV Builder</p>
-            <span class="btn">Apply Now</span>
+            <p>Join the Elite Workforce</p>
+            <span class="btn">APPLY NOW</span>
         </a>
 
         <!-- 7. Enterprise Solutions -->
         <a href="enterprise.html" class="luxury-card">
             <i class="fa-solid fa-gem"></i>
             <h3>ENTERPRISE SOLUTIONS</h3>
-            <p>Custom Global Infrastructure & Corporate Solutions</p>
-            <span class="btn">Explore</span>
+            <p>Custom Global Infrastructure</p>
+            <span class="btn">EXPLORE</span>
         </a>
     </div>
 
-    <!-- Floating Live Chat Button with Search, Audio & Camera capability -->
-    <div class="live-chat-container">
-        <a href="#" class="live-chat-btn">
-            <i class="fa-solid fa-comments"></i> LIVE CHAT 
-            <i class="fa-solid fa-microphone" style="font-size: 10px; margin-left: 5px;"></i>
-            <i class="fa-solid fa-camera" style="font-size: 10px;"></i>
-        </a>
-    </div>
+    <!-- Floating Live Chat Button -->
+    <a href="#" class="live-chat-btn">
+        <i class="fa-solid fa-comments"></i> LIVE CHAT
+    </a>
 
 </body>
 </html>
