@@ -32,7 +32,7 @@
 
         .portal-wrapper {
             width: 100%;
-            max-width: 850px;
+            max-width: 800px;
             padding: 30px 20px;
             box-sizing: border-box;
             display: flex;
@@ -58,23 +58,23 @@
         }
 
         .brand-logo {
-            width: 75px;
-            height: 75px;
-            border-radius: 16px;
-            border: 1px solid var(--gold-primary);
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            border: 2px solid var(--gold-primary);
             object-fit: cover;
             margin-bottom: 18px;
-            box-shadow: 0 0 25px rgba(212,175,55,0.4);
+            box-shadow: 0 0 30px rgba(212,175,55,0.5);
             animation: logoPulse 2.5s infinite ease-in-out;
         }
         @keyframes logoPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.3)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(212,175,55,0.7)); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212,175,55,0.4)); }
+            50% { transform: scale(1.06); filter: drop-shadow(0 0 20px rgba(212,175,55,0.8)); }
         }
 
         .luxury-card h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 26px;
+            font-size: 28px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -87,32 +87,41 @@
             font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             font-weight: 600;
         }
 
-        /* Gold Money Floating Effect Animation */
+        /* Luxury Cash/Coin Animation Banner */
         .gold-effect-banner {
-            background: rgba(212,175,55,0.08);
-            border: 1px dashed var(--gold-primary);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 25px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(0,0,0,0.8));
+            border: 1px solid var(--gold-primary);
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 30px;
             font-size: 11px;
             color: var(--gold-light);
             letter-spacing: 1px;
-            animation: goldGlow 3s infinite alternate;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(212,175,55,0.25);
         }
-        @keyframes goldGlow {
-            from { box-shadow: 0 0 5px rgba(212,175,55,0.2); }
-            to { box-shadow: 0 0 20px rgba(212,175,55,0.6); }
+        .gold-effect-banner::after {
+            content: '💵 🪙 💸 🪙 💵';
+            display: block;
+            font-size: 16px;
+            margin-top: 8px;
+            animation: coinFloat 3s infinite ease-in-out alternate;
+        }
+        @keyframes coinFloat {
+            from { transform: translateY(0); filter: drop-shadow(0 0 2px rgba(212,175,55,0.5)); }
+            to { transform: translateY(-4px); filter: drop-shadow(0 0 8px rgba(212,175,55,0.9)); }
         }
 
         .apply-btn {
             display: inline-block;
             background: var(--gold-gradient);
             color: #000;
-            padding: 15px 40px;
+            padding: 15px 45px;
             border-radius: 35px;
             font-weight: 800;
             text-transform: uppercase;
@@ -136,14 +145,14 @@
         }
 
         /* Form Layout Styles */
-        .form-section, .preview-section, .admin-section, .dashboard-section {
+        .form-section, .preview-section, .admin-section, .dashboard-section, .login-section {
             display: none;
             text-align: left;
         }
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
         }
         .full-width { grid-column: span 2; }
         
@@ -154,14 +163,14 @@
             color: var(--gold-light);
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-weight: 700;
         }
         .input-group input, .input-group select, .input-group textarea {
             width: 100%;
             background: #000;
             border: 1px solid #333;
-            padding: 12px 14px;
+            padding: 11px 13px;
             color: #fff;
             border-radius: 10px;
             font-size: 12px;
@@ -174,85 +183,42 @@
             box-shadow: 0 0 10px rgba(212,175,55,0.4);
         }
 
-        .phone-group {
-            display: flex;
-            gap: 8px;
-        }
-        .phone-group select {
-            width: 120px;
-            flex-shrink: 0;
-        }
+        .phone-group { display: flex; gap: 8px; }
+        .phone-group select { width: 110px; flex-shrink: 0; }
 
         .section-title {
             color: var(--gold-primary);
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             border-bottom: 1px dashed var(--border-luxury);
-            padding-bottom: 6px;
-            margin: 15px 0 10px 0;
+            padding-bottom: 5px;
+            margin: 12px 0 8px 0;
             font-weight: 700;
         }
 
-        /* Luxury CV Preview Design */
+        /* Profile Preview Card */
         .cv-preview-card {
             background: #050505;
             border: 1px solid var(--gold-primary);
             border-radius: 16px;
-            padding: 25px;
+            padding: 20px;
             color: #ddd;
-            max-height: 380px;
+            max-height: 350px;
             overflow-y: auto;
-            margin-bottom: 25px;
-            box-shadow: inset 0 0 15px rgba(212,175,55,0.1);
+            margin-bottom: 20px;
         }
-        .cv-header-box {
-            text-align: center;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-        .cv-avatar {
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            border: 2px solid var(--gold-primary);
-            object-fit: cover;
-            margin-bottom: 10px;
-            box-shadow: 0 0 15px rgba(212,175,55,0.4);
-        }
-        .cv-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            font-size: 11px;
-            line-height: 1.6;
-        }
+        .cv-header-box { text-align: center; border-bottom: 1px solid #333; padding-bottom: 12px; margin-bottom: 12px; }
+        .cv-avatar { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--gold-primary); object-fit: cover; margin-bottom: 8px; }
+        .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; line-height: 1.5; }
         .cv-full { grid-column: span 2; }
-        .cv-label { color: var(--gold-primary); font-weight: 700; text-transform: uppercase; font-size: 9px; }
+        .cv-label { color: var(--gold-primary); font-weight: 700; font-size: 9px; text-transform: uppercase; }
 
         /* Admin Table */
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 11px;
-            margin-top: 15px;
-        }
-        .admin-table th, .admin-table td {
-            border: 1px solid #333;
-            padding: 10px;
-            text-align: left;
-        }
-        .admin-table th {
-            background: rgba(212,175,55,0.15);
-            color: var(--gold-primary);
-        }
-        .wa-chat-link {
-            color: #2ecc71;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .wa-chat-link:hover { text-decoration: underline; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 15px; }
+        .admin-table th, .admin-table td { border: 1px solid #333; padding: 9px; text-align: left; }
+        .admin-table th { background: rgba(212,175,55,0.15); color: var(--gold-primary); }
+        .wa-chat-link { color: #2ecc71; text-decoration: none; font-weight: bold; }
 
         @media(max-width: 700px) {
             .form-grid, .cv-grid { grid-template-columns: 1fr; }
@@ -262,44 +228,36 @@
 </head>
 <body>
 
-    <!-- Ultra-Small Secret Lock Button -->
+    <!-- Ultra-Small Secret Lock -->
     <div class="lock-btn-fixed" id="secretLock" onclick="openAdminModal()" title="Admin"><i class="fa-solid fa-lock"></i></div>
 
     <div class="portal-wrapper">
         
-        <!-- 1. Entrance Card with Gold Affiliation Effect -->
+        <!-- 1. Luxury Entrance Card -->
         <div class="luxury-card" id="entranceCard">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
             <h1>MR MASUDAR ENTERPRISE</h1>
-            <p>Global Affiliate Marketing & Earning Ecosystem</p>
+            <p>Global Affiliate Marketing & High-Purity Earnings Portal</p>
             
             <div class="gold-effect-banner">
-                <i class="fa-solid fa-coins" style="color:var(--gold-primary);"></i> Earn up to 10%+ Global Payouts & Commission Worldwide! Secure Your Partner Status Today.
+                <b>EXCLUSIVE AFFILIATE PROGRAM</b><br>
+                Earn up to 15% Global Commissions on Every Successful Sale Worldwide! Secure Your Partner Status Today.
             </div>
 
             <button class="apply-btn" onclick="showApplicationForm()">Join Affiliate Program</button>
             <div style="margin-top:15px;">
-                <button onclick="openDashboardLogin()" style="background:transparent; border:none; color:var(--gold-primary); font-size:10px; cursor:pointer; text-decoration:underline; letter-spacing:1px;">Already Approved? Login to Dashboard</button>
+                <button onclick="openDashboardLogin()" style="background:transparent; border:none; color:var(--gold-primary); font-size:10px; cursor:pointer; text-decoration:underline; letter-spacing:1px;">Already Approved? Partner Login</button>
             </div>
         </div>
 
-        <!-- 2. Detailed Affiliate Application Form -->
+        <!-- 2. Streamlined Affiliate Application Form -->
         <div class="luxury-card form-section" id="formSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:25px; font-size:20px; text-transform:uppercase; letter-spacing:1px;">Affiliate Partner Application Form</h2>
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px; text-transform:uppercase; letter-spacing:1px;">Affiliate Partner Application</h2>
             
             <div class="form-grid">
                 <div class="input-group full-width">
-                    <label>Full Name (As per NID/Passport) *</label>
-                    <input type="text" id="fullName" placeholder="Enter your full legal name" required>
-                </div>
-                
-                <div class="input-group">
-                    <label>Father's Name *</label>
-                    <input type="text" id="fatherName" placeholder="Enter father's name" required>
-                </div>
-                <div class="input-group">
-                    <label>Mother's Name *</label>
-                    <input type="text" id="motherName" placeholder="Enter mother's name" required>
+                    <label>Full Legal Name *</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
                 </div>
 
                 <div class="input-group">
@@ -307,128 +265,95 @@
                     <input type="email" id="email" placeholder="example@gmail.com" required>
                 </div>
                 <div class="input-group">
-                    <label>Date of Birth *</label>
-                    <input type="date" id="dob" required>
+                    <label>Create Dashboard Password *</label>
+                    <input type="password" id="partnerPassword" placeholder="Set a secure password for login" required>
                 </div>
                 
                 <div class="input-group">
                     <label>WhatsApp Number (Active) *</label>
                     <div class="phone-group">
                         <select id="countryCode1">
-                            <option value="+880">🇧🇩 +880 (BD)</option>
-                            <option value="+91">🇮🇳 +91 (IN)</option>
-                            <option value="+1">🇺🇸 +1 (US)</option>
-                            <option value="+44">🇬🇧 +44 (UK)</option>
-                            <option value="+971">🇦🇪 +971 (UAE)</option>
-                            <option value="+966">🇸🇦 +966 (KSA)</option>
-                            <option value="+60">🇲🇾 +60 (MY)</option>
-                            <option value="+65">🇸🇬 +65 (SG)</option>
+                            <option value="+880">🇧🇩 +880</option>
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+971">🇦🇪 +971</option>
                         </select>
                         <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label>Emergency WhatsApp Number *</label>
-                    <div class="phone-group">
-                        <select id="countryCode2">
-                            <option value="+880">🇧🇩 +880 (BD)</option>
-                            <option value="+91">🇮🇳 +91 (IN)</option>
-                            <option value="+1">🇺🇸 +1 (US)</option>
-                            <option value="+44">🇬🇧 +44 (UK)</option>
-                            <option value="+971">🇦🇪 +971 (UAE)</option>
-                            <option value="+966">🇸🇦 +966 (KSA)</option>
-                        </select>
-                        <input type="text" id="emergencyWa" placeholder="18XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>National ID (NID) / Birth Reg. No (Numbers Only) *</label>
-                    <input type="text" id="nidNumber" placeholder="Enter NID/Registration number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Gender *</label>
-                    <select id="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                    </select>
+                    <label>National ID (NID) Number *</label>
+                    <input type="text" id="nidNumber" placeholder="Enter NID number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                 </div>
 
                 <div class="input-group full-width">
-                    <label>Complete Residential Address (City, District, Country) *</label>
-                    <textarea id="address" rows="2" placeholder="House/Road, City, District, Country" required></textarea>
+                    <label>Complete Residential Address *</label>
+                    <textarea id="address" rows="2" placeholder="City, District, Country" required></textarea>
                 </div>
 
                 <!-- 6 Social Media Links -->
                 <div class="input-group full-width">
-                    <div class="section-title">Social Media Profiles (Affiliate Channels)</div>
+                    <div class="section-title">Your Social Media / Promotion Channels</div>
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook Profile/Page URL</label>
+                    <label><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook URL</label>
                     <input type="url" id="fbLink" placeholder="https://facebook.com/yourprofile">
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube Channel URL</label>
-                    <input type="url" id="ytLink" placeholder="https://youtube.com/@yourchannel">
+                    <label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube URL</label>
+                    <input type="url" id="ytLink" placeholder="https://youtube.com/@channel">
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-instagram" style="color:#e4405f;"></i> Instagram Profile URL</label>
-                    <input type="url" id="igLink" placeholder="https://instagram.com/yourprofile">
+                    <label><i class="fa-brands fa-instagram" style="color:#e4405f;"></i> Instagram URL</label>
+                    <input type="url" id="igLink" placeholder="https://instagram.com/profile">
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-tiktok" style="color:#fff;"></i> TikTok Profile URL</label>
-                    <input type="url" id="ttLink" placeholder="https://tiktok.com/@yourprofile">
+                    <label><i class="fa-brands fa-tiktok" style="color:#fff;"></i> TikTok URL</label>
+                    <input type="url" id="ttLink" placeholder="https://tiktok.com/@profile">
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-pinterest" style="color:#bd081c;"></i> Pinterest Profile URL</label>
-                    <input type="url" id="pinLink" placeholder="https://pinterest.com/yourprofile">
+                    <label><i class="fa-brands fa-pinterest" style="color:#bd081c;"></i> Pinterest URL</label>
+                    <input type="url" id="pinLink" placeholder="https://pinterest.com/profile">
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-linkedin" style="color:#0a66c2;"></i> LinkedIn Profile URL</label>
-                    <input type="url" id="liLink" placeholder="https://linkedin.com/in/yourprofile">
+                    <label><i class="fa-brands fa-linkedin" style="color:#0a66c2;"></i> LinkedIn URL</label>
+                    <input type="url" id="liLink" placeholder="https://linkedin.com/in/profile">
                 </div>
 
                 <div class="input-group full-width">
-                    <div class="section-title">Verification & Tracking</div>
-                    <label>Upload Professional Passport Size Photo *</label>
+                    <div class="section-title">Verification Photo</div>
+                    <label>Upload Passport Size Photo *</label>
                     <input type="file" id="applicantPhoto" accept="image/*" required>
-                </div>
-                <div class="input-group full-width">
-                    <label>Auto-Tracked Location & Network IP</label>
-                    <input type="text" id="autoLocation" value="Bangladesh (Secured Global IP Auto-Tracked)" readonly style="color:var(--gold-primary); font-weight:bold;">
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 30px;">
-                <button class="apply-btn" onclick="previewCV()">Review Complete Profile</button>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="apply-btn" onclick="previewCV()">Review Profile & Submit</button>
             </div>
         </div>
 
-        <!-- 3. Affiliate Profile Preview & Confirmation Section -->
+        <!-- 3. Profile Preview Section -->
         <div class="luxury-card preview-section" id="previewSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:22px;">Affiliate Partner Profile Review</h2>
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:20px;">Affiliate Partner Review</h2>
             
             <div class="cv-preview-card" id="cvPreviewContent"></div>
 
             <div style="display:flex; gap:15px; justify-content:center;">
                 <button class="apply-btn" style="background:#222; color:#fff;" onclick="backToForm()">Modify Info</button>
-                <button class="apply-btn" onclick="submitApplication()">Confirm & Submit Application</button>
+                <button class="apply-btn" onclick="submitApplication()">Confirm & Register</button>
             </div>
         </div>
 
-        <!-- 4. Affiliate Dashboard (After Admin Activation) -->
+        <!-- 4. Affiliate Dashboard (Generated Links & Stats) -->
         <div class="luxury-card dashboard-section" id="dashboardSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:22px;">Affiliate Earning Dashboard</h2>
-            <div id="partnerWelcomeBox" style="background:#000; padding:20px; border-radius:12px; border:1px solid var(--border-luxury); text-align:left; margin-bottom:20px;">
-                <!-- Loaded dynamically -->
-            </div>
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:22px;">Partner Earning Dashboard</h2>
+            <div id="partnerWelcomeBox" style="background:#000; padding:20px; border-radius:12px; border:1px solid var(--border-luxury); text-align:left; margin-bottom:20px;"></div>
             <button class="apply-btn" style="background:#222; color:#fff; font-size:10px; padding:10px 20px;" onclick="location.reload()">Logout</button>
         </div>
 
-        <!-- 5. Admin Panel Section (Two Passwords) -->
+        <!-- 5. Admin Panel Section -->
         <div class="luxury-card admin-section" id="adminSection">
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Admin Security Portal</h2>
             <div id="adminLoginBox">
@@ -480,13 +405,13 @@
         function previewCV() {
             const name = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
+            const pass = document.getElementById('partnerPassword').value;
             const waNum = document.getElementById('whatsapp').value;
             const nid = document.getElementById('nidNumber').value;
-            const dob = document.getElementById('dob').value;
             const address = document.getElementById('address').value;
 
-            if(!name || !email || !waNum || !nid || !dob || !address) {
-                alert("Please fill in all mandatory (*) fields correctly.");
+            if(!name || !email || !pass || !waNum || !nid || !address) {
+                alert("Please fill in all mandatory (*) fields including password.");
                 return;
             }
 
@@ -499,36 +424,30 @@
                 }
                 reader.readAsDataURL(photoInput.files[0]);
             } else {
-                renderCVContent("https://via.placeholder.com/150?text=No+Photo");
+                renderCVContent("https://via.placeholder.com/150?text=Photo");
             }
         }
 
         function renderCVContent(photoSrc) {
             const name = document.getElementById('fullName').value;
-            const father = document.getElementById('fatherName').value;
-            const mother = document.getElementById('motherName').value;
             const email = document.getElementById('email').value;
             const waCode = document.getElementById('countryCode1').value;
             const waNum = document.getElementById('whatsapp').value;
             const nid = document.getElementById('nidNumber').value;
             const address = document.getElementById('address').value;
             const fb = document.getElementById('fbLink').value || 'N/A';
-            const yt = document.getElementById('ytLink').value || 'N/A';
 
             const cvHtml = `
                 <div class="cv-header-box">
                     <img src="${photoSrc}" class="cv-avatar" alt="Partner Photo">
-                    <h3 style="margin:5px 0; color:var(--gold-primary); font-family:'Cormorant Garamond',serif; font-size:20px;">${name}</h3>
-                    <p style="margin:0; font-size:10px; color:#aaa; letter-spacing:1px;">Affiliate Partner Candidate</p>
+                    <h3 style="margin:5px 0; color:var(--gold-primary); font-family:'Cormorant Garamond',serif; font-size:18px;">${name}</h3>
+                    <p style="margin:0; font-size:10px; color:#aaa;">Affiliate Partner Candidate</p>
                 </div>
                 <div class="cv-grid">
-                    <div><span class="cv-label">Father's Name:</span><br>${father}</div>
-                    <div><span class="cv-label">Mother's Name:</span><br>${mother}</div>
                     <div><span class="cv-label">Email:</span><br>${email}</div>
                     <div><span class="cv-label">WhatsApp:</span><br>${waCode} ${waNum}</div>
-                    <div><span class="cv-label">NID / Reg No:</span><br>${nid}</div>
+                    <div><span class="cv-label">NID:</span><br>${nid}</div>
                     <div><span class="cv-label">Facebook:</span><br>${fb}</div>
-                    <div class="cv-full"><span class="cv-label">YouTube:</span><br>${yt}</div>
                     <div class="cv-full"><span class="cv-label">Address:</span><br>${address}</div>
                 </div>
             `;
@@ -546,10 +465,9 @@
             const applicant = {
                 id: partnerId,
                 name: document.getElementById('fullName').value,
-                whatsapp: waCode + waNum,
                 email: document.getElementById('email').value,
-                fb: document.getElementById('fbLink').value,
-                yt: document.getElementById('ytLink').value,
+                password: document.getElementById('partnerPassword').value,
+                whatsapp: waCode + waNum,
                 status: 'Pending',
                 clicks: 0,
                 sales: 0,
@@ -561,7 +479,7 @@
             affiliates.push(applicant);
             localStorage.setItem('mme_affiliates', JSON.stringify(affiliates));
 
-            alert("Affiliate Application submitted successfully! Please wait for Admin Activation.");
+            alert(`Application Submitted! Your Partner ID is: ${partnerId}. Please wait for Admin Activation.`);
             location.reload();
         }
 
@@ -623,12 +541,13 @@
 
         function openDashboardLogin() {
             let partnerId = prompt("Enter your Partner ID (e.g., AFF-XXXX):");
+            let password = prompt("Enter your Dashboard Password:");
             let affiliates = JSON.parse(localStorage.getItem('mme_affiliates') || '[]');
-            let found = affiliates.find(a => a.id === partnerId);
+            let found = affiliates.find(a => a.id === partnerId && a.password === password);
 
             if(found) {
                 if(found.status !== 'Active') {
-                    alert("Your account is pending admin approval. Please wait.");
+                    alert("Your account is pending admin approval. Please wait for activation.");
                     return;
                 }
                 document.getElementById('entranceCard').style.display = 'none';
@@ -642,8 +561,8 @@
                     <h3 style="color:var(--gold-primary); margin-top:0;">Welcome, ${found.name}</h3>
                     <p><b>Partner ID:</b> ${found.id} | <span style="color:#2ecc71;">Status: Active</span></p>
                     <hr style="border-color:#333;">
-                    <p><span class="cv-label">Medium Short Link:</span><br><input type="text" value="${shortLink1}" readonly style="background:#000; border:1px solid #333; color:#fff; padding:6px; width:100%; font-size:10px; margin-top:4px;"></p>
-                    <p><span class="cv-label">Ultra Short Link (Custom ID):</span><br><input type="text" value="${shortLink2}" readonly style="background:#000; border:1px solid #333; color:#fff; padding:6px; width:100%; font-size:10px; margin-top:4px;"></p>
+                    <p><span class="cv-label">Medium Referral Link:</span><br><input type="text" value="${shortLink1}" readonly style="background:#000; border:1px solid #333; color:#fff; padding:6px; width:100%; font-size:10px; margin-top:4px;"></p>
+                    <p><span class="cv-label">Ultra Short Custom Link:</span><br><input type="text" value="${shortLink2}" readonly style="background:#000; border:1px solid #333; color:#fff; padding:6px; width:100%; font-size:10px; margin-top:4px;"></p>
                     <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:15px; text-align:center;">
                         <div style="background:#111; padding:10px; border-radius:8px;"><span class="cv-label">Total Clicks</span><br><b style="font-size:16px; color:#fff;">${found.clicks}</b></div>
                         <div style="background:#111; padding:10px; border-radius:8px;"><span class="cv-label">Total Sales</span><br><b style="font-size:16px; color:#fff;">${found.sales}</b></div>
@@ -652,7 +571,7 @@
                 `;
                 document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
             } else {
-                alert("Partner ID not found!");
+                alert("Invalid Partner ID or Password, or account not approved yet!");
             }
         }
 
