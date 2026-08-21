@@ -316,7 +316,6 @@
         }
         .chat-bottom-input i:hover { color: #fff; transform: scale(1.1); }
         
-        /* Explicit SEND button next to search bar */
         .send-btn-text {
             background: var(--gold-gradient);
             color: #000;
@@ -428,7 +427,7 @@
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
             <div class="chat-conversation-area" id="chatAreaBox">
-                <div class="support-agent-msg">Welcome to Mr Masudar Enterprise! Our support team is online. Send your message, upload product photos, or use voice input.</div>
+                <div class="support-agent-msg">ওয়ালাইকুম আসসালাম! Mr Masudar Enterprise-এ আপনাকে স্বাগতম। আমাদের এখানে বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস, হোলসেল/বিটুবি, সেলার ইকোসিস্টেম, অ্যাফিলিয়েট নেটওয়ার্ক, এবং ক্যারিয়ারের সুব্যবস্থা রয়েছে। বলুন আপনাকে কীভাবে সাহায্য করতে পারি?</div>
             </div>
             <div class="chat-bottom-input">
                 <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)" oninput="resetInactivityTimer()">
@@ -454,13 +453,11 @@
             }
         }
 
-        // Reset 30 seconds inactivity timer
         function resetInactivityTimer() {
             clearTimeout(inactivityTimer);
             inactivityTimer = setTimeout(() => {
                 const area = document.getElementById('chatAreaBox');
-                // Auto-vanish / clear chat after 30 seconds of inactivity
-                area.innerHTML = '<div class="support-agent-msg">Chat session expired due to inactivity. Feel free to start a new conversation!</div>';
+                area.innerHTML = '<div class="support-agent-msg">নিষ্ক্রিয়তার কারণে চ্যাট সেশনটি মেয়াদোত্তীর্ণ হয়েছে। নতুন করে কথা বলতে আবার মেসেজ করুন!</div>';
             }, 30000); // 30 seconds
         }
 
@@ -468,24 +465,35 @@
             const input = document.getElementById('chatInputField');
             const area = document.getElementById('chatAreaBox');
             if(input.value.trim() !== '') {
-                resetInactivityTimer(); // Reset timer on user activity
+                resetInactivityTimer();
 
                 const userMsg = document.createElement('div');
                 userMsg.className = 'visitor-msg';
                 userMsg.innerText = input.value;
                 area.appendChild(userMsg);
 
-                let txt = input.value;
+                let txt = input.value.toLowerCase();
                 input.value = '';
                 area.scrollTop = area.scrollHeight;
 
+                // Smart Support Response Logic
                 setTimeout(() => {
                     const agentMsg = document.createElement('div');
                     agentMsg.className = 'support-agent-msg';
-                    agentMsg.innerText = "Received your query regarding: '" + txt + "'. Our support team is checking the logistics across our 237+ countries network. Please give us a moment!";
+                    
+                    if (txt.includes('সালাম') || txt.includes('assalamu') || txt.includes('hello') || txt.includes('hi')) {
+                        agentMsg.innerText = "ওয়ালাইকুম আসসালাম! আমাদের গ্লোবাল ইকোসিস্টেমের মাধ্যমে আপনি বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস ও হোলসেল অর্ডার করতে পারবেন। আপনার কি বিশেষ কোনো ক্যাটাগরি বা সার্ভিস সম্পর্কে জানা প্রয়োজন?";
+                    } else if (txt.includes('category') || txt.includes('ক্যাটাগরি') || txt.includes('product') || txt.includes('প্রোডাক্ট')) {
+                        agentMsg.innerText = "আমাদের গ্লোবাল মার্কেটপ্লেসে ১০টিরও বেশি প্রিমিয়াম ক্যাটাগরি রয়েছে। এছাড়া বাংলাদেশ মার্কেট এবং বিটুবি হোলসেল সেকশনে দারুন সব কালেকশন দেখতে পাবেন।";
+                    } else if (txt.includes('seller') || txt.includes('সেলার') || txt.includes('affiliate') || txt.includes('অ্যাফিলিয়েট')) {
+                        agentMsg.innerText = "আমাদের সেলার ইকোসিস্টেম এবং ১০% কমিশনযুক্ত অ্যাফিলিয়েট নেটওয়ার্কে খুব সহজেই যুক্ত হয়ে গ্লোবাল আর্নিং শুরু করতে পারেন!";
+                    } else {
+                        agentMsg.innerText = "আপনার বিষয়টি নোট করা হয়েছে ('" + txt + "')। আমাদের সাপোর্ট টিম ২৩৭+ দেশের নেটওয়ার্ক থেকে আপনার রিকোয়েস্টটি চেক করছে। একটু অপেক্ষা করুন!";
+                    }
+
                     area.appendChild(agentMsg);
                     area.scrollTop = area.scrollHeight;
-                }, 1200);
+                }, 1000);
             }
         }
 
@@ -537,7 +545,7 @@
                 setTimeout(() => {
                     const reply = document.createElement('div');
                     reply.className = 'support-agent-msg';
-                    reply.innerText = "Thank you for the image! Our support agent is reviewing this photo to match your specifications.";
+                    reply.innerText = "ছবিটি আপলোড করার জন্য ধন্যবাদ! আমাদের প্রতিনিধি আপনার প্রোডাক্টের স্পেসিফিকেশন চেক করছেন।";
                     area.appendChild(reply);
                     area.scrollTop = area.scrollHeight;
                 }, 1000);
