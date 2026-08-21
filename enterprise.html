@@ -3,291 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR MASUDAR ENTERPRISE | Enterprise Solutions</title>
+    <title>MR MASUDAR ENTERPRISE | Enterprise Ecosystem</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-color: #050505;
-            --surface-color: #0c0c0c;
             --gold-primary: #D4AF37;
             --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             --text-main: #FFFFFF;
-            --border-luxury: rgba(212, 175, 55, 0.4);
         }
-        body { 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            text-align: center; 
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+        body { background: var(--bg-color); color: var(--text-main); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
 
-        /* Top Header */
-        .top-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 25px 15px;
-            background: #000;
-            border-bottom: 1px solid var(--border-luxury);
-            gap: 15px;
-        }
-        .brand-box-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 10px;
-        }
-        .brand-logo-img {
-            width: 55px;
-            height: 55px;
-            border-radius: 12px;
-            border: 1px solid var(--gold-primary);
-            object-fit: cover;
-            box-shadow: 0 0 15px rgba(212,175,55,0.3);
-        }
-        .brand-text h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            margin: 0;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        .brand-text span {
-            font-size: 9px;
-            color: #ddd;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: block;
-            font-weight: 600;
-            margin-top: 3px;
-        }
+        /* Main Container */
+        .luxury-wrapper { max-width: 800px; margin: 0 auto; padding: 50px 20px; text-align: center; }
 
-        /* Hero Header */
-        .hero { padding: 40px 15px 25px 15px; }
-        .hero h2 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 30px; 
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-            margin-bottom: 8px; 
-        }
-        .hero p { 
-            color: #aaa; 
-            font-size: 11px; 
-            letter-spacing: 1.5px; 
-            text-transform: uppercase; 
-        }
+        /* Branding */
+        .brand-logo-img { width: 70px; border-radius: 15px; border: 1px solid var(--gold-primary); margin-bottom: 15px; }
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin: 0; }
+        .tagline { font-size: 10px; letter-spacing: 4px; color: #aaa; margin-bottom: 50px; }
 
-        /* Seamless 10-Section Vertical Container */
-        .enterprise-container { 
-            display: flex;
-            flex-direction: column;
-            gap: 30px; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 0 15px 100px 15px;
-        }
+        /* Animated Service Point */
+        .service-point { margin-bottom: 80px; position: relative; opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
+        .service-point.visible { opacity: 1; transform: translateY(0); }
         
-        .enterprise-card { 
-            background: var(--surface-color); 
-            border: 1px solid var(--border-luxury); 
-            border-radius: 20px; 
-            padding: 35px 25px; 
-            text-align: center; 
-            transition: all 0.4s ease; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.85);
-            position: relative;
-        }
-        .enterprise-card:hover { 
-            border-color: var(--gold-primary); 
-            transform: translateY(-6px);
-            box-shadow: 0 0 40px rgba(212,175,55,0.4); 
-        }
-        
-        .enterprise-card i { 
-            font-size: 45px; 
-            background: var(--gold-gradient); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            margin-bottom: 18px; 
-            animation: prominentZoom 2.5s infinite ease-in-out;
-        }
-        @keyframes prominentZoom {
-            0% { transform: scale(0.9); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(0.9); }
-        }
+        .icon-box { font-size: 50px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; animation: glowPulse 3s infinite; }
+        @keyframes glowPulse { 0%, 100% { filter: drop-shadow(0 0 5px var(--gold-primary)); } 50% { filter: drop-shadow(0 0 20px var(--gold-primary)); } }
 
-        .enterprise-card h3 { 
-            font-size: 17px; 
-            margin-bottom: 8px; 
-            color: #fff;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        .enterprise-card p {
-            color: #aaa;
-            font-size: 12px;
-            margin-bottom: 22px;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
-            max-width: 700px;
-        }
-        
-        .action-btn { 
-            display: inline-block; 
-            background: var(--gold-gradient); 
-            color: #000; 
-            padding: 12px 30px; 
-            border-radius: 30px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            font-size: 10px; 
-            letter-spacing: 1.5px;
-            text-decoration: none;
-            box-shadow: 0 0 20px rgba(212,175,55,0.3);
-            transition: 0.3s;
-        }
-        .action-btn:hover {
-            transform: scale(1.06);
-            box-shadow: 0 0 30px rgba(212,175,55,0.6);
-        }
+        h2 { font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin: 10px 0; }
+        p { color: #888; font-size: 12px; line-height: 1.6; max-width: 500px; margin: 0 auto; }
 
-        /* Back to Home Link */
-        .back-home {
-            margin: 20px 0 50px 0;
-        }
-        .back-home a {
-            color: var(--gold-primary);
-            text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            border-bottom: 1px dashed var(--gold-primary);
-            padding-bottom: 3px;
-        }
+        /* Graphic/Graph Placeholder */
+        .graph-viz { height: 100px; width: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 5px; margin-top: 20px; }
+        .bar { width: 8px; background: var(--gold-gradient); animation: barDance 1.5s infinite alternate; }
+        @keyframes barDance { from { height: 20px; } to { height: 80px; } }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
-    <div class="top-header">
-        <div class="brand-box-center">
-            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo-img">
-            <div class="brand-text">
-                <h1>MR MASUDAR ENTERPRISE</h1>
-                <span>ALL-IN-ONE . LESS IS MORE</span>
-            </div>
-        </div>
+<div class="luxury-wrapper">
+    <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" class="brand-logo-img">
+    <h1>MR MASUDAR ENTERPRISE</h1>
+    <div class="tagline">ALL-IN-ONE . LESS IS MORE</div>
+
+    <!-- সার্ভিসগুলোকে লজিক্যাল ফ্লোতে সাজানো হয়েছে -->
+    <div id="services-area">
+        <!-- Service 1-10 Dynamic Load -->
     </div>
+</div>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>ENTERPRISE SOLUTIONS</h2>
-        <p>Explore Our 10 Elite Global Infrastructure & Corporate Services</p>
-    </div>
+<script>
+    const services = [
+        { icon: "fa-network-wired", title: "Global Infrastructure", desc: "Enterprise-grade cloud deployment across 237+ nations." },
+        { icon: "fa-warehouse", title: "B2B Wholesale", desc: "Automated bulk procurement and global freight supply chain." },
+        { icon: "fa-vault", title: "Global Finance", desc: "Multi-currency secure payout and escrow management." },
+        { icon: "fa-robot", title: "AI Automation", desc: "Intelligent visual matching and customer success workflow." },
+        { icon: "fa-store", title: "E-Commerce Ecosystem", desc: "Synchronized multi-channel store and catalog management." },
+        { icon: "fa-shield-halved", title: "Cybersecurity", desc: "Military-grade encryption and global data compliance." },
+        { icon: "fa-clapperboard", title: "Digital Media", desc: "Premium 3D rendering and high-end video production." },
+        { icon: "fa-chart-line", title: "Affiliate Network", desc: "Real-time commission tracking and performance growth." },
+        { icon: "fa-users-gear", title: "Elite Talent", desc: "Executive headhunting and professional CV curation." },
+        { icon: "fa-chess-queen", title: "Strategic Advisory", desc: "Dedicated 24/7 corporate expansion and market consulting." }
+    ];
 
-    <!-- 10 Seamless Luxury Service Sections -->
-    <div class="enterprise-container">
+    const area = document.getElementById('services-area');
+    services.forEach((s, index) => {
+        const div = document.createElement('div');
+        div.className = 'service-point';
+        div.innerHTML = `
+            <div class="icon-box"><i class="fa-solid ${s.icon}"></i></div>
+            <h2>${s.title}</h2>
+            <p>${s.desc}</p>
+            <div class="graph-viz">${Array(10).fill('<div class="bar" style="animation-delay:'+(index*0.1)+'s"></div>').join('')}</div>
+        `;
+        area.appendChild(div);
+    });
 
-        <!-- 1. Global Infrastructure -->
-        <div class="enterprise-card">
-            <i class="fa-solid fa-network-wired"></i>
-            <h3>1. Global Cloud & Server Infrastructure</h3>
-            <p>Enterprise-grade cloud deployment, high-performance edge computing, and secure data pipelines operating seamlessly across 237+ countries.</p>
-            <a href="#service2" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 2. B2B Wholesale & Supply Chain -->
-        <div class="enterprise-card" id="service2">
-            <i class="fa-solid fa-warehouse"></i>
-            <h3>2. B2B Wholesale & Global Supply Chain</h3>
-            <p>End-to-end bulk procurement, international freight logistics, custom manufacturing oversight, and automated inventory distribution networks.</p>
-            <a href="#service3" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 3. Financial & Payment Gateway -->
-        <div class="enterprise-card" id="service3">
-            <i class="fa-solid fa-vault"></i>
-            <h3>3. Multi-Currency Financial & Payout Systems</h3>
-            <p>Secure global transaction processing, multi-currency escrow accounts, automated affiliate payouts, and high-volume corporate financial management.</p>
-            <a href="#service4" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 4. AI & Automation Solutions -->
-        <div class="enterprise-card" id="service4">
-            <i class="fa-solid fa-robot"></i>
-            <h3>4. AI-Powered Automation & Support</h3>
-            <p>Advanced multilingual conversational agents, real-time visual product matching, predictive analytics, and automated customer success workflows.</p>
-            <a href="#service5" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 5. E-Commerce Ecosystem Integration -->
-        <div class="enterprise-card" id="service5">
-            <i class="fa-solid fa-store"></i>
-            <h3>5. Multi-Channel E-Commerce Ecosystem</h3>
-            <p>Synchronized seller onboarding, centralized product catalog management, cross-platform store synchronization, and high-yield PPC marketing automation.</p>
-            <a href="#service6" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 6. Cybersecurity & Data Privacy -->
-        <div class="enterprise-card" id="service6">
-            <i class="fa-solid fa-shield-halweed"></i>
-            <h3>6. Enterprise Cybersecurity & Compliance</h3>
-            <p>Military-grade data encryption, DDoS protection, GDPR/global privacy compliance audits, and real-time threat intelligence monitoring.</p>
-            <a href="#service7" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 7. Brand Branding & Media Production -->
-        <div class="enterprise-card" id="service7">
-            <i class="fa-solid fa-clapperboard"></i>
-            <h3>7. Media Production & Digital Branding</h3>
-            <p>High-end commercial video production, 3D product rendering (Gamar wood & luxury finishes), graphic design, and multi-platform brand consolidation.</p>
-            <a href="#service8" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 8. Affiliate & Global Network Growth -->
-        <div class="enterprise-card" id="service8">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>8. Global Affiliate & Partnership Network</h3>
-            <p>Scalable affiliate recruitment portals, real-time commission tracking (10%+ payouts), performance analytics, and global partner ecosystem management.</p>
-            <a href="#service9" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 9. Talent Acquisition & Elite Workforce -->
-        <div class="enterprise-card" id="service9">
-            <i class="fa-solid fa-users-gear"></i>
-            <h3>9. Elite Talent & Workforce Solutions</h3>
-            <p>Professional CV curation, executive headhunting, specialized remote team deployment, and continuous technical training programs.</p>
-            <a href="#service10" class="action-btn">Explore More</a>
-        </div>
-
-        <!-- 10. Custom Strategic Consulting -->
-        <div class="enterprise-card" id="service10">
-            <i class="fa-solid fa-chess-queen"></i>
-            <h3>10. Strategic Business & Growth Consulting</h3>
-            <p>Tailored corporate expansion blueprints, market entry strategies for international trade, and dedicated 24/7 executive advisory services.</p>
-            <a href="index.html" class="action-btn">Back to Home Ecosystem</a>
-        </div>
-
-    </div>
-
-    <div class="back-home">
-        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Return to Main Dashboard</a>
-    </div>
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('.service-point').forEach(p => {
+            if(p.getBoundingClientRect().top < window.innerHeight - 100) p.classList.add('visible');
+        });
+    });
+</script>
 
 </body>
 </html>
