@@ -69,7 +69,7 @@
 
         .top-badges {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -78,15 +78,23 @@
             border: 1px solid rgba(255, 255, 255, 0.6);
             color: #FFFFFF;
             font-size: 9px;
-            padding: 5px 10px;
+            padding: 5px 9px;
             border-radius: 20px;
             font-weight: 600;
             letter-spacing: 0.5px;
             white-space: nowrap;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: 0.3s;
+        }
+        .badge:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212,175,55,0.3);
         }
         .badge i {
             color: var(--gold-primary);
-            margin-right: 4px;
         }
 
         /* Hero Section */
@@ -343,8 +351,9 @@
             </div>
         </div>
         <div class="top-badges">
-            <div class="badge"><i class="fa-solid fa-globe"></i> 237+ Countries</div>
-            <div class="badge"><i class="fa-solid fa-headset"></i> 24/7 Support</div>
+            <div class="badge"><i class="fa-solid fa-globe"></i> 237+</div>
+            <div class="badge"><i class="fa-solid fa-headset"></i> 24/7</div>
+            <a href="app.html" class="badge"><i class="fa-solid fa-download"></i> INSTALL APP</a>
         </div>
     </div>
 
@@ -427,7 +436,7 @@
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
             <div class="chat-conversation-area" id="chatAreaBox">
-                <div class="support-agent-msg">ওয়ালাইকুম আসসালাম! Mr Masudar Enterprise-এ আপনাকে স্বাগতম। আমাদের এখানে বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস, হোলসেল/বিটুবি, সেলার ইকোসিস্টেম, অ্যাফিলিয়েট নেটওয়ার্ক, এবং ক্যারিয়ারের সুব্যবস্থা রয়েছে। বলুন আপনাকে কীভাবে সাহায্য করতে পারি?</div>
+                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! এখানে বাংলাদেশ ও গ্লোবাল মার্কেটপ্লেস, হোলসেল, সেলার হাব, অ্যাফিলিয়েট এবং ক্যারিয়ার সেবা রয়েছে। বলুন কীভাবে সহায়তা করতে পারি?</div>
             </div>
             <div class="chat-bottom-input">
                 <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)" oninput="resetInactivityTimer()">
@@ -476,24 +485,24 @@
                 input.value = '';
                 area.scrollTop = area.scrollHeight;
 
-                // Smart Support Response Logic
+                // Fast & Alive Support Response Logic
                 setTimeout(() => {
                     const agentMsg = document.createElement('div');
                     agentMsg.className = 'support-agent-msg';
                     
-                    if (txt.includes('সালাম') || txt.includes('assalamu') || txt.includes('hello') || txt.includes('hi')) {
-                        agentMsg.innerText = "ওয়ালাইকুম আসসালাম! আমাদের গ্লোবাল ইকোসিস্টেমের মাধ্যমে আপনি বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস ও হোলসেল অর্ডার করতে পারবেন। আপনার কি বিশেষ কোনো ক্যাটাগরি বা সার্ভিস সম্পর্কে জানা প্রয়োজন?";
-                    } else if (txt.includes('category') || txt.includes('ক্যাটাগরি') || txt.includes('product') || txt.includes('প্রোডাক্ট')) {
-                        agentMsg.innerText = "আমাদের গ্লোবাল মার্কেটপ্লেসে ১০টিরও বেশি প্রিমিয়াম ক্যাটাগরি রয়েছে। এছাড়া বাংলাদেশ মার্কেট এবং বিটুবি হোলসেল সেকশনে দারুন সব কালেকশন দেখতে পাবেন।";
+                    if (txt.includes('service') || txt.includes('সেবা') || txt.includes('কি আছে')) {
+                        agentMsg.innerText = "আমাদের এখানে বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস, হোলসেল/বিটুবি, সেলার ইকোসিস্টেম, অ্যাফিলিয়েট নেটওয়ার্ক এবং ক্যারিয়ার সলিউশন রয়েছে।";
+                    } else if (txt.includes('market') || txt.includes('market place') || txt.includes('মার্কেট')) {
+                        agentMsg.innerText = "আমাদের গ্লোবাল মার্কেটপ্লেসে ১০টিরও বেশি ক্যাটাগরি ও বাংলাদেশ মার্কেটে লোকাল রিটেল সুবিধা রয়েছে।";
                     } else if (txt.includes('seller') || txt.includes('সেলার') || txt.includes('affiliate') || txt.includes('অ্যাফিলিয়েট')) {
-                        agentMsg.innerText = "আমাদের সেলার ইকোসিস্টেম এবং ১০% কমিশনযুক্ত অ্যাফিলিয়েট নেটওয়ার্কে খুব সহজেই যুক্ত হয়ে গ্লোবাল আর্নিং শুরু করতে পারেন!";
+                        agentMsg.innerText = "আপনি খুব সহজেই সেলার হাব অথবা ১০% কমিশনযুক্ত অ্যাফিলিয়েট নেটওয়ার্কে যুক্ত হতে পারেন।";
                     } else {
-                        agentMsg.innerText = "আপনার বিষয়টি নোট করা হয়েছে ('" + txt + "')। আমাদের সাপোর্ট টিম ২৩৭+ দেশের নেটওয়ার্ক থেকে আপনার রিকোয়েস্টটি চেক করছে। একটু অপেক্ষা করুন!";
+                        agentMsg.innerText = "আপনার মেসেজটি পেয়েছি! ২৩৭+ দেশের নেটওয়ার্ক থেকে আমাদের সাপোর্ট টিম দ্রুত আপনার রিকোয়েস্টটি প্রসেস করছে।";
                     }
 
                     area.appendChild(agentMsg);
                     area.scrollTop = area.scrollHeight;
-                }, 1000);
+                }, 500); // Super fast response
             }
         }
 
@@ -545,10 +554,10 @@
                 setTimeout(() => {
                     const reply = document.createElement('div');
                     reply.className = 'support-agent-msg';
-                    reply.innerText = "ছবিটি আপলোড করার জন্য ধন্যবাদ! আমাদের প্রতিনিধি আপনার প্রোডাক্টের স্পেসিফিকেশন চেক করছেন।";
+                    reply.innerText = "ছবিটি পেয়েছি! আমাদের প্রতিনিধি প্রোডাক্ট স্পেসিফিকেশন চেক করছেন।";
                     area.appendChild(reply);
                     area.scrollTop = area.scrollHeight;
-                }, 1000);
+                }, 800);
             }
         }
     </script>
