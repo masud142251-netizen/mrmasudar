@@ -177,6 +177,43 @@
             font-weight: 700;
         }
 
+        /* Luxury CV Preview Design */
+        .cv-preview-card {
+            background: #050505;
+            border: 1px solid var(--gold-primary);
+            border-radius: 16px;
+            padding: 25px;
+            color: #ddd;
+            max-height: 380px;
+            overflow-y: auto;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 15px rgba(212,175,55,0.1);
+        }
+        .cv-header-box {
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .cv-avatar {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-primary);
+            object-fit: cover;
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px rgba(212,175,55,0.4);
+        }
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        .cv-full { grid-column: span 2; }
+        .cv-label { color: var(--gold-primary); font-weight: 700; text-transform: uppercase; font-size: 9px; }
+
         /* Admin Table */
         .admin-table {
             width: 100%;
@@ -201,8 +238,8 @@
         .wa-chat-link:hover { text-decoration: underline; }
 
         @media(max-width: 700px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
+            .form-grid, .cv-grid { grid-template-columns: 1fr; }
+            .full-width, .cv-full { grid-column: span 1; }
         }
     </style>
 </head>
@@ -350,13 +387,17 @@
             </div>
         </div>
 
-        <!-- 3. CV Preview & Confirmation Section -->
+        <!-- 3. Luxury CV Preview & Confirmation Section -->
         <div class="luxury-card preview-section" id="previewSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Executive CV Review</h2>
-            <div id="cvPreviewContent" style="background:#000; padding:20px; border-radius:12px; border:1px solid var(--border-luxury); font-size:11px; line-height:1.7; text-align:left; max-height:280px; overflow-y:auto; margin-bottom:25px; color:#ddd;"></div>
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:22px;">Executive Candidate CV</h2>
+            
+            <div class="cv-preview-card" id="cvPreviewContent">
+                <!-- Dynamic CV Layout with Image and Details will load here -->
+            </div>
+
             <div style="display:flex; gap:15px; justify-content:center;">
-                <button class="apply-btn" style="background:#222; color:#fff;" onclick="backToForm()">Modify Info</button>
-                <button class="apply-btn" onclick="submitApplication()">Confirm & Finalize Application</button>
+                <button class="apply-btn" style="background:#222; color:#fff;" onclick="backToForm()">Edit Info</button>
+                <button class="apply-btn" onclick="submitApplication()">Confirm & Submit Application</button>
             </div>
         </div>
 
@@ -395,6 +436,8 @@
     </div>
 
     <script>
+        let uploadedPhotoUrl = "";
+
         function showApplicationForm() {
             document.getElementById('entranceCard').style.display = 'none';
             document.getElementById('formSection').style.display = 'block';
@@ -415,10 +458,17 @@
             const email = document.getElementById('email').value;
             const waCode = document.getElementById('countryCode1').value;
             const waNum = document.getElementById('whatsapp').value;
-            const sector = document.getElementById('jobSector').value;
+            const emWaCode = document.getElementById('countryCode2').value;
+            const emWaNum = document.getElementById('emergencyWa').value;
             const nid = document.getElementById('nidNumber').value;
             const dob = document.getElementById('dob').value;
+            const gender = document.getElementById('gender').value;
             const address = document.getElementById('address').value;
+            const sector = document.getElementById('jobSector').value;
+            const ssc = document.getElementById('sscInfo').value || 'N/A';
+            const hsc = document.getElementById('hscInfo').value || 'N/A';
+            const honors = document.getElementById('honorsInfo').value || 'N/A';
+            const masters = document.getElementById('mastersInfo').value || 'N/A';
             const location = document.getElementById('autoLocation').value;
 
             if(!name || !father || !mother || !email || !waNum || !nid || !dob || !address) {
@@ -426,19 +476,67 @@
                 return;
             }
 
-            const previewHtml = `
-                <b>Full Name:</b> ${name}<br>
-                <b>Father's Name:</b> ${father}<br>
-                <b>Mother's Name:</b> ${mother}<br>
-                <b>Email:</b> ${email}<br>
-                <b>Date of Birth:</b> ${dob}<br>
-                <b>WhatsApp:</b> ${waCode} ${waNum}<br>
-                <b>NID/Registration No:</b> ${nid}<br>
-                <b>Address:</b> ${address}<br>
-                <b>Target Sector:</b> ${sector}<br>
-                <b>Auto-Tracked Location:</b> ${location}
+            const photoInput = document.getElementById('applicantPhoto');
+            if (photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedPhotoUrl = e.target.result;
+                    renderCVContent(e.target.result);
+                }
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                renderCVContent("https://via.placeholder.com/150?text=No+Photo");
+            }
+        }
+
+        function renderCVContent(photoSrc) {
+            const name = document.getElementById('fullName').value;
+            const father = document.getElementById('fatherName').value;
+            const mother = document.getElementById('motherName').value;
+            const email = document.getElementById('email').value;
+            const waCode = document.getElementById('countryCode1').value;
+            const waNum = document.getElementById('whatsapp').value;
+            const emWaCode = document.getElementById('countryCode2').value;
+            const emWaNum = document.getElementById('emergencyWa').value;
+            const nid = document.getElementById('nidNumber').value;
+            const dob = document.getElementById('dob').value;
+            const gender = document.getElementById('gender').value;
+            const address = document.getElementById('address').value;
+            const sector = document.getElementById('jobSector').value;
+            const ssc = document.getElementById('sscInfo').value || 'N/A';
+            const hsc = document.getElementById('hscInfo').value || 'N/A';
+            const honors = document.getElementById('honorsInfo').value || 'N/A';
+            const masters = document.getElementById('mastersInfo').value || 'N/A';
+            const location = document.getElementById('autoLocation').value;
+
+            const cvHtml = `
+                <div class="cv-header-box">
+                    <img src="${photoSrc}" class="cv-avatar" alt="Candidate Photo">
+                    <h3 style="margin:5px 0; color:var(--gold-primary); font-family:'Cormorant Garamond',serif; font-size:20px;">${name}</h3>
+                    <p style="margin:0; font-size:10px; color:#aaa; letter-spacing:1px;">Target Role: ${sector}</p>
+                </div>
+                <div class="cv-grid">
+                    <div><span class="cv-label">Father's Name:</span><br>${father}</div>
+                    <div><span class="cv-label">Mother's Name:</span><br>${mother}</div>
+                    <div><span class="cv-label">Official Email:</span><br>${email}</div>
+                    <div><span class="cv-label">Date of Birth:</span><br>${dob}</div>
+                    <div><span class="cv-label">WhatsApp:</span><br>${waCode} ${waNum}</div>
+                    <div><span class="cv-label">Emergency WA:</span><br>${emWaCode} ${emWaNum}</div>
+                    <div><span class="cv-label">NID / Reg No:</span><br>${nid}</div>
+                    <div><span class="cv-label">Gender:</span><br>${gender}</div>
+                    <div class="cv-full"><span class="cv-label">Residential Address:</span><br>${address}</div>
+                    
+                    <div class="cv-full" style="border-top:1px dashed #333; margin-top:5px; padding-top:5px;"><span class="cv-label" style="color:var(--gold-primary);">Educational Qualifications</span></div>
+                    <div><span class="cv-label">SSC:</span><br>${ssc}</div>
+                    <div><span class="cv-label">HSC:</span><br>${hsc}</div>
+                    <div><span class="cv-label">Honors:</span><br>${honors}</div>
+                    <div><span class="cv-label">Masters:</span><br>${masters}</div>
+
+                    <div class="cv-full" style="border-top:1px dashed #333; margin-top:5px; padding-top:5px;"><span class="cv-label">Auto-Tracked IP / Location:</span><br>${location}</div>
+                </div>
             `;
-            document.getElementById('cvPreviewContent').innerHTML = previewHtml;
+
+            document.getElementById('cvPreviewContent').innerHTML = cvHtml;
             document.getElementById('formSection').style.display = 'none';
             document.getElementById('previewSection').style.display = 'block';
         }
