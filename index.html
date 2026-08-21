@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* Top Header - Mobile Optimized */
+        /* Top Header */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -168,7 +168,6 @@
             letter-spacing: 0.5px;
         }
         
-        /* Buttons strictly keep gold gradient */
         .btn { 
             display: inline-block; 
             background: var(--gold-gradient); 
@@ -225,7 +224,7 @@
             position: absolute;
             bottom: 65px;
             right: 0;
-            width: 320px;
+            width: 330px;
             background: var(--surface-color);
             border: 1px solid var(--gold-primary);
             border-radius: 16px;
@@ -296,13 +295,13 @@
             border-top: 1px solid var(--border-luxury);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .chat-bottom-input input {
             background: #111;
             border: 1px solid #333;
             border-radius: 20px;
-            padding: 8px 12px;
+            padding: 8px 10px;
             color: #fff;
             width: 100%;
             outline: none;
@@ -310,11 +309,27 @@
         }
         .chat-bottom-input i {
             color: var(--gold-primary);
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: 0.2s;
+            padding: 0 2px;
         }
-        .chat-bottom-input i:hover { color: #fff; transform: scale(1.15); }
+        .chat-bottom-input i:hover { color: #fff; transform: scale(1.1); }
+        
+        /* Explicit SEND button next to search bar */
+        .send-btn-text {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 9px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .send-btn-text:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -408,7 +423,7 @@
         <div class="live-chat-window" id="liveChatWindow">
             <div class="chat-top-bar">
                 <div class="agent-status">
-                    <span class="status-dot"></span> <span>Masudar Support</span>
+                    <span class="status-dot"></span> <span>Mr Masudar Support</span>
                 </div>
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
@@ -416,25 +431,45 @@
                 <div class="support-agent-msg">Welcome to Mr Masudar Enterprise! Our support team is online. Send your message, upload product photos, or use voice input.</div>
             </div>
             <div class="chat-bottom-input">
-                <input type="text" id="chatInputField" placeholder="Type message to live support..." onkeypress="handleKey(event)">
+                <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)" oninput="resetInactivityTimer()">
                 <i class="fa-solid fa-microphone" title="Voice Input" onclick="startSpeechRecognition()"></i>
                 <i class="fa-solid fa-camera" title="Upload Image" onclick="document.getElementById('hiddenImageUpload').click()"></i>
                 <input type="file" id="hiddenImageUpload" style="display:none" accept="image/*" onchange="handleImageSelected(event)">
-                <i class="fa-solid fa-paper-plane" title="Send" onclick="sendVisitorMessage()"></i>
+                <button class="send-btn-text" onclick="sendVisitorMessage()">SEND</button>
             </div>
         </div>
     </div>
 
     <script>
+        let inactivityTimer;
+
         function toggleChatWindow() {
             const win = document.getElementById('liveChatWindow');
-            win.style.display = (win.style.display === 'block') ? 'none' : 'block';
+            if (win.style.display === 'block') {
+                win.style.display = 'none';
+                clearTimeout(inactivityTimer);
+            } else {
+                win.style.display = 'block';
+                resetInactivityTimer();
+            }
+        }
+
+        // Reset 30 seconds inactivity timer
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                const area = document.getElementById('chatAreaBox');
+                // Auto-vanish / clear chat after 30 seconds of inactivity
+                area.innerHTML = '<div class="support-agent-msg">Chat session expired due to inactivity. Feel free to start a new conversation!</div>';
+            }, 30000); // 30 seconds
         }
 
         function sendVisitorMessage() {
             const input = document.getElementById('chatInputField');
             const area = document.getElementById('chatAreaBox');
             if(input.value.trim() !== '') {
+                resetInactivityTimer(); // Reset timer on user activity
+
                 const userMsg = document.createElement('div');
                 userMsg.className = 'visitor-msg';
                 userMsg.innerText = input.value;
@@ -460,12 +495,12 @@
             }
         }
 
-        // Real Speech Recognition for Audio / Voice Typing
         function startSpeechRecognition() {
+            resetInactivityTimer();
             try {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 if (!SpeechRecognition) {
-                    alert("Speech recognition is not supported in this browser. Please use Chrome or Edge.");
+                    alert("Speech recognition is not supported in this browser.");
                     return;
                 }
                 const recognition = new SpeechRecognition();
@@ -473,16 +508,15 @@
                 recognition.start();
 
                 const inputField = document.getElementById('chatInputField');
-                inputField.placeholder = "Listening... Speak now...";
+                inputField.placeholder = "Listening...";
 
                 recognition.onresult = function(event) {
-                    const speechText = event.results[0][0].transcript;
-                    inputField.value = speechText;
-                    inputField.placeholder = "Type message to live support...";
+                    inputField.value = event.results[0][0].transcript;
+                    inputField.placeholder = "Type message...";
                 };
 
                 recognition.onerror = function() {
-                    inputField.placeholder = "Type message to live support...";
+                    inputField.placeholder = "Type message...";
                 };
             } catch (err) {
                 alert("Microphone access error.");
@@ -490,6 +524,7 @@
         }
 
         function handleImageSelected(event) {
+            resetInactivityTimer();
             const file = event.target.files[0];
             if (file) {
                 const area = document.getElementById('chatAreaBox');
@@ -502,7 +537,7 @@
                 setTimeout(() => {
                     const reply = document.createElement('div');
                     reply.className = 'support-agent-msg';
-                    reply.innerText = "Thank you for the image! Our support agent is reviewing this photo to match your product specifications instantly.";
+                    reply.innerText = "Thank you for the image! Our support agent is reviewing this photo to match your specifications.";
                     area.appendChild(reply);
                     area.scrollTop = area.scrollHeight;
                 }, 1000);
