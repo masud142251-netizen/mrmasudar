@@ -207,7 +207,7 @@
         .card-btn { flex: 1; background: transparent; border: none; padding: 8px; color: var(--gold-primary); font-size: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .card-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
-        /* Wholesale Tier Options inside Modal */
+        /* Wholesale Tier Options inside Modal (High Contrast & Clear Visibility) */
         .wholesale-tier-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -220,16 +220,23 @@
             color: var(--gold-light);
             padding: 8px 4px;
             border-radius: 8px;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: bold;
             cursor: pointer;
             text-align: center;
             transition: 0.2s;
         }
+        .tier-btn div { color: #fff; }
+        .tier-btn span { color: var(--gold-primary); font-size: 9px; }
         .tier-btn:hover, .tier-btn.selected {
             background: var(--gold-gradient);
             color: #000;
             border-color: #fff;
+        }
+        .tier-btn:hover div, .tier-btn.selected div,
+        .tier-btn:hover span, .tier-btn.selected span {
+            color: #000 !important;
+            font-weight: 900;
         }
 
         /* Modal Details & Checkout */
@@ -401,7 +408,7 @@
         let detectedCountry = "United States";
         let detectedCity = "New York";
         let detectedPhoneCode = "+1";
-        let autoShippingRate = 50; // Wholesale bulk shipping base
+        let autoShippingRate = 50;
 
         async function detectGlobalLocation() {
             try {
@@ -482,7 +489,7 @@
         function dragEnd() { isDragging = false; }
         basket.onclick = function() { if(!isDragging) { openCheckoutModal(); } };
 
-        // Wholesale B2B Products with Tiers (Tier 1, Tier 2, Tier 3)
+        // Wholesale B2B Products with Tiers
         function getProducts() {
             let p = JSON.parse(localStorage.getItem('mme_b2b_products') || '[]');
             if(p.length === 0) {
@@ -575,7 +582,7 @@
             let tiersHTML = p.tiers.map((t, idx) => `
                 <div class="tier-btn ${idx === 0 ? 'selected' : ''}" onclick="selectTier(${t.qty}, ${t.price}, this)">
                     <div><b>${t.qty} Units</b></div>
-                    <div style="color:var(--gold-primary);">$${t.price}/unit</div>
+                    <span>$${t.price} / unit</span>
                 </div>
             `).join('');
 
@@ -584,10 +591,15 @@
                 <div class="details-stack">
                     <div>
                         <div class="large-preview-wrap"><img id="mainPreviewImg" src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png"></div>
+                        <div class="thumb-gallery">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2933/2933888.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
+                        </div>
                     </div>
                     <div>
                         <span style="font-size:8px; color:var(--gold-primary); font-weight:bold; letter-spacing:1px;">B2B WHOLESALE (${p.category})</span>
                         <h2 style="font-family:'Cormorant Garamond', serif; color:#fff; font-size:22px; margin:2px 0;">${p.title}</h2>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                         <p style="color:#aaa; font-size:10px; line-height:1.5; margin:6px 0;">${p.desc}</p>
                         
                         <div style="font-size:10px; color:var(--gold-light); margin-bottom:4px; font-weight:bold;">Select Bulk Tier or Enter Custom Quantity:</div>
@@ -600,7 +612,7 @@
                             <button class="qty-btn" onclick="updateCustomQty(5)">+</button>
                         </div>
 
-                        <div style="font-size:13px; color:var(--gold-primary); font-weight:bold;">Unit Price: $ <span id="unitPrice">${activeUnitPrice}</span></div>
+                        <div style="font-size:14px; color:var(--gold-primary); font-weight:bold;">Unit Price: $ <span id="unitPrice">${activeUnitPrice}</span></div>
                         <div style="font-size:10px; color:#aaa;">Bulk Shipping (${detectedCountry}): $ <span id="shippingFee">${activeShipping}</span></div>
                         <div style="font-size:13px; color:#fff; font-weight:bold; text-align:center; margin:8px 0;">Subtotal: $ <span id="totalItemPrice">${(activeUnitPrice * currentQty) + activeShipping}</span></div>
 
@@ -641,7 +653,6 @@
         }
 
         function calculateDynamicPrice(qty) {
-            // Bulk price scaling based on custom quantity
             let tiers = activeProductObj.tiers;
             if(qty >= tiers[2].qty) activeUnitPrice = tiers[2].price;
             else if(qty >= tiers[1].qty) activeUnitPrice = tiers[1].price;
