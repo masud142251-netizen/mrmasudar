@@ -14,21 +14,21 @@
             --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             --border-luxury: rgba(212, 175, 55, 0.4);
         }
-        body { background-color: var(--bg-color); color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; }
+        body { background-color: var--bg-color; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; }
 
-        /* Small Lock Icon in bottom left */
+        /* Ultra-Small & Discreet Secret Admin Lock in bottom left */
         .lock-btn-fixed {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 12px;
+            left: 12px;
             color: var(--gold-primary);
-            font-size: 16px;
+            font-size: 10px; /* একদম ছোট করা হয়েছে */
             cursor: pointer;
             z-index: 9999;
-            opacity: 0.6;
+            opacity: 0.25; /* ঝাপসা করা হয়েছে যাতে সহজে চোখে না পড়ে */
             transition: 0.3s;
         }
-        .lock-btn-fixed:hover { opacity: 1; transform: scale(1.2); }
+        .lock-btn-fixed:hover { opacity: 1; transform: scale(1.3); }
 
         .portal-wrapper {
             width: 100%;
@@ -208,8 +208,8 @@
 </head>
 <body>
 
-    <!-- Fixed Bottom-Left Lock Button for Admin -->
-    <div class="lock-btn-fixed" onclick="openAdminModal()" title="Admin Panel"><i class="fa-solid fa-lock"></i></div>
+    <!-- Ultra-Small Secret Lock Button -->
+    <div class="lock-btn-fixed" onclick="openAdminModal()" title="Admin"><i class="fa-solid fa-lock"></i></div>
 
     <div class="portal-wrapper">
         
@@ -475,7 +475,7 @@
 
         function verifyAdmin() {
             const pass = document.getElementById('adminPassInput').value;
-            if(pass === 'masudar99') {
+            if(pass === 'mrcareerhtml') {
                 document.getElementById('adminLoginBox').style.display = 'none';
                 document.getElementById('adminDashboard').style.display = 'block';
                 loadApplicantsTable();
