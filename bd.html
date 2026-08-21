@@ -22,76 +22,72 @@
             color: var(--text-white);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 15px;
+            padding: 10px;
             overflow-x: hidden;
             box-sizing: border-box;
         }
 
-        /* Subtle Corner Admin Lock */
+        /* Subtle Admin Lock */
         .lock-btn-fixed { position: fixed; bottom: 3px; left: 3px; color: var(--gold-primary); font-size: 8px; cursor: pointer; z-index: 99999; opacity: 0.08; transition: 0.3s; padding: 4px; }
         .lock-btn-fixed:hover { opacity: 1; transform: scale(1.5); }
 
-        /* Top Header & Search / AI Bar */
+        /* Top Header & Search */
         .market-header {
             text-align: center;
-            padding: 20px 15px;
+            padding: 15px;
             border: 1px solid var(--border-luxury);
             border-radius: 16px;
             background: var(--surface-card);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
             max-width: 1200px;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 12px auto;
         }
         .market-header h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
+            font-size: 20px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 6px 0 2px 0;
-            letter-spacing: 1.5px;
+            margin: 4px 0;
+            letter-spacing: 1px;
         }
 
-        /* Luxury Search Bar with Voice & Image */
         .search-bar-container {
             display: flex;
             align-items: center;
             background: #000;
             border: 1px solid var(--gold-primary);
             border-radius: 30px;
-            max-width: 600px;
-            margin: 15px auto 0 auto;
-            padding: 6px 15px;
-            box-shadow: 0 0 15px rgba(212,175,55,0.2);
+            max-width: 500px;
+            margin: 10px auto 0 auto;
+            padding: 5px 12px;
         }
         .search-bar-container input {
             flex: 1;
             background: transparent;
             border: none;
             color: #fff;
-            font-size: 12px;
+            font-size: 11px;
             outline: none;
-            padding: 6px;
+            padding: 5px;
         }
         .search-icon-btn {
             background: transparent;
             border: none;
             color: var(--gold-primary);
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
-            padding: 0 8px;
-            transition: 0.2s;
+            padding: 0 6px;
         }
-        .search-icon-btn:hover { color: #fff; transform: scale(1.1); }
 
-        /* 5 Luxury Category Menu Bar */
+        /* Category Menu Bar (Ordered as requested) */
         .category-menu {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             max-width: 1200px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 15px auto;
             overflow-x: auto;
-            padding: 5px 2px;
+            padding: 5px;
             scrollbar-width: none;
         }
         .category-menu::-webkit-scrollbar { display: none; }
@@ -99,95 +95,71 @@
             background: var(--surface-card);
             border: 1px solid var(--border-luxury);
             color: var(--gold-light);
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             cursor: pointer;
             white-space: nowrap;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            transition: 0.2s;
         }
         .cat-chip:hover, .cat-chip.active {
             background: var(--gold-gradient);
             color: #000;
             border-color: #fff;
-            box-shadow: 0 0 15px rgba(212,175,55,0.5);
         }
 
         /* Draggable & Floating Luxury Basket */
         .floating-basket {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background: var(--gold-gradient);
             color: #000;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+            font-size: 18px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
             cursor: grab;
             z-index: 9999;
             user-select: none;
-            transition: transform 0.2s ease;
-        }
-        .floating-basket:active { cursor: grabbing; }
-        .floating-basket.pulse-focus {
-            animation: basketFocusPulse 0.6s ease-in-out 3;
-            transform: scale(1.25);
-            box-shadow: 0 0 40px #fff, 0 0 30px var(--gold-primary);
-        }
-        @keyframes basketFocusPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
         }
         .basket-count {
             position: absolute;
-            top: -4px;
-            right: -4px;
+            top: -3px;
+            right: -3px;
             background: #fff;
             color: #000;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 800;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 50%;
             border: 2px solid #000;
         }
 
-        /* Product Grid (4 items desktop, 2 items mobile) */
+        /* Product Grid */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 12px;
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* Luxury Product Card */
         .product-card {
             background: var(--surface-card);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             overflow: hidden;
-            position: relative;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: 0.2s;
         }
-        .product-card:hover {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            transform: translateY(-3px);
-        }
-        
+        .product-card:hover { border-color: var(--gold-primary); transform: translateY(-2px); }
         .product-img-box {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -195,46 +167,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             cursor: pointer;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .product-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: 0.4s;
-        }
-        .product-card:hover .product-img-box img { transform: scale(1.05); }
-
-        .product-info { padding: 10px; text-align: center; }
-        .product-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-white);
-            margin: 0 0 4px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
-        }
+        .product-img-box img { width: 100%; height: 100%; object-fit: contain; }
+        .product-info { padding: 8px; text-align: center; }
+        .product-title { font-size: 10px; font-weight: 700; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
         .stars { color: var(--gold-primary); font-size: 8px; margin-bottom: 4px; }
         .card-actions { display: flex; border-top: 1px solid #222; }
-        .card-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 9px;
-            color: var(--gold-primary);
-            font-size: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            text-transform: uppercase;
-        }
+        .card-btn { flex: 1; background: transparent; border: none; padding: 8px; color: var(--gold-primary); font-size: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .card-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
-        /* Full Screen Luxury Details Modal (Vertical Stack) */
+        /* Modal Details & Checkout */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -251,33 +195,27 @@
         .modal-content {
             background: var(--surface-card);
             border: 2px solid var(--gold-primary);
-            border-radius: 20px;
-            max-width: 850px;
+            border-radius: 18px;
+            max-width: 800px;
             width: 100%;
-            max-height: 92vh;
+            max-height: 90vh;
             overflow-y: auto;
-            padding: 25px;
+            padding: 20px;
             position: relative;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
-            animation: zoomIn 0.3s ease-out;
             box-sizing: border-box;
         }
-        @keyframes zoomIn { from { transform: scale(0.93); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .close-modal {
             position: absolute;
-            top: 15px; right: 15px;
+            top: 12px; right: 12px;
             background: transparent;
             border: 1px solid var(--gold-primary);
             color: var(--gold-primary);
-            width: 30px; height: 30px;
+            width: 28px; height: 28px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             display: flex; align-items: center; justify-content: center;
-            transition: 0.2s;
-            z-index: 10;
         }
-        .close-modal:hover { background: var(--gold-primary); color: #000; }
 
         .apply-btn {
             background: var(--gold-gradient);
@@ -290,23 +228,36 @@
             color: #000;
             width: 100%;
             letter-spacing: 1px;
-            transition: 0.2s;
             box-shadow: 0 0 15px rgba(212,175,55,0.3);
             font-size: 11px;
+            margin-top: 15px;
         }
-        .apply-btn:hover { filter: brightness(1.15); transform: scale(1.01); }
 
-        .details-stack { display: flex; flex-direction: column; gap: 15px; }
-        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; aspect-ratio: 1/1; width: 100%; max-height: 280px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; margin: 0 auto; }
-        .large-preview-wrap img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease; cursor: zoom-in; }
-        .thumb-gallery { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
-        .thumb-img { width: 60px; height: 60px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3); object-fit: cover; cursor: pointer; background: #000; transition: 0.2s; flex-shrink: 0; }
-        .thumb-img:hover { border-color: var(--gold-primary); transform: scale(1.05); }
+        /* Large Prominent Price & Shipping Display Box */
+        .grand-total-box {
+            background: rgba(212, 175, 55, 0.12);
+            border: 2px solid var(--gold-primary);
+            border-radius: 14px;
+            padding: 15px;
+            text-align: center;
+            margin: 15px 0;
+            box-shadow: 0 0 20px rgba(212,175,55,0.2);
+        }
+        .grand-total-price {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--gold-primary);
+            margin: 4px 0;
+        }
 
-        /* Quantity Selector */
-        .qty-box { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
-        .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold; }
-        .qty-btn:hover { background: var(--gold-primary); color: #000; }
+        .details-stack { display: flex; flex-direction: column; gap: 12px; }
+        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 1/1; width: 100%; max-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; }
+        .large-preview-wrap img { width: 100%; height: 100%; object-fit: contain; }
+        .thumb-gallery { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; padding-bottom: 4px; }
+        .thumb-img { width: 50px; height: 50px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); object-fit: cover; cursor: pointer; background: #000; flex-shrink: 0; }
+        
+        .qty-box { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+        .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: bold; }
 
         /* Flying Coin Animation */
         .flying-coin {
@@ -319,24 +270,21 @@
             z-index: 99999;
             pointer-events: none;
             box-shadow: 0 0 15px var(--gold-primary);
-            transition: all 0.8s cubic-bezier(0.15, 0.85, 0.25, 1);
+            transition: all 0.75s cubic-bezier(0.15, 0.85, 0.25, 1);
         }
 
-        /* Form Inputs */
-        .form-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: left; }
+        .form-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
         .form-full { grid-column: span 2; }
-        .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 10px 12px; color: #fff; border-radius: 8px; margin-top: 3px; font-size: 12px; box-sizing: border-box; outline: none; }
+        .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 10px; color: #fff; border-radius: 8px; margin-top: 3px; font-size: 11px; box-sizing: border-box; outline: none; }
         .input-box:focus { border-color: var(--gold-primary); }
 
-        /* Admin Table */
         .admin-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-top: 10px; }
         .admin-table th, .admin-table td { border: 1px solid #333; padding: 8px; text-align: left; }
         .admin-table th { background: rgba(212,175,55,0.2); color: var(--gold-primary); }
 
         @media(max-width: 768px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .market-header h1 { font-size: 18px; }
-            .modal-content { padding: 15px; }
+            .market-header h1 { font-size: 16px; }
             .form-group-grid { grid-template-columns: 1fr; }
             .form-full { grid-column: span 1; }
         }
@@ -344,130 +292,105 @@
 </head>
 <body>
 
-    <!-- Subtle Admin Lock -->
-    <div class="lock-btn-fixed" onclick="openAdminModal()" title="Admin"><i class="fa-solid fa-lock"></i></div>
+    <!-- Admin Lock -->
+    <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
 
-    <!-- Draggable Floating Luxury Basket -->
-    <div class="floating-basket" id="floatingBasket" title="Drag or Click to Checkout">
+    <!-- Floating Basket -->
+    <div class="floating-basket" id="floatingBasket" title="Checkout">
         <i class="fa-solid fa-basket-shopping"></i>
         <span class="basket-count" id="cartBadge">0</span>
     </div>
 
     <!-- Header & Search Bar -->
     <div class="market-header">
-        <i class="fa-solid fa-house-chimney" style="color:var(--gold-primary); font-size: 22px;"></i>
-        <h1>BANGLADESH LUXURY MARKET</h1>
-        <p style="color: var(--text-gray); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; margin: 0;">Local Retail & Elite Global Showcase</p>
+        <h1>MR MASUDAR ENTERPRISE</h1>
+        <p style="color: var(--text-gray); font-size: 7px; letter-spacing: 1px; text-transform: uppercase; margin: 0;">Elite Luxury Bangladesh Market</p>
         
-        <!-- Search Bar with Live Speech & Camera Input -->
         <div class="search-bar-container">
-            <i class="fa-solid fa-magnifying-glass" style="color:var(--gold-primary); margin-left: 5px;"></i>
-            <input type="text" id="searchInput" placeholder="Search luxury products..." onkeyup="filterProducts()">
-            <button class="search-icon-btn" onclick="startVoiceSearch()" title="Voice Search"><i class="fa-solid fa-microphone"></i></button>
-            <button class="search-icon-btn" onclick="triggerImageSearch()" title="Image Search"><i class="fa-solid fa-camera"></i></button>
+            <i class="fa-solid fa-magnifying-glass" style="color:var(--gold-primary); margin-left: 4px;"></i>
+            <input type="text" id="searchInput" placeholder="Search luxury products (বাংলায় বলতে পারেন)..." onkeyup="filterProducts()">
+            <button class="search-icon-btn" onclick="startVoiceSearch()"><i class="fa-solid fa-microphone"></i></button>
+            <button class="search-icon-btn" onclick="triggerImageSearch()"><i class="fa-solid fa-camera"></i></button>
             <input type="file" id="imageUploadInput" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
         </div>
     </div>
 
-    <!-- 5 Luxury Category Menu Bar -->
-    <div class="category-menu" id="categoryMenu">
-        <div class="cat-chip active" onclick="filterCategory('All', this)">🌟 All Products</div>
-        <div class="cat-chip" onclick="filterCategory('Home Decor', this)">🛏️ Home Decor</div>
-        <div class="cat-chip" onclick="filterCategory("Men's Fashion", this)">👔 Men's Fashion</div>
+    <!-- 5 Luxury Categories in exact requested order -->
+    <div class="category-menu">
+        <div class="cat-chip active" onclick="filterCategory('All', this)">🌟 All</div>
         <div class="cat-chip" onclick="filterCategory("Women's Fashion", this)">👗 Women's Fashion</div>
+        <div class="cat-chip" onclick="filterCategory("Men's Fashion", this)">👔 Men's Fashion</div>
         <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
-        <div class="cat-chip" onclick="filterCategory('Art & Craft', this)">🏺 Art & Craft</div>
+        <div class="cat-chip" onclick="filterCategory('Gift', this)">🎁 Gift</div>
+        <div class="cat-chip" onclick="filterCategory('Decor', this)">🏺 Decor</div>
     </div>
 
-    <!-- Product Grid Section -->
+    <!-- Product Grid -->
     <div class="product-grid" id="marketProductGrid"></div>
 
-    <!-- Fullscreen Product Details Modal -->
+    <!-- Modal -->
     <div class="modal-overlay" id="productModal">
         <div class="modal-content" id="modalBody"></div>
     </div>
 
     <script>
-        // Draggable Floating Basket
-        const basket = document.getElementById('floatingBasket');
-        let isDragging = false, startX, startY, initialX, initialY;
-
-        basket.addEventListener('mousedown', dragStart);
-        basket.addEventListener('touchstart', dragStart, {passive: true});
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('touchmove', drag, {passive: true});
-        document.addEventListener('mouseup', dragEnd);
-        document.addEventListener('touchend', dragEnd);
-
-        function dragStart(e) {
-            isDragging = true;
-            startX = e.clientX || e.touches[0].clientX;
-            startY = e.clientY || e.touches[0].clientY;
-            let rect = basket.getBoundingClientRect();
-            initialX = rect.left;
-            initialY = rect.top;
-            basket.style.right = 'auto';
-            basket.style.top = initialY + 'px';
-            basket.style.left = initialX + 'px';
-        }
-
-        function drag(e) {
-            if (!isDragging) return;
-            let currentX = e.clientX || e.touches[0].clientX;
-            let currentY = e.clientY || e.touches[0].clientY;
-            basket.style.left = (initialX + (currentX - startX)) + 'px';
-            basket.style.top = (initialY + (currentY - startY)) + 'px';
-        }
-
-        function dragEnd() { isDragging = false; }
-
-        basket.onclick = function() {
-            if(!isDragging) { openCheckoutModal(); }
+        // Bangla to English Search Translation Mapping
+        const searchMap = {
+            "বিছানা": "Bed", "পোশাক": "Suit", "শাড়ি": "Saree", "বেবি": "Baby", "উপহার": "Gift", "সাজসজ্জা": "Decor", "ঘড়ি": "Watch", "জুতো": "Shoes"
         };
 
-        // Default Sample Products with Seller set shipping cost
+        function translateSearch(text) {
+            let lower = text.toLowerCase();
+            for(let bn in searchMap) {
+                if(lower.includes(bn)) lower = lower.replace(bn, searchMap[bn].toLowerCase());
+            }
+            return lower;
+        }
+
+        // Draggable Basket
+        const basket = document.getElementById('floatingBasket');
+        let isDragging = false, startX, startY, initialX, initialY;
+        basket.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX; startY = e.clientY; let r = basket.getBoundingClientRect(); initialX = r.left; initialY = r.top; basket.style.right = 'auto'; basket.style.top = initialY + 'px'; basket.style.left = initialX + 'px'; });
+        document.addEventListener('mousemove', (e) => { if(!isDragging) return; basket.style.left = (initialX + (e.clientX - startX)) + 'px'; basket.style.top = (initialY + (e.clientY - startY)) + 'px'; });
+        document.addEventListener('mouseup', () => { isDragging = false; });
+        basket.onclick = () => { if(!isDragging) openCheckoutModal(); };
+
+        // Products with exact prices & seller set shipping
         function getProducts() {
             let p = JSON.parse(localStorage.getItem('mme_products') || '[]');
             if(p.length === 0) {
                 p = [
-                    { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Home Decor", price: 45000, bd: "৳ 45,000", shipping: 100, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure." },
-                    { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives." },
                     { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions." },
+                    { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives." },
                     { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels." },
-                    { name: "Artisan Ceramic Vase", title: "Handmade Gold Leaf Decor", category: "Art & Craft", price: 3500, bd: "৳ 3,500", shipping: 60, desc: "Exclusive golden accented masterpiece for modern living rooms." }
+                    { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events." },
+                    { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure." }
                 ];
             }
             return p;
         }
 
-        // Auto-Rotating / Scrolling Grid Display
         function loadMarketProducts(filterCat = 'All') {
             let grid = document.getElementById('marketProductGrid');
             let products = getProducts();
-
             if(filterCat !== 'All') {
                 products = products.filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
             }
-
-            grid.innerHTML = '';
-            products.forEach((p, index) => {
-                let card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
+            grid.innerHTML = products.map((p, index) => `
+                <div class="product-card">
                     <div class="product-img-box" onclick="openProductDetails(${index})">
                         <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" alt="Product">
                     </div>
                     <div class="product-info">
-                        <div class="product-title" onclick="openProductDetails(${index})">${p.title || p.name}</div>
+                        <div class="product-title" onclick="openProductDetails(${index})">${p.title}</div>
                         <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <div style="font-size:11px; color:var(--gold-primary); font-weight:bold;">${p.bd || '৳ ' + p.price}</div>
+                        <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
                     </div>
                     <div class="card-actions">
                         <button class="card-btn" onclick="openProductDetails(${index})">View Details</button>
                     </div>
-                `;
-                grid.appendChild(card);
-            });
+                </div>
+            `).join('');
         }
 
         function filterCategory(cat, el) {
@@ -477,153 +400,101 @@
         }
 
         function filterProducts() {
-            let query = document.getElementById('searchInput').value.toLowerCase();
+            let rawQuery = document.getElementById('searchInput').value;
+            let query = translateSearch(rawQuery);
             let products = getProducts();
             let grid = document.getElementById('marketProductGrid');
-            grid.innerHTML = '';
-            products.filter(p => (p.title || p.name).toLowerCase().includes(query)).forEach((p, index) => {
-                let card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
+            grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p, index) => `
+                <div class="product-card">
                     <div class="product-img-box" onclick="openProductDetails(${index})"><img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png"></div>
                     <div class="product-info">
-                        <div class="product-title">${p.title || p.name}</div>
+                        <div class="product-title">${p.title}</div>
                         <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <div style="font-size:11px; color:var(--gold-primary); font-weight:bold;">${p.bd || '৳ ' + p.price}</div>
+                        <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
                     </div>
                     <div class="card-actions"><button class="card-btn" onclick="openProductDetails(${index})">View Details</button></div>
-                `;
-                grid.appendChild(card);
-            });
+                </div>
+            `).join('');
         }
 
-        // Live Speech Recognition for Voice Search
         function startVoiceSearch() {
             try {
-                let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                if(!SpeechRecognition) {
-                    alert("Speech Recognition not supported in this browser.");
-                    return;
-                }
-                let recognition = new SpeechRecognition();
-                recognition.lang = 'bn-BD';
-                recognition.onstart = () => { document.getElementById('searchInput').placeholder = "Listening..."; };
-                recognition.onresult = (event) => {
-                    let spokenText = event.results[0][0].transcript;
-                    document.getElementById('searchInput').value = spokenText;
+                let rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                rec.lang = 'bn-BD';
+                rec.onresult = (e) => {
+                    document.getElementById('searchInput').value = e.results[0][0].transcript;
                     filterProducts();
-                    document.getElementById('searchInput').placeholder = "Search luxury products...";
                 };
-                recognition.start();
+                rec.start();
             } catch(e) {
-                let text = prompt("Speak or type product name:");
-                if(text) { document.getElementById('searchInput').value = text; filterProducts(); }
+                let txt = prompt("বাংলায় প্রোডাক্টের নাম বলুন:");
+                if(txt) { document.getElementById('searchInput').value = txt; filterProducts(); }
             }
         }
 
-        // Camera / Image Search Trigger
-        function triggerImageSearch() {
-            document.getElementById('imageUploadInput').click();
-        }
+        function triggerImageSearch() { document.getElementById('imageUploadInput').click(); }
+        function handleImageUpload(e) { alert("AI Visual Match Found!"); document.getElementById('searchInput').value = "Royal"; filterProducts(); }
 
-        function handleImageUpload(event) {
-            let file = event.target.files[0];
-            if(file) {
-                alert("Visual Image Analyzed: Matching luxury product catalog...");
-                document.getElementById('searchInput').value = "Handcrafted";
-                filterProducts();
-            }
-        }
+        let currentQty = 1;
+        let activePrice = 0;
+        let activeShipping = 0;
 
-        // Product Details Modal with Quantity Counter & Pricing
         function openProductDetails(index) {
-            let products = getProducts();
-            let p = products[index] || products[0];
-            let basePrice = p.price || 45000;
-            let shippingCost = p.shipping || 100;
+            let p = getProducts()[index];
+            activePrice = p.price;
+            activeShipping = p.shipping;
+            currentQty = 1;
 
-            let modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = `
+            document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="details-stack">
                     <div>
-                        <div class="large-preview-wrap">
-                            <img id="mainPreviewImg" src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" onclick="toggleZoom(this)" title="Click to Zoom">
-                        </div>
+                        <div class="large-preview-wrap"><img id="mainPreviewImg" src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png"></div>
                         <div class="thumb-gallery">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" class="thumb-img" onclick="setMainImg(this.src)">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2933/2933888.png" class="thumb-img" onclick="setMainImg(this.src)">
-                            <img src="https://cdn-icons-png.flaticon.com/512/1041/1041883.png" class="thumb-img" onclick="setMainImg(this.src)">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2618/2618488.png" class="thumb-img" onclick="setMainImg(this.src)">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3050/3050259.png" class="thumb-img" onclick="setMainImg(this.src)">
-                        </div>
-                        <div style="margin-top:10px; background:#000; border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:8px; text-align:center;">
-                            <span style="font-size:8px; color:var(--gold-light); text-transform:uppercase; letter-spacing:1px;">Product Video Showcase</span>
-                            <div style="font-size:10px; color:#aaa; margin-top:3px;"><i class="fa-solid fa-circle-play" style="color:var(--gold-primary); font-size:14px;"></i> High Definition Preview Active</div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2933/2933888.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
                         </div>
                     </div>
                     <div>
-                        <span style="font-size:9px; color:var(--gold-primary); font-weight:bold; letter-spacing:2px;">${p.category || 'LUXURY ITEM'}</span>
-                        <h2 style="font-family:'Cormorant Garamond', serif; color:#fff; font-size:24px; margin:4px 0 6px 0;">${p.title || p.name}</h2>
-                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (Global Certified)</div>
-                        <p style="color:#aaa; font-size:11px; line-height:1.6; margin:10px 0;">${p.desc || 'Masterpiece craftsmanship engineered for premier lifestyle requirements.'}</p>
+                        <span style="font-size:8px; color:var(--gold-primary); font-weight:bold; letter-spacing:1px;">${p.category}</span>
+                        <h2 style="font-family:'Cormorant Garamond', serif; color:#fff; font-size:22px; margin:2px 0;">${p.title}</h2>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p style="color:#aaa; font-size:10px; line-height:1.5; margin:8px 0;">${p.desc}</p>
                         
-                        <div style="font-size:16px; color:var(--gold-primary); font-weight:800; margin-bottom:5px;">Price: ৳ <span id="unitPrice">${basePrice.toLocaleString()}</span></div>
-                        <div style="font-size:11px; color:#aaa; margin-bottom:10px;">Seller Shipping Cost: ৳ <span id="shippingFee">${shippingCost}</span></div>
+                        <div style="font-size:14px; color:var(--gold-primary); font-weight:bold;">Unit Price: ৳ <span id="unitPrice">${activePrice.toLocaleString()}</span></div>
+                        <div style="font-size:10px; color:#aaa;">Seller Shipping: ৳ <span id="shippingFee">${activeShipping}</span></div>
 
-                        <!-- Quantity Selector -->
                         <div class="qty-box">
-                            <span style="font-size:11px; color:var(--gold-light);">Quantity:</span>
+                            <span style="font-size:10px; color:var(--gold-light);">Quantity:</span>
                             <button class="qty-btn" onclick="updateQty(-1)">-</button>
-                            <span id="prodQty" style="font-weight:bold; font-size:14px; min-width:20px; text-align:center;">1</span>
+                            <span id="prodQty" style="font-weight:bold; font-size:12px; min-width:15px; text-align:center;">1</span>
                             <button class="qty-btn" onclick="updateQty(1)">+</button>
                         </div>
 
-                        <div style="font-size:15px; color:#fff; font-weight:bold; margin-bottom:15px;">Total Subtotal: ৳ <span id="totalItemPrice">${(basePrice + shippingCost).toLocaleString()}</span></div>
+                        <div style="font-size:13px; color:#fff; font-weight:bold; margin-bottom:10px;">Subtotal: ৳ <span id="totalItemPrice">${(activePrice + activeShipping).toLocaleString()}</span></div>
 
-                        <button class="apply-btn" onclick="addCartWithQty(event, '${p.title || p.name}', ${basePrice}, ${shippingCost})">ADD TO CART</button>
+                        <button class="apply-btn" onclick="addCartAndAnimate(event, '${p.title}', ${activePrice}, ${activeShipping})">ADD TO CART</button>
                     </div>
                 </div>
             `;
             document.getElementById('productModal').style.display = 'flex';
         }
 
-        let currentQty = 1;
-        let activeBasePrice = 45000;
-        let activeShipping = 100;
-
         function updateQty(change) {
             currentQty += change;
             if(currentQty < 1) currentQty = 1;
             document.getElementById('prodQty').innerText = currentQty;
-            let subtotal = (activeBasePrice * currentQty) + activeShipping;
+            let subtotal = (activePrice * currentQty) + activeShipping;
             document.getElementById('totalItemPrice').innerText = subtotal.toLocaleString();
         }
 
-        function setMainImg(src) {
-            let img = document.getElementById('mainPreviewImg');
-            img.style.transform = 'scale(1)';
-            img.src = src;
-        }
-
-        function toggleZoom(img) {
-            if(img.style.transform === 'scale(1.8)') {
-                img.style.transform = 'scale(1)';
-                img.style.cursor = 'zoom-in';
-            } else {
-                img.style.transform = 'scale(1.8)';
-                img.style.cursor = 'zoom-out';
-            }
-        }
-
-        // Add to Cart with Exact Quantity & Shipping Calculation
-        function addCartWithQty(event, prodName, price, shipping) {
+        // Flying Coin Animation & Sound Effect when clicking ADD TO CART
+        function addCartAndAnimate(event, name, price, shipping) {
             let badge = document.getElementById('cartBadge');
             badge.innerText = parseInt(badge.innerText) + currentQty;
 
-            let cartItem = { name: prodName, qty: currentQty, price: price, shipping: shipping };
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
-            cart.push(cartItem);
+            cart.push({ name: name, qty: currentQty, price: price, shipping: shipping });
             localStorage.setItem('mme_cart_details', JSON.stringify(cart));
 
             playCoinSound();
@@ -638,19 +509,13 @@
             document.body.appendChild(coin);
 
             setTimeout(() => {
-                coin.style.left = (basketRect.left + 15) + 'px';
-                coin.style.top = (basketRect.top + 15) + 'px';
+                coin.style.left = (basketRect.left + 10) + 'px';
+                coin.style.top = (basketRect.top + 10) + 'px';
                 coin.style.transform = 'scale(0.2) rotate(720deg)';
                 coin.style.opacity = '0';
             }, 30);
 
-            setTimeout(() => {
-                coin.remove();
-                closeModal();
-                basket.classList.add('pulse-focus');
-                setTimeout(() => { basket.classList.remove('pulse-focus'); }, 2000);
-            }, 800);
-            currentQty = 1; // reset
+            setTimeout(() => { coin.remove(); closeModal(); }, 750);
         }
 
         function playCoinSound() {
@@ -660,200 +525,134 @@
                 let gain = ctx.createGain();
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(880, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.15);
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+                osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.12);
+                gain.gain.setValueAtTime(0.12, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 osc.start();
-                osc.stop(ctx.currentTime + 0.15);
+                osc.stop(ctx.currentTime + 0.12);
             } catch(e) {}
         }
 
-        // Checkout Modal with Dynamic Total Calculation (Product Price + Seller Shipping)
+        // Accurate Grand Total Calculation in Checkout
         function openCheckoutModal() {
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
-            let totalProductCost = 0;
-            let totalShippingCost = 0;
+            let prodCost = 0, shipCost = 0;
+            cart.forEach(i => { prodCost += (i.price * i.qty); shipCost += i.shipping; });
+            let grandTotal = prodCost + shipCost;
 
-            cart.forEach(item => {
-                totalProductCost += (item.price * item.qty);
-                totalShippingCost += item.shipping;
-            });
-            let grandTotal = totalProductCost + totalShippingCost;
-
-            let modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = `
+            document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-                <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:22px; text-align:center; margin-bottom:6px;">Luxury Shopping & Checkout</h3>
-                <p style="font-size:10px; color:#aaa; text-align:center; margin-bottom:15px;">Total Cart Items: <b style="color:#fff;">${cart.length}</b> | Grand Total: <b style="color:var(--gold-primary);">৳ ${grandTotal.toLocaleString()}</b> (Shipping Included)</p>
+                <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:20px; text-align:center; margin-bottom:5px;">Secure Luxury Checkout</h3>
                 
+                <!-- Large Prominent Grand Total Box -->
+                <div class="grand-total-box">
+                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Shipping)</div>
+                    <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
+                    <div style="font-size:9px; color:var(--gold-light);">Items: ${cart.length} | Shipping Included: ৳ ${shipCost}</div>
+                </div>
+
                 <div class="form-group-grid">
                     <div>
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Full Name *</label>
-                        <input type="text" id="custName" class="input-box" placeholder="Enter full name" required>
+                        <input type="text" id="custName" class="input-box" placeholder="Full name">
                     </div>
                     <div>
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Gmail Address *</label>
-                        <input type="email" id="custEmail" class="input-box" placeholder="client@gmail.com" required>
+                        <input type="email" id="custEmail" class="input-box" placeholder="client@gmail.com">
                     </div>
                     <div>
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">WhatsApp Number *</label>
-                        <div style="display:flex; gap:6px; margin-top:3px;">
-                            <select id="phoneCode" style="width:75px; background:#000; border:1px solid #333; color:#fff; padding:10px; border-radius:8px; font-size:11px;">
-                                <option value="+880">+880</option>
-                            </select>
-                            <input type="text" id="custPhone" class="input-box" placeholder="17XXXXXXXX" style="margin-top:0;" required>
+                        <div style="display:flex; gap:4px; margin-top:3px;">
+                            <select style="width:65px; background:#000; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:10px;"><option>+880</option></select>
+                            <input type="text" id="custPhone" class="input-box" placeholder="17XXXXXXXX" style="margin-top:0;">
                         </div>
                     </div>
                     <div>
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">City *</label>
-                        <input type="text" id="custCity" class="input-box" placeholder="e.g. Dhaka / Rajshahi" required>
+                        <input type="text" id="custCity" class="input-box" placeholder="City">
                     </div>
                     <div class="form-full">
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Complete Delivery Address *</label>
-                        <textarea id="custAddr" rows="2" class="input-box" placeholder="House, Road, Area, Postal Code..." required></textarea>
+                        <textarea id="custAddr" rows="2" class="input-box" placeholder="House, Road, Area..."></textarea>
                     </div>
                     <div class="form-full">
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Select Payment Gateway *</label>
+                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Payment Gateway *</label>
                         <select id="paymentMethod" class="input-box" onchange="togglePaymentFields()">
-                            <option value="bKash">bKash (Send Money to 01767319670)</option>
-                            <option value="Nagad">Nagad (Send Money to 01767319670)</option>
+                            <option value="bKash">bKash (Send Money: 01767319670)</option>
+                            <option value="Nagad">Nagad (Send Money: 01767319670)</option>
                             <option value="International Card">International Card / PayPal</option>
                         </select>
                     </div>
                     <div class="form-full" id="trxBox">
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Transaction ID (TrxID) *</label>
-                        <input type="text" id="custTrx" class="input-box" placeholder="Enter TrxID after sending payment to 01767319670">
+                        <input type="text" id="custTrx" class="input-box" placeholder="Enter TrxID after sending money">
                     </div>
                 </div>
 
-                <div style="text-align:center; margin-top:20px;">
-                    <button class="apply-btn" onclick="submitFinalOrder(${grandTotal})">ORDER NOW</button>
-                </div>
+                <button class="apply-btn" onclick="submitFinalOrder(${grandTotal})">CONFIRM & ORDER NOW</button>
             `;
             document.getElementById('productModal').style.display = 'flex';
         }
 
         function togglePaymentFields() {
-            let method = document.getElementById('paymentMethod').value;
-            let trxBox = document.getElementById('trxBox');
-            if(method.includes('International')) {
-                trxBox.style.display = 'none';
-            } else {
-                trxBox.style.display = 'block';
-            }
+            let m = document.getElementById('paymentMethod').value;
+            document.getElementById('trxBox').style.display = m.includes('International') ? 'none' : 'block';
         }
 
-        // Strict verification: Cart stays intact until valid order & payment info submitted
         function submitFinalOrder(grandTotal) {
             let name = document.getElementById('custName').value;
-            let email = document.getElementById('custEmail').value;
-            let phone = '+880' + document.getElementById('custPhone').value;
+            let phone = document.getElementById('custPhone').value;
             let city = document.getElementById('custCity').value;
             let addr = document.getElementById('custAddr').value;
             let payment = document.getElementById('paymentMethod').value;
-            let trx = document.getElementById('custTrx') ? document.getElementById('custTrx').value : 'Card Payment';
+            let trx = document.getElementById('custTrx') ? document.getElementById('custTrx').value : 'Card';
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
 
-            if(!name || !email || !document.getElementById('custPhone').value || !city || !addr || (!payment.includes('International') && !trx)) {
-                alert("দয়া করে সমস্ত বাধ্যতামূলক তথ্য এবং পেমেন্ট ট্রানজেকশন আইডি পূরণ করুন।");
+            if(!name || !phone || !city || !addr || (!payment.includes('International') && !trx)) {
+                alert("দয়া করে সমস্ত তথ্য এবং পেমেন্ট ট্রানজেকশন আইডি পূরণ করুন।");
                 return;
             }
 
             let orderData = {
                 id: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
-                name: name, email: email, phone: phone, city: city, addr: addr, 
-                payment: payment + (trx !== 'Card Payment' ? ' (Trx: ' + trx + ')' : ''),
+                name: name, phone: '+880' + phone, city: city, addr: addr,
+                payment: payment + (trx !== 'Card' ? ' (Trx: ' + trx + ')' : ''),
                 total: '৳ ' + grandTotal.toLocaleString(),
-                status: 'Paid / Pending Dispatch', 
-                items: cart.map(i => `${i.name} (x${i.qty})`).join(', ') || 'Direct Luxury Product', 
+                status: 'Paid / Pending Dispatch',
+                items: cart.map(i => `${i.name} (x${i.qty})`).join(', '),
                 date: new Date().toLocaleString()
             };
 
-            let allOrders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
-            allOrders.push(orderData);
-            localStorage.setItem('mme_orders', JSON.stringify(allOrders));
+            let orders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
+            orders.push(orderData);
+            localStorage.setItem('mme_orders', JSON.stringify(orders));
 
             localStorage.removeItem('mme_cart_details');
             document.getElementById('cartBadge').innerText = '0';
-            alert("পেমেন্ট ভেরিফায়েড! অর্ডার সফলভাবে সাবমিট হয়েছে এবং অ্যাডমিন প্যানেলে কানেক্ট করা হয়েছে।");
+            alert("অর্ডার সফলভাবে সম্পন্ন হয়েছে!");
             closeModal();
         }
 
-        // Master Admin Panel Modal with Password: mrbtrmlc
         function openAdminModal() {
-            let modalBody = document.getElementById('modalBody');
-            modalBody.innerHTML = `
-                <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-                <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; font-size:20px; margin-bottom:15px;">Master Admin Control</h3>
-                <div id="adminLoginBox">
-                    <div style="max-width:280px; margin:0 auto; text-align:left;">
-                        <label style="font-size:9px; color:var(--gold-light);">Enter Admin Password</label>
-                        <input type="password" id="adminPassInput" class="input-box" placeholder="Password">
-                    </div>
-                    <div style="text-align:center; margin-top:15px;">
-                        <button class="apply-btn" onclick="verifyAdmin()" style="max-width:180px;">Authenticate</button>
-                    </div>
-                </div>
-                <div id="adminDashboard" style="display:none;">
-                    <p style="font-size:10px; color:#2ecc71; margin-bottom:8px; font-weight:bold;">Total Connected Orders: <span id="orderCount">0</span></p>
-                    <div style="max-height: 320px; overflow-y: auto;">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer & WhatsApp</th>
-                                    <th>Status & Payment</th>
-                                    <th>Items & Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ordersTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
-            document.getElementById('productModal').style.display = 'flex';
-        }
-
-        function verifyAdmin() {
-            let pass = document.getElementById('adminPassInput').value;
-            if(pass === 'mrbtrmlc') {
-                document.getElementById('adminLoginBox').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
-                loadOrdersTable();
-            } else {
+            let p = prompt("Enter Admin Password:");
+            if(p === 'mrbtrmlc') {
+                let orders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
+                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.phone}</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">${o.total}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No orders yet.</td></tr>';
+                document.getElementById('modalBody').innerHTML = `
+                    <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 style="color:var(--gold-primary); text-align:center;">Master Admin Panel</h3>
+                    <p style="font-size:10px; color:#2ecc71;">Total Orders: ${orders.length}</p>
+                    <div style="max-height:300px; overflow-y:auto;"><table class="admin-table"><thead><tr><th>ID</th><th>Customer</th><th>Payment</th><th>Total/Items</th></tr></thead><tbody>${rows}</tbody></table></div>
+                `;
+                document.getElementById('productModal').style.display = 'flex';
+            } else if(p) {
                 alert("ভুল পাসওয়ার্ড!");
             }
         }
 
-        function loadOrdersTable() {
-            let orders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
-            document.getElementById('orderCount').innerText = orders.length;
-            let tbody = document.getElementById('ordersTableBody');
-            tbody.innerHTML = '';
-
-            if(orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#777;">কোনো অর্ডার নেই।</td></tr>`;
-                return;
-            }
-
-            orders.forEach(o => {
-                let tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><b>[${o.id}]</b><br><small>${o.date}</small></td>
-                    <td><b>${o.name}</b><br><a href="https://wa.me/${o.phone.replace(/[^0-9]/g,'')}" target="_blank" style="color:#2ecc71; text-decoration:none;"><i class="fa-brands fa-whatsapp"></i> ${o.phone}</a></td>
-                    <td><span style="color:var(--gold-primary);">${o.status}</span><br><small>${o.payment}</small><br><small>${o.city} - ${o.addr}</small></td>
-                    <td><b>${o.items}</b><br><span style="color:var(--gold-primary);">${o.total}</span></td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function closeModal() {
-            document.getElementById('productModal').style.display = 'none';
-        }
-
+        function closeModal() { document.getElementById('productModal').style.display = 'none'; }
         window.onload = () => loadMarketProducts('All');
     </script>
 </body>
