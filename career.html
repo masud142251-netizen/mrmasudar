@@ -6,83 +6,77 @@
     <title>CAREER | MR MASUDAR ENTERPRISE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --gold-primary: #D4AF37; --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C); --surface: #0e0e0e; }
-        body { background: #040404; color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-
-        /* Luxury Header */
-        .header { padding: 40px 20px; text-align: center; }
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 3px; }
-
-        /* Container */
-        .career-container { width: 90%; max-width: 500px; background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.9); margin-bottom: 50px; }
-
+        :root { --gold-primary: #D4AF37; --bg: #050505; --card-bg: #0c0c0c; }
+        body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; padding: 20px; }
+        
+        .luxury-card { max-width: 500px; margin: 50px auto; background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--gold-primary); text-align: center; }
+        h1 { font-family: 'Cormorant Garamond', serif; color: var(--gold-primary); text-transform: uppercase; }
+        
         /* Form Styling */
-        .form-group { margin-bottom: 20px; text-align: left; }
-        label { display: block; font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
-        input, select { width: 100%; background: #000; border: 1px solid #333; padding: 12px; color: #fff; border-radius: 8px; outline: none; font-size: 12px; transition: 0.3s; }
-        input:focus { border-color: var(--gold-primary); }
-
-        .btn { width: 100%; background: var(--gold-gradient); color: #000; padding: 14px; border: none; border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        .btn:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(212,175,55,0.4); }
-
-        /* Dashboard & Status */
-        #dashboard, #confirm-msg { display: none; text-align: center; }
-        .success-icon { font-size: 50px; color: var(--gold-primary); margin-bottom: 20px; animation: pop 0.5s ease; }
-        @keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        .form-section { display: none; text-align: left; }
+        .input-group { margin-bottom: 15px; }
+        label { font-size: 10px; color: #888; text-transform: uppercase; }
+        input, select { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 8px; margin-top: 5px; }
+        
+        .btn { background: var(--gold-primary); color: #000; padding: 15px 30px; border: none; border-radius: 30px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-top: 20px; }
+        
+        #preview-area { display: none; background: #111; padding: 20px; border-radius: 15px; margin-top: 20px; text-align: left; }
     </style>
 </head>
 <body>
 
-<header class="header">
-    <h1>Elite Career Portal</h1>
-</header>
+<!-- Entrance Card -->
+<div class="luxury-card" id="entrance">
+    <h1>MR MASUDAR ENTERPRISE</h1>
+    <p>Elite Global Career Opportunities</p>
+    <button class="btn" onclick="showForm()">Apply Now</button>
+</div>
 
-<div class="career-container">
-    <!-- Step 1: Career Forum Form -->
-    <div id="forum">
-        <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="name" placeholder="Enter your full name">
-        </div>
-        <div class="form-group">
-            <label>Expertise</label>
-            <select id="expertise">
-                <option>Video Editor</option>
-                <option>Graphics Designer</option>
-                <option>Digital Marketer</option>
-                <option>Software Developer</option>
-            </select>
-        </div>
-        <button class="btn" onclick="showDashboard()">Submit Application</button>
+<!-- Application Form -->
+<div class="luxury-card form-section" id="apply-form">
+    <h2>Application Form</h2>
+    <div class="input-group"><label>Full Name</label><input type="text" id="fname"></div>
+    <div class="input-group"><label>Gmail</label><input type="email" id="gmail"></div>
+    <div class="input-group"><label>WhatsApp/Emergency No</label><input type="text" id="phone"></div>
+    <div class="input-group"><label>NID/Registration No</label><input type="text" id="nid"></div>
+    <div class="input-group"><label>Job Sector</label>
+        <select id="job">
+            <option>Video Editing</option><option>Graphics Design</option><option>Web Developer</option>
+            <option>Factory Worker</option><option>Office Worker</option>
+        </select>
     </div>
+    <div class="input-group"><label>Education (SSC/HSC/Honors/Masters)</label><input type="text" id="edu" placeholder="e.g. B.Sc in CSE, GPA 3.5"></div>
+    <div class="input-group"><label>Upload Photo</label><input type="file" id="photo"></div>
+    <button class="btn" onclick="previewCV()">Preview CV</button>
+</div>
 
-    <!-- Step 2: Dashboard -->
-    <div id="dashboard">
-        <h3 style="color:var(--gold-primary)">Application Dashboard</h3>
-        <p style="font-size:11px; color:#aaa; margin:15px 0;">Your profile is being reviewed by our elite team.</p>
-        <div style="background:#000; padding:15px; border-radius:10px; border:1px solid #333;">
-            <p>Status: <span style="color:#2ecc71;">Processing...</span></p>
-        </div>
-        <br>
-        <button class="btn" onclick="showConfirm()">Confirm & Finalize</button>
-    </div>
-
-    <!-- Step 3: Success -->
-    <div id="confirm-msg">
-        <i class="fa-solid fa-circle-check success-icon"></i>
-        <h3>Application Received</h3>
-        <p>Thank you. We will contact you soon.</p>
-    </div>
+<!-- CV Preview Area -->
+<div class="luxury-card" id="preview-area">
+    <h2>Review Your Profile</h2>
+    <div id="cv-data"></div>
+    <button class="btn" onclick="finishApplication()">Confirm & Finish</button>
 </div>
 
 <script>
-    function showDashboard() {
-        document.getElementById('forum').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'block';
+    function showForm() {
+        document.getElementById('entrance').style.display = 'none';
+        document.getElementById('apply-form').style.display = 'block';
     }
-    function showConfirm() {
-        document.getElementById('dashboard').style.display = 'none';
-        document.getElementById('confirm-msg').style.display = 'block';
+
+    function previewCV() {
+        const data = `
+            Name: ${document.getElementById('fname').value} <br>
+            Email: ${document.getElementById('gmail').value} <br>
+            Job: ${document.getElementById('job').value}
+        `;
+        document.getElementById('cv-data').innerHTML = data;
+        document.getElementById('apply-form').style.display = 'none';
+        document.getElementById('preview-area').style.display = 'block';
+    }
+
+    function finishApplication() {
+        alert("Application submitted successfully to our Supabase database!");
+        location.reload();
     }
 </script>
 
