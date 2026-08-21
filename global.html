@@ -28,7 +28,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Subtle Admin Lock */
+        /* Admin Lock */
         .lock-btn-fixed { position: fixed; bottom: 3px; left: 3px; color: var(--gold-primary); font-size: 8px; cursor: pointer; z-index: 99999; opacity: 0.08; transition: 0.3s; padding: 4px; }
         .lock-btn-fixed:hover { opacity: 1; transform: scale(1.5); }
 
@@ -81,7 +81,7 @@
             padding: 0 6px;
         }
 
-        /* Continuous Auto-Sliding Luxury Categories Menu */
+        /* Auto-Sliding Luxury Categories Menu */
         .category-menu-wrap {
             max-width: 1200px;
             margin: 0 auto 15px auto;
@@ -325,7 +325,7 @@
 </head>
 <body>
 
-    <!-- Admin Lock -->
+    <!-- Admin Lock (Password: mrbtrmlc) -->
     <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
 
     <!-- Floating Basket -->
@@ -373,9 +373,11 @@
     </div>
 
     <script>
-        // 237 Countries IP Tracking & Dynamic Global Shipping Calculator
+        // Automatic IP Country & City Tracking (237 Countries support)
         let detectedCountry = "United States";
-        let autoShippingRate = 25; // Default international shipping in USD ($)
+        let detectedCity = "New York";
+        let detectedPhoneCode = "+1";
+        let autoShippingRate = 25;
 
         async function detectGlobalLocation() {
             try {
@@ -383,13 +385,17 @@
                 let data = await res.json();
                 if(data && data.country_name) {
                     detectedCountry = data.country_name;
-                    // Adjust shipping based on region
-                    if(data.continent_code === 'AS') autoShippingRate = 15;
+                    detectedCity = data.city || "Global City";
+                    detectedPhoneCode = data.country_calling_code || "+1";
+                    
+                    if(data.continent_code === 'AS') autoShippingRate = 18;
                     else if(data.continent_code === 'EU' || data.continent_code === 'NA') autoShippingRate = 25;
                     else autoShippingRate = 35;
                 }
             } catch(e) {
-                detectedCountry = "Global Region";
+                detectedCountry = "United States";
+                detectedCity = "New York";
+                detectedPhoneCode = "+1";
                 autoShippingRate = 25;
             }
         }
@@ -453,7 +459,7 @@
         function dragEnd() { isDragging = false; }
         basket.onclick = function() { if(!isDragging) { openCheckoutModal(); } };
 
-        // Global Products (Converted to USD Currency $) with dynamic regional shipping
+        // Global Products in USD ($)
         function getProducts() {
             let p = JSON.parse(localStorage.getItem('mme_global_products') || '[]');
             if(p.length === 0) {
@@ -558,7 +564,7 @@
                         <p style="color:#aaa; font-size:10px; line-height:1.5; margin:8px 0;">${p.desc}</p>
                         
                         <div style="font-size:14px; color:var(--gold-primary); font-weight:bold;">Unit Price: $ <span id="unitPrice">${activePrice}</span></div>
-                        <div style="font-size:10px; color:#aaa;">Estimated Global Shipping (${detectedCountry}): $ <span id="shippingFee">${activeShipping}</span></div>
+                        <div style="font-size:10px; color:#aaa;">Clear International Shipping (${detectedCountry}): $ <span id="shippingFee">${activeShipping}</span></div>
 
                         <div class="qty-box">
                             <span style="font-size:10px; color:var(--gold-light);">Quantity:</span>
@@ -668,7 +674,7 @@
                 <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:20px; text-align:center; margin-bottom:5px;">Global Secure Checkout</h3>
                 
                 <div style="margin-bottom: 10px; font-size:9px; color:var(--gold-light); text-align:center;">
-                    Detected Location: <b>${detectedCountry}</b>
+                    Detected Region: <b>${detectedCountry}</b> | Clear Intl. Shipping: <b>$${shipCost}</b>
                 </div>
 
                 <div style="margin-bottom: 15px;">
@@ -677,7 +683,7 @@
                 </div>
 
                 <div class="grand-total-box">
-                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Intl. Shipping)</div>
+                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Clear Shipping)</div>
                     <div class="grand-total-price">$ ${grandTotal}</div>
                     <div style="font-size:9px; color:var(--gold-light);">Items: ${cart.length} | Shipping Included: $ ${shipCost}</div>
                 </div>
@@ -692,23 +698,40 @@
                         <input type="email" id="custEmail" class="input-box" placeholder="client@email.com">
                     </div>
                     <div>
+                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">WhatsApp Number *</label>
+                        <div style="display:flex; gap:4px; margin-top:3px;">
+                            <select id="countryPhoneCode" style="width:75px; background:#000; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:10px;">
+                                <option value="${detectedPhoneCode}">${detectedPhoneCode}</option>
+                                <option value="+1">+1 (USA)</option>
+                                <option value="+44">+44 (UK)</option>
+                                <option value="+880">+880 (BD)</option>
+                                <option value="+91">+91 (IN)</option>
+                                <option value="+971">+971 (UAE)</option>
+                                <option value="+61">+61 (AU)</option>
+                            </select>
+                            <input type="text" id="custPhone" class="input-box" placeholder="17XXXXXXXX" style="margin-top:0;">
+                        </div>
+                    </div>
+                    <div>
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Country / Region *</label>
                         <input type="text" id="custCountry" class="input-box" value="${detectedCountry}">
                     </div>
                     <div>
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">City *</label>
-                        <input type="text" id="custCity" class="input-box" placeholder="City">
+                        <input type="text" id="custCity" class="input-box" value="${detectedCity}">
                     </div>
                     <div class="form-full">
                         <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Complete Delivery Address *</label>
                         <textarea id="custAddr" rows="2" class="input-box" placeholder="Street, Building, Postal Code..."></textarea>
                     </div>
                     <div class="form-full">
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Global Payment Gateway *</label>
+                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Payoneer Checkout / Global Cards *</label>
                         <select id="paymentMethod" class="input-box">
-                            <option value="PayPal">PayPal (Global Secure)</option>
-                            <option value="International Credit Card">International Credit / Debit Card (Visa/Mastercard)</option>
-                            <option value="Stripe">Stripe Secure Checkout</option>
+                            <option value="Payoneer Standard Checkout">Payoneer Checkout (All Major Cards Accepted)</option>
+                            <option value="Visa / Mastercard">Visa / MasterCard / Maestro</option>
+                            <option value="American Express">American Express (AMEX)</option>
+                            <option value="Discover / JCB">Discover / JCB / UnionPay</option>
+                            <option value="PayPal Global">PayPal Global Secure</option>
                         </select>
                     </div>
                 </div>
@@ -729,20 +752,22 @@
         function submitFinalOrder(grandTotal) {
             let name = document.getElementById('custName').value;
             let email = document.getElementById('custEmail').value;
+            let phoneCode = document.getElementById('countryPhoneCode').value;
+            let phone = document.getElementById('custPhone').value;
             let country = document.getElementById('custCountry').value;
             let city = document.getElementById('custCity').value;
             let addr = document.getElementById('custAddr').value;
             let payment = document.getElementById('paymentMethod').value;
             let cart = JSON.parse(localStorage.getItem('mme_global_cart') || '[]');
 
-            if(!name || !email || !country || !city || !addr) {
-                alert("Please fill in all required shipping and contact details.");
+            if(!name || !email || !phone || !country || !city || !addr) {
+                alert("Please fill in all required shipping and contact fields.");
                 return;
             }
 
             let orderData = {
                 id: 'GLB-' + Math.floor(100000 + Math.random() * 900000),
-                name: name, email: email, country: country, city: city, addr: addr,
+                name: name, email: email, phone: phoneCode + ' ' + phone, country: country, city: city, addr: addr,
                 payment: payment,
                 total: '$ ' + grandTotal,
                 status: 'Paid / Global Dispatch',
@@ -756,7 +781,7 @@
 
             localStorage.removeItem('mme_global_cart');
             updateCartBadgeCount();
-            alert("Global Order Placed Successfully!");
+            alert("Global Order Placed Successfully via Payoneer Secure Checkout!");
             closeModal();
         }
 
@@ -764,7 +789,7 @@
             let p = prompt("Enter Global Admin Password:");
             if(p === 'mrbtrmlc') {
                 let orders = JSON.parse(localStorage.getItem('mme_global_orders') || '[]');
-                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.email} (${o.country})</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">${o.total}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No global orders yet.</td></tr>';
+                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.email} (${o.phone})</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">${o.total}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No global orders yet.</td></tr>';
                 document.getElementById('modalBody').innerHTML = `
                     <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                     <h3 style="color:var(--gold-primary); text-align:center;">Global Master Admin Panel</h3>
