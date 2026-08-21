@@ -28,13 +28,15 @@
         .luxury-card { background: var(--surface-card); border: 1px solid var(--border-luxury); border-radius: 24px; padding: 45px 35px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.95); width: 100%; position: relative; animation: fadeInCard 0.8s ease-out; }
         @keyframes fadeInCard { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
 
-        .brand-logo { width: 85px; height: 85px; border-radius: 20px; border: 2px solid var(--gold-primary); object-fit: cover; margin-bottom: 18px; box-shadow: 0 0 30px rgba(212,175,55,0.4); }
+        .brand-logo { width: 85px; height: 85px; border-radius: 20px; border: 2px solid var(--gold-primary); object-fit: cover; margin-bottom: 18px; box-shadow: 0 0 30px rgba(212,175,55,0.4); animation: logoPulse 2.5s infinite ease-in-out; }
+        @keyframes logoPulse { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 18px rgba(212,175,55,0.7)); } }
 
         .luxury-card h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 8px 0; }
         .luxury-card p { color: var(--text-gray); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; font-weight: 600; }
 
         .gold-effect-banner { background: linear-gradient(135deg, rgba(15,15,15,0.9), rgba(5,5,5,0.95)); border: 1px solid var(--gold-primary); padding: 20px; border-radius: 16px; margin-bottom: 30px; font-size: 11px; color: var(--gold-light); letter-spacing: 1.2px; line-height: 1.6; box-shadow: 0 0 25px rgba(212,175,55,0.15); }
-        .gold-effect-banner span { display: block; font-size: 16px; margin-top: 10px; letter-spacing: 5px; }
+        .gold-effect-banner span { display: block; font-size: 16px; margin-top: 10px; letter-spacing: 5px; animation: coinFloat 3s infinite ease-in-out alternate; }
+        @keyframes coinFloat { from { transform: translateY(0); } to { transform: translateY(-4px); } }
 
         .apply-btn { display: inline-block; background: var(--gold-gradient); color: #000; padding: 15px 45px; border-radius: 35px; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; border: none; cursor: pointer; box-shadow: 0 0 20px rgba(212,175,55,0.3); transition: 0.3s; }
         .apply-btn:hover { transform: scale(1.05); box-shadow: 0 0 35px rgba(212,175,55,0.7); }
@@ -42,7 +44,7 @@
         .outline-btn { background: transparent; border: 1px solid var(--gold-primary); color: var(--gold-primary); padding: 10px 25px; border-radius: 30px; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .outline-btn:hover { background: var(--gold-primary); color: #000; }
 
-        /* Sections */
+        /* Sections Layout */
         .portal-section { display: none; text-align: left; width: 100%; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .full-width { grid-column: span 2; }
@@ -56,7 +58,7 @@
         .phone-group select { width: 110px; flex-shrink: 0; }
         .section-title { color: var(--gold-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px dashed var(--border-luxury); padding-bottom: 5px; margin: 12px 0 8px 0; font-weight: 700; }
 
-        /* Luxury Dashboard & ID Card */
+        /* Luxury Dashboard & Digital ID Card */
         .dashboard-container { background: #050505; border: 1px solid var(--gold-primary); border-radius: 20px; padding: 25px; text-align: left; box-shadow: inset 0 0 25px rgba(212,175,55,0.1); }
         .dash-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
         .dash-stat-box { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; padding: 15px; text-align: center; }
@@ -64,10 +66,18 @@
         .cv-label { color: var(--gold-primary); font-weight: 700; text-transform: uppercase; font-size: 9px; }
 
         /* Digital ID Card inside Dashboard */
-        .digital-id-card { background: linear-gradient(135deg, #111, #050505); border: 2px solid var(--gold-primary); border-radius: 15px; padding: 20px; display: flex; gap: 20px; align-items: center; margin-bottom: 20px; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+        .digital-id-card { background: linear-gradient(135deg, #111111, #050505); border: 2px solid var(--gold-primary); border-radius: 18px; padding: 20px; display: flex; gap: 20px; align-items: center; margin-bottom: 20px; box-shadow: 0 0 25px rgba(212,175,55,0.2); }
         .id-avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-primary); object-fit: cover; background: #222; }
 
-        .tier-box { background: #000; border: 1px solid #333; padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
+        /* Animated Interactive Bar Chart */
+        .chart-container { display: flex; align-items: flex-end; justify-content: space-around; height: 140px; background: #030303; border: 1px solid #222; border-radius: 12px; padding: 15px 10px; margin: 20px 0; }
+        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+        .chart-bar { width: 28px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; animation: barRise 1.8s ease-out forwards; transform-origin: bottom; box-shadow: 0 0 12px rgba(212,175,55,0.3); }
+        @keyframes barRise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .chart-label { font-size: 9px; color: #888; text-transform: uppercase; }
+
+        /* Editable Wholesale Tiers */
+        .tier-box { background: #080808; border: 1px solid #333; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; gap: 10px; align-items: center; }
 
         /* Admin Table */
         .admin-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 15px; }
@@ -80,12 +90,12 @@
 </head>
 <body>
 
-    <!-- Secret Admin Lock -->
+    <!-- Secret Admin Lock Icon -->
     <div class="lock-btn-fixed" onclick="openAdminModal()" title="Admin Control"><i class="fa-solid fa-lock"></i></div>
 
     <div class="portal-wrapper">
         
-        <!-- 1. Entrance / Popup Slide -->
+        <!-- 1. Entrance / Popup Hero Card -->
         <div class="luxury-card portal-section" id="entranceCard" style="display:block;">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
             <h1>MR MASUDAR ENTERPRISE</h1>
@@ -120,7 +130,7 @@
             </div>
         </div>
 
-        <!-- 3. Detailed Seller Application Form -->
+        <!-- 3. Detailed Seller Registration Form -->
         <div class="luxury-card portal-section" id="formSection">
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:25px; font-size:20px; text-transform:uppercase; letter-spacing:1px;">Global Seller Application</h2>
             
@@ -148,7 +158,7 @@
                 <div class="input-group"><label>Gender *</label><select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
                 <div class="input-group full-width"><label>Complete Residential Address *</label><textarea id="address" rows="2" required></textarea></div>
 
-                <!-- Business & Store Details -->
+                <!-- Business & Store Information -->
                 <div class="input-group full-width"><div class="section-title">Business & Store Information</div></div>
                 <div class="input-group"><label>Store / Business Name *</label><input type="text" id="bizName" required></div>
                 <div class="input-group"><label>Years in Business *</label><input type="number" id="bizYears" required></div>
@@ -173,9 +183,9 @@
             </div>
         </div>
 
-        <!-- 4. Review Notice Popup / Screen -->
+        <!-- 4. 24-Hour Application Review Screen -->
         <div class="luxury-card portal-section" id="reviewNoticeSection">
-            <i class="fa-solid fa-hourglass-half" style="font-size: 40px; color: var(--gold-primary); margin-bottom: 15px;"></i>
+            <i class="fa-solid fa-hourglass-half" style="font-size: 45px; color: var(--gold-primary); margin-bottom: 15px;"></i>
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); margin-bottom:15px; font-size:24px;">Application Under Professional Review</h2>
             <p style="font-size: 11px; line-height: 1.8; color: #ccc; max-width: 600px; margin: 0 auto 25px auto;">
                 আপনার আবেদন সফলভাবে জমা হয়েছে এবং এটি বর্তমানে আমাদের সিকিউরিটি ও ভেন্ডর রিভিউ টিম কর্তৃক পর্যালোচনার অধীনে রয়েছে। অনুগ্রহ করে ধৈর্য ধরে অপেক্ষা করুন; আমরা সাধারণত **২৪ ঘণ্টার মধ্যে** আপনার অ্যাকাউন্ট যাচাই করে একটিভ করে দেব। একটিভ হওয়ার পর আপনি আপনার জিমেইল ও পাসওয়ার্ড দিয়ে সরাসরি ড্যাশবোর্ডে প্রবেশ করতে পারবেন।
@@ -183,7 +193,7 @@
             <button class="apply-btn" onclick="showSection('entranceCard')">Return to Home</button>
         </div>
 
-        <!-- 5. Approved Luxury Seller Dashboard with Digital ID Card -->
+        <!-- 5. Approved Luxury Seller Dashboard Screen -->
         <div class="luxury-card portal-section" id="dashboardSection">
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:22px;">Vendor Earning Dashboard</h2>
             <div id="partnerWelcomeBox" class="dashboard-container"></div>
@@ -193,14 +203,16 @@
             </div>
         </div>
 
-        <!-- 6. Advanced Product & Video Upload Terminal -->
+        <!-- 6. Advanced Product Upload Terminal -->
         <div class="luxury-card portal-section" id="productSection">
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Product & Video Upload Terminal</h2>
             <p style="font-size:10px; color:#aaa; margin-bottom:20px;">দৈনিক সর্বোচ্চ ৩টি প্রোডাক্ট আপলোড করা যাবে। প্রোডাক্টগুলো অটোমেটিকভাবে সংশ্লিষ্ট মার্কেটপ্লেসে রাউট হবে।</p>
 
             <div class="form-grid" style="text-align:left;">
-                <div class="input-group full-width"><label>Product Title *</label><input type="text" id="prodTitle" placeholder="Engaging product title" required></div>
-                <div class="input-group full-width"><label>Product Description *</label><textarea id="prodDesc" rows="3" placeholder="Full specifications and quality details..." required></textarea></div>
+                <!-- Product Name First -->
+                <div class="input-group full-width"><label>Product Name *</label><input type="text" id="prodName" placeholder="Product Name (e.g. Royal Teak Bed)" required></div>
+                <div class="input-group full-width"><label>Product Title *</label><input type="text" id="prodTitle" placeholder="Engaging Product Display Title" required></div>
+                <div class="input-group full-width"><label>Product Description *</label><textarea id="prodDesc" rows="3" placeholder="Full specifications, material details, and quality parameters..." required></textarea></div>
                 
                 <div class="input-group">
                     <label>Select Category (Luxury Standard) *</label>
@@ -219,7 +231,7 @@
                 <div class="input-group"><label>Product / Video File *</label><input type="file" id="prodImg" accept="image/*,video/*" required></div>
                 <div class="input-group"><label>YouTube / Video Review URL (Optional)</label><input type="url" id="prodVideo" placeholder="https://youtube.com/watch?v=..."></div>
 
-                <!-- Pricing & Commission Structure -->
+                <!-- Multi-Market Pricing -->
                 <div class="input-group full-width"><div class="section-title">Multi-Market Pricing & Commission Slabs</div></div>
                 
                 <div class="input-group">
@@ -231,23 +243,23 @@
                     <input type="number" id="priceGlobal" placeholder="$ 25.00">
                 </div>
 
-                <!-- Wholesale Multi-Tier Slabs -->
+                <!-- Fully Editable Wholesale Bulk Pricing Tiers -->
                 <div class="input-group full-width"><div class="section-title">Wholesale Bulk Pricing Tiers (USD $) [5% Commission]</div></div>
                 <div class="input-group full-width">
                     <div class="tier-box">
-                        <span style="font-size:10px; color:var(--gold-light); width:90px;">Small Tier:</span>
-                        <input type="text" placeholder="Qty (e.g. 10-50)" id="wSmallRange" style="width:30%;">
-                        <input type="number" placeholder="Price per unit ($)" id="wSmallPrice" style="width:50%;">
+                        <span style="font-size:10px; color:var(--gold-light); width:110px;">Small Tier:</span>
+                        <input type="text" value="10 - 50 Pcs" id="wSmallRange" style="width:35%;" placeholder="Qty Range">
+                        <input type="number" placeholder="Price per unit ($)" id="wSmallPrice" style="width:45%;">
                     </div>
                     <div class="tier-box">
-                        <span style="font-size:10px; color:var(--gold-light); width:90px;">Medium Tier:</span>
-                        <input type="text" placeholder="Qty (e.g. 51-200)" id="wMedRange" style="width:30%;">
-                        <input type="number" placeholder="Price per unit ($)" id="wMedPrice" style="width:50%;">
+                        <span style="font-size:10px; color:var(--gold-light); width:110px;">Medium Tier:</span>
+                        <input type="text" value="51 - 200 Pcs" id="wMedRange" style="width:35%;" placeholder="Qty Range">
+                        <input type="number" placeholder="Price per unit ($)" id="wMedPrice" style="width:45%;">
                     </div>
                     <div class="tier-box">
-                        <span style="font-size:10px; color:var(--gold-light); width:90px;">Long/Unlimited:</span>
-                        <input type="text" value="201+ (Unlimited)" readonly style="width:30%; color:var(--gold-primary);">
-                        <input type="number" placeholder="Price per unit ($)" id="wLongPrice" style="width:50%;">
+                        <span style="font-size:10px; color:var(--gold-light); width:110px;">Long / Unlimited:</span>
+                        <input type="text" value="201+ (Unlimited)" id="wLongRange" style="width:35%;" placeholder="Qty Range">
+                        <input type="number" placeholder="Price per unit ($)" id="wLongPrice" style="width:45%;">
                     </div>
                 </div>
 
@@ -256,8 +268,8 @@
                 <div class="input-group full-width">
                     <label>Select Target Countries / Regions & Set Shipping Rate ($)</label>
                     <div style="background:#000; padding:15px; border-radius:10px; border:1px solid #333; font-size:11px; max-height:140px; overflow-y:auto;">
-                        <label><input type="checkbox" value="USA"> United States (USA) - Standard Rate: $15.00</label><br>
-                        <label><input type="checkbox" value="UK"> United Kingdom (UK) - Standard Rate: $12.50</label><br>
+                        <label><input type="checkbox" value="USA" checked> United States (USA) - Standard Rate: $15.00</label><br>
+                        <label><input type="checkbox" value="UK" checked> United Kingdom (UK) - Standard Rate: $12.50</label><br>
                         <label><input type="checkbox" value="Canada"> Canada - Standard Rate: $18.00</label><br>
                         <label><input type="checkbox" value="Australia"> Australia - Standard Rate: $20.00</label><br>
                         <label><input type="checkbox" value="France"> France - Standard Rate: $14.00</label><br>
@@ -333,6 +345,13 @@
                 return;
             }
 
+            // Cross-check with Affiliate database
+            let affiliates = JSON.parse(localStorage.getItem('mme_affiliates') || '[]');
+            if(affiliates.find(a => a.email === email || a.whatsapp === phone)) {
+                alert("Error: This Email or WhatsApp is already registered under Affiliate account!");
+                return;
+            }
+
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
             if(!regex.test(pass)) {
                 alert("Password must be 10+ characters with Upper, Lower, Number & Symbol.");
@@ -368,36 +387,48 @@
                     return;
                 }
                 currentActiveVendor = found;
-                showSection('dashboardSection');
-
-                let dashHtml = `
-                    <!-- Digital ID Card inside Dashboard -->
-                    <div class="digital-id-card">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="ID Avatar" class="id-avatar">
-                        <div>
-                            <span style="font-size:10px; color:var(--gold-primary); letter-spacing:2px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD</span>
-                            <h3 style="margin:4px 0; color:#fff; font-size:20px;">${found.biz}</h3>
-                            <p style="margin:0; font-size:11px; color:#aaa;">Owner: ${found.name} | ID: <b style="color:var(--gold-primary);">${found.id}</b></p>
-                            <p style="margin:4px 0 0 0; font-size:10px; color:#888;">Gmail: ${found.email} | WhatsApp: ${found.whatsapp}</p>
-                        </div>
-                    </div>
-
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:10px; margin-bottom:15px;">
-                        <h3 style="color:var(--gold-primary); margin:0; font-size:16px; text-transform:uppercase;">Performance Overview</h3>
-                        <span style="background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc71; padding:4px 12px; border-radius:20px; font-size:10px; font-weight:bold;">● ACTIVE VENDOR</span>
-                    </div>
-
-                    <div class="dash-stats-grid">
-                        <div class="dash-stat-box"><span class="cv-label">Product Views / Clicks</span><span class="number">${found.totalClicks || 0}</span></div>
-                        <div class="dash-stat-box"><span class="cv-label">Products Uploaded</span><span class="number">${found.productsCount} / 3 Daily</span></div>
-                        <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-primary);">${found.totalEarnings}</span></div>
-                        <div class="dash-stat-box"><span class="cv-label">Market Status</span><span class="number" style="color:#2ecc71;">Global Live</span></div>
-                    </div>
-                `;
-                document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
+                renderVendorDashboard(found);
             } else {
                 alert("Invalid Gmail or Password, or account not approved yet!");
             }
+        }
+
+        function renderVendorDashboard(found) {
+            showSection('dashboardSection');
+            let dashHtml = `
+                <!-- Digital ID Card inside Dashboard -->
+                <div class="digital-id-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="ID Avatar" class="id-avatar">
+                    <div>
+                        <span style="font-size:10px; color:var(--gold-primary); letter-spacing:2px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD</span>
+                        <h3 style="margin:4px 0; color:#fff; font-size:20px;">${found.biz}</h3>
+                        <p style="margin:0; font-size:11px; color:#aaa;">Owner: ${found.name} | Vendor ID: <b style="color:var(--gold-primary);">${found.id}</b></p>
+                        <p style="margin:4px 0 0 0; font-size:10px; color:#888;">Gmail: ${found.email} | WhatsApp: ${found.whatsapp}</p>
+                    </div>
+                </div>
+
+                <!-- Animated Interactive Graphics Chart -->
+                <div style="margin:15px 0 5px 0;"><span class="cv-label">Vendor Growth & Analytics Graphic</span></div>
+                <div class="chart-container">
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 65%;"></div><span class="chart-label">Views</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 85%;"></div><span class="chart-label">Clicks</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 45%;"></div><span class="chart-label">Sales</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 95%;"></div><span class="chart-label">Earnings</span></div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:10px; margin-bottom:15px;">
+                    <h3 style="color:var(--gold-primary); margin:0; font-size:14px; text-transform:uppercase;">Performance Summary</h3>
+                    <span style="background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc71; padding:4px 12px; border-radius:20px; font-size:10px; font-weight:bold;">● ACTIVE VENDOR</span>
+                </div>
+
+                <div class="dash-stats-grid">
+                    <div class="dash-stat-box"><span class="cv-label">Product Views / Clicks</span><span class="number">${found.totalClicks || 0}</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Products Uploaded</span><span class="number">${found.productsCount} / 3 Daily</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-primary);">${found.totalEarnings}</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Market Status</span><span class="number" style="color:#2ecc71;">Global Live</span></div>
+                </div>
+            `;
+            document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
         }
 
         function publishProduct() {
@@ -407,21 +438,25 @@
                 return;
             }
 
+            let name = document.getElementById('prodName').value;
             let title = document.getElementById('prodTitle').value;
             let cat = document.getElementById('prodCategory').value;
             let stock = document.getElementById('prodStock').value;
             let priceBD = document.getElementById('priceBD').value;
             let priceGlobal = document.getElementById('priceGlobal').value;
 
-            if(!title || !cat || !stock) {
+            if(!name || !title || !cat || !stock) {
                 alert("Please fill in all mandatory product details.");
                 return;
             }
 
             let product = {
-                vendorId: currentActiveVendor.id, title: title, category: cat, stock: stock,
+                vendorId: currentActiveVendor.id, name: name, title: title, category: cat, stock: stock,
                 bd: priceBD ? '৳ ' + priceBD + ' (5% Comm)' : 'N/A',
-                global: priceGlobal ? '$ ' + priceGlobal + ' (20% Comm)' : 'N/A'
+                global: priceGlobal ? '$ ' + priceGlobal + ' (20% Comm)' : 'N/A',
+                wholesaleSmall: document.getElementById('wSmallPrice').value ? '$' + document.getElementById('wSmallPrice').value : 'N/A',
+                wholesaleMedium: document.getElementById('wMedPrice').value ? '$' + document.getElementById('wMedPrice').value : 'N/A',
+                wholesaleLong: document.getElementById('wLongPrice').value ? '$' + document.getElementById('wLongPrice').value : 'N/A'
             };
 
             let allProducts = JSON.parse(localStorage.getItem('mme_products') || '[]');
@@ -443,7 +478,7 @@
             }
 
             alert("Product successfully published and routed to respective Marketplace segments!");
-            loginDashboard();
+            renderVendorDashboard(currentActiveVendor);
         }
 
         function openAdminModal() {
@@ -497,33 +532,10 @@
             let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
             let found = sellers.find(s => s.email === email);
             if(found) {
-                found.status = 'Active'; // Auto approve for instant check
+                found.status = 'Active'; // Auto activate for admin direct preview
                 localStorage.setItem('mme_sellers', JSON.stringify(sellers));
                 currentActiveVendor = found;
-                showSection('dashboardSection');
-                // Render dashboard directly
-                let dashHtml = `
-                    <div class="digital-id-card">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="ID Avatar" class="id-avatar">
-                        <div>
-                            <span style="font-size:10px; color:var(--gold-primary); letter-spacing:2px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (ADMIN BYPASS)</span>
-                            <h3 style="margin:4px 0; color:#fff; font-size:20px;">${found.biz}</h3>
-                            <p style="margin:0; font-size:11px; color:#aaa;">Owner: ${found.name} | ID: <b style="color:var(--gold-primary);">${found.id}</b></p>
-                            <p style="margin:4px 0 0 0; font-size:10px; color:#888;">Gmail: ${found.email} | WhatsApp: ${found.whatsapp}</p>
-                        </div>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:10px; margin-bottom:15px;">
-                        <h3 style="color:var(--gold-primary); margin:0; font-size:16px; text-transform:uppercase;">Performance Overview</h3>
-                        <span style="background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc71; padding:4px 12px; border-radius:20px; font-size:10px; font-weight:bold;">● ACTIVE VENDOR</span>
-                    </div>
-                    <div class="dash-stats-grid">
-                        <div class="dash-stat-box"><span class="cv-label">Product Views / Clicks</span><span class="number">${found.totalClicks || 0}</span></div>
-                        <div class="dash-stat-box"><span class="cv-label">Products Uploaded</span><span class="number">${found.productsCount} / 3 Daily</span></div>
-                        <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-primary);">${found.totalEarnings}</span></div>
-                        <div class="dash-stat-box"><span class="cv-label">Market Status</span><span class="number" style="color:#2ecc71;">Global Live</span></div>
-                    </div>
-                `;
-                document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
+                renderVendorDashboard(found);
             }
         }
 
