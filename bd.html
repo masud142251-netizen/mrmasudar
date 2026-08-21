@@ -47,7 +47,7 @@
             letter-spacing: 2px;
         }
 
-        /* Draggable / Floating Luxury Cart Basket */
+        /* Draggable & Floating Luxury Basket */
         .floating-basket {
             position: fixed;
             top: 25px;
@@ -61,11 +61,11 @@
             align-items: center;
             justify-content: center;
             font-size: 22px;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
             cursor: grab;
             z-index: 9999;
-            transition: transform 0.1s ease;
             user-select: none;
+            transition: transform 0.1s ease;
         }
         .floating-basket:active { cursor: grabbing; }
         .basket-count {
@@ -81,7 +81,7 @@
             border: 2px solid #000;
         }
 
-        /* Product Grid (4 items desktop, 2 items mobile) */
+        /* Product Grid (4 desktop, 2 mobile) */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -153,7 +153,7 @@
         }
         .card-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
-        /* Full Screen Luxury Details Modal (Matches user reference image) */
+        /* Full Screen Luxury Details Modal */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -218,19 +218,20 @@
         .thumb-img { width: 55px; height: 55px; border-radius: 8px; border: 1px solid #333; object-fit: cover; cursor: pointer; transition: 0.2s; }
         .thumb-img:hover { border-color: var(--gold-primary); transform: scale(1.05); }
 
-        /* Flying Animation Object */
-        .flying-item {
+        /* Flying Golden Coin Animation Object */
+        .flying-coin {
             position: fixed;
             width: 35px;
             height: 35px;
-            background: var(--gold-primary);
+            background: var(--gold-gradient);
+            border: 2px solid #fff;
             border-radius: 50%;
             z-index: 99999;
             pointer-events: none;
-            transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 0 15px var(--gold-primary);
+            transition: all 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Responsive Mobile Layout: 2 items per line */
         @media(max-width: 768px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .market-header h1 { font-size: 20px; }
@@ -243,7 +244,7 @@
 <body>
 
     <!-- Draggable Floating Luxury Basket -->
-    <div class="floating-basket" id="floatingBasket" title="Drag me or Click to view cart">
+    <div class="floating-basket" id="floatingBasket" title="Drag or Click to view cart">
         <i class="fa-solid fa-basket-shopping"></i>
         <span class="basket-count" id="cartBadge">0</span>
     </div>
@@ -264,7 +265,7 @@
     </div>
 
     <script>
-        // Make Floating Basket Draggable on Mobile & Desktop
+        // Make Floating Basket Draggable
         const basket = document.getElementById('floatingBasket');
         let isDragging = false, startX, startY, initialX, initialY;
 
@@ -291,21 +292,14 @@
             if (!isDragging) return;
             let currentX = e.clientX || e.touches[0].clientX;
             let currentY = e.clientY || e.touches[0].clientY;
-            let dx = currentX - startX;
-            let dy = currentY - startY;
-            basket.style.left = (initialX + dx) + 'px';
-            basket.style.top = (initialY + dy) + 'px';
+            basket.style.left = (initialX + (currentX - startX)) + 'px';
+            basket.style.top = (initialY + (currentY - startY)) + 'px';
         }
 
-        function dragEnd() {
-            if(!isDragging) return;
-            isDragging = false;
-        }
+        function dragEnd() { isDragging = false; }
 
         basket.onclick = function() {
-            if(!isDragging) {
-                openCartCheckoutDrawer();
-            }
+            if(!isDragging) { openCartCheckoutDrawer(); }
         };
 
         // Load Products
@@ -315,10 +309,10 @@
 
             if(products.length === 0) {
                 products = [
-                    { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "HOME DECOR", stock: "15", bd: "৳ 45,000", global: "$ 450", desc: "Pure high-gloss lacquer finish with solid Gamar wood structure." },
-                    { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "FASHION (MEN)", stock: "30", bd: "৳ 8,500", global: "$ 85", desc: "Tailored Italian cut luxury fabric designed for top executives." },
-                    { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "BABY", stock: "10", bd: "৳ 22,000", global: "$ 220", desc: "Gold-plated alloy frame with shock-absorbent wheels." },
-                    { name: "Artisan Ceramic Vase", title: "Handmade Gold Leaf Decor", category: "ART & CRAFT", stock: "25", bd: "৳ 3,500", global: "$ 35", desc: "Exclusive golden accented masterpiece for modern living rooms." }
+                    { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "HOME DECOR", bd: "৳ 45,000", desc: "Pure high-gloss lacquer finish with solid Gamar wood structure." },
+                    { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "FASHION (MEN)", bd: "৳ 8,500", desc: "Tailored Italian cut luxury fabric designed for top executives." },
+                    { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "BABY", bd: "৳ 22,000", desc: "Gold-plated alloy frame with shock-absorbent wheels." },
+                    { name: "Artisan Ceramic Vase", title: "Handmade Gold Leaf Decor", category: "ART & CRAFT", bd: "৳ 3,500", desc: "Exclusive golden accented masterpiece for modern living rooms." }
                 ];
             }
 
@@ -343,7 +337,7 @@
             });
         }
 
-        // Open Big Details Modal with 5-7 images & video preview
+        // Open Product Details Modal with Gallery & Video
         function openProductDetails(index) {
             let products = JSON.parse(localStorage.getItem('mme_products') || '[]');
             if(products.length === 0) {
@@ -356,8 +350,8 @@
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="modal-grid" style="display:grid; grid-template-columns: 1fr 1.2fr; gap:25px; align-items:start;">
                     <div>
-                        <div style="background:#000; border:1px solid #333; border-radius:15px; height:240px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                            <img id="mainPreviewImg" src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" style="max-height:190px; object-fit:contain;">
+                        <div style="background:#000; border:1px solid #333; border-radius:15px; height:230px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                            <img id="mainPreviewImg" src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" style="max-height:180px; object-fit:contain;">
                         </div>
                         <!-- 5-7 Image Gallery Thumbnails -->
                         <div class="thumb-gallery">
@@ -367,10 +361,10 @@
                             <img src="https://cdn-icons-png.flaticon.com/512/2618/2618488.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
                             <img src="https://cdn-icons-png.flaticon.com/512/3050/3050259.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
                         </div>
-                        <!-- Video Preview Box -->
-                        <div style="margin-top:12px; background:#000; border:1px solid #222; border-radius:10px; padding:8px; text-align:center;">
+                        <!-- Video Showcase Box -->
+                        <div style="margin-top:10px; background:#000; border:1px solid #222; border-radius:10px; padding:8px; text-align:center;">
                             <span style="font-size:9px; color:var(--gold-light); text-transform:uppercase;">Product Video Showcase</span>
-                            <div style="font-size:11px; color:#aaa; margin-top:4px;"><i class="fa-solid fa-circle-play" style="color:var(--gold-primary); font-size:16px;"></i> High Definition Review Video Loaded</div>
+                            <div style="font-size:11px; color:#aaa; margin-top:3px;"><i class="fa-solid fa-circle-play" style="color:var(--gold-primary); font-size:15px;"></i> High Definition Preview Active</div>
                         </div>
                     </div>
                     <div>
@@ -379,44 +373,62 @@
                         <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (Global Certified)</div>
                         <p style="color:#aaa; font-size:11px; line-height:1.6; margin:12px 0;">${p.desc || 'Masterpiece craftsmanship engineered for premier lifestyle requirements.'}</p>
                         <div style="font-size:18px; color:var(--gold-primary); font-weight:800; margin-bottom:15px;">Price: ${p.bd || p.global || '৳ 2,500'}</div>
-                        <button class="apply-btn" onclick="addToCartAndAnimate(event, '${p.title || p.name}')">Add to Cart & Fly to Basket</button>
+                        <button class="apply-btn" onclick="addCoinToBasketAndAnimate(event, '${p.title || p.name}')">ADD TO CART</button>
                     </div>
                 </div>
             `;
             document.getElementById('productModal').style.display = 'flex';
         }
 
-        // Add to Cart with Flying Animation & Direct Basket Connection
-        function addToCartAndAnimate(event, prodName) {
+        // Golden Coin Fly Animation & Sound Effect
+        function addCoinToBasketAndAnimate(event, prodName) {
             let badge = document.getElementById('cartBadge');
-            let currentCount = parseInt(badge.innerText) + 1;
-            badge.innerText = currentCount;
+            badge.innerText = parseInt(badge.innerText) + 1;
 
-            // Save to Cart storage
             let cart = JSON.parse(localStorage.getItem('mme_cart') || '[]');
             cart.push(prodName);
             localStorage.setItem('mme_cart', JSON.stringify(cart));
 
+            playCoinSound();
+
             let btnRect = event.target.getBoundingClientRect();
             let basketRect = basket.getBoundingClientRect();
 
-            let flyer = document.createElement('div');
-            flyer.className = 'flying-item';
-            flyer.style.left = btnRect.left + 'px';
-            flyer.style.top = btnRect.top + 'px';
-            document.body.appendChild(flyer);
+            let coin = document.createElement('div');
+            coin.className = 'flying-coin';
+            coin.style.left = btnRect.left + 'px';
+            coin.style.top = btnRect.top + 'px';
+            document.body.appendChild(coin);
 
             setTimeout(() => {
-                flyer.style.left = (basketRect.left + 15) + 'px';
-                flyer.style.top = (basketRect.top + 15) + 'px';
-                flyer.style.transform = 'scale(0.2)';
-                flyer.style.opacity = '0';
-            }, 40);
+                coin.style.left = (basketRect.left + 12) + 'px';
+                coin.style.top = (basketRect.top + 12) + 'px';
+                coin.style.transform = 'scale(0.25) rotate(360deg)';
+                coin.style.opacity = '0';
+            }, 30);
 
-            setTimeout(() => { flyer.remove(); closeModal(); }, 750);
+            setTimeout(() => { coin.remove(); closeModal(); }, 750);
         }
 
-        // Open Cart & Checkout Form when clicking basket
+        // Web Audio API Sound Effect
+        function playCoinSound() {
+            try {
+                let ctx = new (window.AudioContext || window.webkitAudioContext)();
+                let osc = ctx.createOscillator();
+                let gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(987.77, ctx.currentTime); // B5 note
+                osc.frequency.exponentialRampToValueAtTime(1318.51, ctx.currentTime + 0.12); // E6 note
+                gain.gain.setValueAtTime(0.12, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.12);
+            } catch(e) {}
+        }
+
+        // Open Checkout Form inside Modal
         function openCartCheckoutDrawer() {
             let cart = JSON.parse(localStorage.getItem('mme_cart') || '[]');
             let modalBody = document.getElementById('modalBody');
@@ -440,9 +452,7 @@
         function submitFinalOrder() {
             let name = document.getElementById('custName').value;
             let phone = document.getElementById('custPhone').value;
-            if(!name || !phone) {
-                return;
-            }
+            if(!name || !phone) return;
             localStorage.removeItem('mme_cart');
             document.getElementById('cartBadge').innerText = '0';
             closeModal();
