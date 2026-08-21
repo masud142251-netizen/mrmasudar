@@ -24,26 +24,26 @@
             overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Top Header - Centered & Perfectly Aligned for Mobile */
         .top-header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 15px 25px;
+            padding: 20px 15px;
             background: #000;
             border-bottom: 1px solid var(--border-luxury);
-            flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
         }
         .brand-box {
             display: flex;
             align-items: center;
             gap: 12px;
             text-align: left;
+            justify-content: center;
         }
         .brand-logo-img {
-            width: 42px;
-            height: 42px;
+            width: 45px;
+            height: 45px;
             border-radius: 8px;
             border: 1px solid var(--gold-primary);
             object-fit: cover;
@@ -69,50 +69,49 @@
 
         .top-badges {
             display: flex;
-            gap: 6px;
+            justify-content: center;
+            gap: 8px;
             align-items: center;
             flex-wrap: wrap;
+            width: 100%;
+            margin-top: 5px;
         }
         .badge {
             background: rgba(212, 175, 55, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.6);
             color: #FFFFFF;
             font-size: 9px;
-            padding: 5px 9px;
+            padding: 5px 10px;
             border-radius: 20px;
             font-weight: 600;
             letter-spacing: 0.5px;
-            white-space: nowrap;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 4px;
             transition: 0.3s;
         }
-        .badge:hover {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 10px rgba(212,175,55,0.3);
-        }
         .badge i {
             color: var(--gold-primary);
         }
 
         /* Hero Section */
-        .hero { padding: 30px 20px 20px 20px; }
+        .hero { padding: 25px 15px 15px 15px; }
         .hero h2 { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 28px; 
+            font-size: 24px; 
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase; 
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             margin-bottom: 6px; 
+            line-height: 1.2;
         }
         .hero p { 
             color: #999; 
-            font-size: 10px; 
-            letter-spacing: 1.5px; 
+            font-size: 9px; 
+            letter-spacing: 1px; 
             text-transform: uppercase; 
         }
 
@@ -120,17 +119,17 @@
         .vertical-container { 
             display: flex;
             flex-direction: column;
-            gap: 22px; 
+            gap: 20px; 
             max-width: 900px; 
             margin: 0 auto; 
-            padding: 0 20px 80px 20px;
+            padding: 0 15px 80px 15px;
         }
         
         .luxury-card { 
             background: var(--surface-color); 
             border: 1px solid var(--border-luxury); 
             border-radius: 16px; 
-            padding: 30px 20px; 
+            padding: 25px 15px; 
             text-align: center; 
             cursor: pointer; 
             transition: all 0.4s ease; 
@@ -141,29 +140,24 @@
             box-shadow: 0 6px 25px rgba(0,0,0,0.7);
             position: relative;
         }
-        .luxury-card:hover { 
-            border-color: var(--gold-primary); 
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(212,175,55,0.3); 
-        }
         
-        /* Enhanced Smooth Zoom-In / Zoom-Out Animation for Logos */
+        /* Prominent Zoom-In / Zoom-Out Animation for Logos */
         .luxury-card i { 
-            font-size: 42px; 
+            font-size: 38px; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            margin-bottom: 15px; 
+            margin-bottom: 12px; 
             animation: prominentZoom 2.5s infinite ease-in-out;
         }
         @keyframes prominentZoom {
-            0% { transform: scale(0.9); }
-            50% { transform: scale(1.25); }
-            100% { transform: scale(0.9); }
+            0% { transform: scale(0.85); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(0.85); }
         }
 
         .luxury-card h3 { 
-            font-size: 15px; 
+            font-size: 14px; 
             margin-bottom: 5px; 
             color: #fff;
             letter-spacing: 1.5px;
@@ -171,8 +165,8 @@
         }
         .luxury-card p {
             color: #888;
-            font-size: 11px;
-            margin-bottom: 20px;
+            font-size: 10px;
+            margin-bottom: 18px;
             letter-spacing: 0.5px;
         }
         
@@ -180,69 +174,61 @@
             display: inline-block; 
             background: var(--gold-gradient); 
             color: #000; 
-            padding: 10px 25px; 
+            padding: 9px 22px; 
             border-radius: 25px; 
             font-weight: 800; 
             text-transform: uppercase; 
-            font-size: 10px; 
+            font-size: 9px; 
             letter-spacing: 1.5px;
             box-shadow: 0 0 15px rgba(212,175,55,0.2);
-            transition: transform 0.3s ease;
-        }
-        .luxury-card:hover .btn {
-            transform: scale(1.05);
         }
 
-        /* --- Floating Live Chat Widget --- */
+        /* --- Floating Live Chat Widget (Compact & Perfectly Fitted) --- */
         .chat-widget-fixed {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 20px;
+            right: 15px;
             z-index: 99999;
         }
         .live-chat-bubble-btn {
             background: var(--gold-gradient);
             color: #000;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 35px;
             font-weight: 900;
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 1.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 5px 25px rgba(212,175,55,0.6);
+            gap: 6px;
+            box-shadow: 0 5px 20px rgba(212,175,55,0.6);
             border: 2px solid #fff;
             cursor: pointer;
-            transition: 0.3s;
             animation: pulseGlow 2s infinite;
         }
         @keyframes pulseGlow {
             0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.8); }
-            70% { box-shadow: 0 0 0 12px rgba(212,175,55,0); }
+            70% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
             100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
         }
-        .live-chat-bubble-btn:hover {
-            transform: scale(1.08);
-        }
 
-        /* Live Chat Window */
+        /* Compact Live Chat Window */
         .live-chat-window {
             display: none;
             position: absolute;
-            bottom: 65px;
+            bottom: 55px;
             right: 0;
-            width: 330px;
+            width: 290px;
             background: var(--surface-color);
             border: 1px solid var(--gold-primary);
-            border-radius: 16px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.95);
+            border-radius: 14px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.95);
             overflow: hidden;
             text-align: left;
         }
         .chat-top-bar {
             background: #000;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border-bottom: 1px solid var(--border-luxury);
             display: flex;
             justify-content: space-between;
@@ -251,92 +237,88 @@
         .agent-status {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 11px;
+            gap: 6px;
+            font-size: 10px;
             color: var(--gold-primary);
             font-weight: bold;
         }
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background: #2ecc71;
             border-radius: 50%;
         }
         .close-chat-x {
             color: #aaa;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
         }
-        .close-chat-x:hover { color: #fff; }
 
         .chat-conversation-area {
-            height: 230px;
-            padding: 15px;
+            height: 190px;
+            padding: 12px;
             overflow-y: auto;
-            font-size: 11px;
+            font-size: 10px;
             color: #ddd;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         .support-agent-msg {
             background: rgba(212,175,55,0.12);
             border-left: 2px solid var(--gold-primary);
-            padding: 8px 12px;
+            padding: 7px 10px;
             border-radius: 4px;
-            max-width: 88%;
-            line-height: 1.4;
+            max-width: 90%;
+            line-height: 1.3;
         }
         .visitor-msg {
             background: #222;
             color: #fff;
-            padding: 8px 12px;
+            padding: 7px 10px;
             border-radius: 4px;
-            max-width: 88%;
+            max-width: 90%;
             align-self: flex-end;
             border-right: 2px solid #fff;
         }
 
         .chat-bottom-input {
-            padding: 10px;
+            padding: 8px 10px;
             background: #000;
             border-top: 1px solid var(--border-luxury);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
         .chat-bottom-input input {
             background: #111;
             border: 1px solid #333;
-            border-radius: 20px;
-            padding: 8px 10px;
+            border-radius: 18px;
+            padding: 6px 10px;
             color: #fff;
             width: 100%;
             outline: none;
-            font-size: 11px;
+            font-size: 10px;
         }
         .chat-bottom-input i {
             color: var(--gold-primary);
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
-            transition: 0.2s;
             padding: 0 2px;
         }
-        .chat-bottom-input i:hover { color: #fff; transform: scale(1.1); }
         
         .send-btn-text {
             background: var(--gold-gradient);
             color: #000;
             border: none;
-            padding: 6px 12px;
-            border-radius: 15px;
+            padding: 5px 10px;
+            border-radius: 12px;
             font-weight: 800;
-            font-size: 9px;
+            font-size: 8px;
             cursor: pointer;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             white-space: nowrap;
         }
-        .send-btn-text:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -436,7 +418,7 @@
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
             <div class="chat-conversation-area" id="chatAreaBox">
-                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! এখানে বাংলাদেশ ও গ্লোবাল মার্কেটপ্লেস, হোলসেল, সেলার হাব, অ্যাফিলিয়েট এবং ক্যারিয়ার সেবা রয়েছে। বলুন কীভাবে সহায়তা করতে পারি?</div>
+                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! আমাদের প্রধান সেবা: বাংলাদেশ ও গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B)। কীভাবে সহায়তা করতে পারি?</div>
             </div>
             <div class="chat-bottom-input">
                 <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)" oninput="resetInactivityTimer()">
@@ -466,8 +448,8 @@
             clearTimeout(inactivityTimer);
             inactivityTimer = setTimeout(() => {
                 const area = document.getElementById('chatAreaBox');
-                area.innerHTML = '<div class="support-agent-msg">নিষ্ক্রিয়তার কারণে চ্যাট সেশনটি মেয়াদোত্তীর্ণ হয়েছে। নতুন করে কথা বলতে আবার মেসেজ করুন!</div>';
-            }, 30000); // 30 seconds
+                area.innerHTML = '<div class="support-agent-msg">নিষ্ক্রিয়তার কারণে চ্যাট সেশনটি মেয়াদোত্তীর্ণ হয়েছে। নতুন করে মেসেজ করুন!</div>';
+            }, 30000);
         }
 
         function sendVisitorMessage() {
@@ -481,28 +463,34 @@
                 userMsg.innerText = input.value;
                 area.appendChild(userMsg);
 
-                let txt = input.value.toLowerCase();
+                let txt = input.value.trim();
+                let lowerTxt = txt.toLowerCase();
                 input.value = '';
                 area.scrollTop = area.scrollHeight;
 
-                // Fast & Alive Support Response Logic
                 setTimeout(() => {
                     const agentMsg = document.createElement('div');
                     agentMsg.className = 'support-agent-msg';
                     
-                    if (txt.includes('service') || txt.includes('সেবা') || txt.includes('কি আছে')) {
-                        agentMsg.innerText = "আমাদের এখানে বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস, হোলসেল/বিটুবি, সেলার ইকোসিস্টেম, অ্যাফিলিয়েট নেটওয়ার্ক এবং ক্যারিয়ার সলিউশন রয়েছে।";
-                    } else if (txt.includes('market') || txt.includes('market place') || txt.includes('মার্কেট')) {
-                        agentMsg.innerText = "আমাদের গ্লোবাল মার্কেটপ্লেসে ১০টিরও বেশি ক্যাটাগরি ও বাংলাদেশ মার্কেটে লোকাল রিটেল সুবিধা রয়েছে।";
-                    } else if (txt.includes('seller') || txt.includes('সেলার') || txt.includes('affiliate') || txt.includes('অ্যাফিলিয়েট')) {
-                        agentMsg.innerText = "আপনি খুব সহজেই সেলার হাব অথবা ১০% কমিশনযুক্ত অ্যাফিলিয়েট নেটওয়ার্কে যুক্ত হতে পারেন।";
+                    if (/[\u0600-\u06FF]/.test(txt)) {
+                        agentMsg.innerText = "أهلاً بك! نقدم خدمات السوق البنغلاديشي، السوق العالمي، والبيع بالجملة. كيف يمكنني مساعدتك؟";
+                    } else if (/^[a-zA-Z\s]+$/.test(txt)) {
+                        if (lowerTxt.includes('market') || lowerTxt.includes('global') || lowerTxt.includes('bangladesh')) {
+                            agentMsg.innerText = "We offer Bangladesh Market retail, Global Marketplace with 10+ categories, and Wholesale B2B solutions.";
+                        } else {
+                            agentMsg.innerText = "Thank you for your inquiry. Our global support team (237+ countries) is processing your request!";
+                        }
                     } else {
-                        agentMsg.innerText = "আপনার মেসেজটি পেয়েছি! ২৩৭+ দেশের নেটওয়ার্ক থেকে আমাদের সাপোর্ট টিম দ্রুত আপনার রিকোয়েস্টটি প্রসেস করছে।";
+                        if (lowerTxt.includes('market') || lowerTxt.includes('বাজার') || lowerTxt.includes('সেবা') || lowerTxt.includes('service')) {
+                            agentMsg.innerText = "আমাদের প্রধান সেবার মধ্যে রয়েছে বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B) সলিউশন।";
+                        } else {
+                            agentMsg.innerText = "আপনার কথাটি বুঝতে পেরেছি। আমাদের ২৩৭+ দেশের নেটওয়ার্ক থেকে আপনার রিকোয়েস্টটি দ্রুত প্রসেস করা হচ্ছে।";
+                        }
                     }
 
                     area.appendChild(agentMsg);
                     area.scrollTop = area.scrollHeight;
-                }, 500); // Super fast response
+                }, 400);
             }
         }
 
@@ -547,7 +535,7 @@
                 const area = document.getElementById('chatAreaBox');
                 const imgMsg = document.createElement('div');
                 imgMsg.className = 'visitor-msg';
-                imgMsg.innerText = "📷 Uploaded image: " + file.name;
+                imgMsg.innerText = "📷 Uploaded: " + file.name;
                 area.appendChild(imgMsg);
                 area.scrollTop = area.scrollHeight;
 
