@@ -18,8 +18,8 @@
         }
         body { background-color: var(--bg-color); color: var(--text-white); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; }
 
-        /* Dual Admin Secret Locks */
-        .lock-btn-fixed { position: fixed; bottom: 8px; left: 8px; color: var(--gold-primary); font-size: 8px; cursor: pointer; z-index: 9999; opacity: 0.15; transition: 0.3s; }
+        /* Single Dashboard Corner Secret Lock */
+        .lock-btn-fixed { position: fixed; bottom: 10px; left: 10px; color: var(--gold-primary); font-size: 10px; cursor: pointer; z-index: 9999; opacity: 0.15; transition: 0.3s; }
         .lock-btn-fixed:hover { opacity: 1; transform: scale(1.3); }
 
         .portal-wrapper { width: 100%; max-width: 900px; padding: 30px 20px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
@@ -61,7 +61,7 @@
         .section-title { color: var(--gold-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px dashed var(--border-luxury); padding-bottom: 5px; margin: 12px 0 8px 0; font-weight: 700; }
 
         /* Dashboard */
-        .dashboard-container { background: #050505; border: 1px solid var(--gold-primary); border-radius: 20px; padding: 25px; text-align: left; box-shadow: inset 0 0 20px rgba(212,175,55,0.08); }
+        .dashboard-container { background: #050505; border: 1px solid var(--gold-primary); border-radius: 20px; padding: 25px; text-align: left; box-shadow: inset 0 0 20px rgba(212,175,55,0.08); position: relative; }
         .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
         .dash-stat-box { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; padding: 15px; text-align: center; }
         .dash-stat-box .number { font-size: 20px; font-weight: 800; color: var(--gold-primary); margin-top: 5px; display: block; }
@@ -78,9 +78,8 @@
 </head>
 <body>
 
-    <!-- Dual Admin Secret Locks with respective Passwords -->
-    <div class="lock-btn-fixed" style="left:8px;" onclick="openAdminModal('mrsellerhtml', 'Seller Applications & Approvals')" title="Admin Panel 1"><i class="fa-solid fa-lock"></i></div>
-    <div class="lock-btn-fixed" style="left:26px; opacity:0.1;" onclick="openAdminModal('mrsellerhtmld', 'Dashboard Management & Control')" title="Admin Panel 2"><i class="fa-solid fa-lock"></i></div>
+    <!-- Single Dashboard Corner Secret Lock -->
+    <div class="lock-btn-fixed" onclick="openAdminModal()" title="Admin Control"><i class="fa-solid fa-lock"></i></div>
 
     <div class="portal-wrapper">
         
@@ -163,8 +162,7 @@
 
                 <div class="input-group full-width">
                     <div class="section-title">Verification & Tracking</div>
-                    <label>Upload Passport Size Photo *</label>
-                    <input type="file" id="applicantPhoto" accept="image/*" required>
+                    <label>Upload Passport Size Photo *</label><input type="file" id="applicantPhoto" accept="image/*" required>
                 </div>
                 <div class="input-group full-width">
                     <label>Auto-Tracked Location & Network IP</label>
@@ -257,7 +255,7 @@
             </div>
         </div>
 
-        <!-- 6. Master Admin Panels Section -->
+        <!-- 6. Master Admin Panel Section -->
         <div class="luxury-card portal-section" id="adminSection">
             <h2 id="adminPortalTitle" style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Master Admin Portal</h2>
             <div id="adminLoginBox">
@@ -291,7 +289,6 @@
 
     <script>
         let currentActiveVendor = null;
-        let activeAdminPassKey = "";
 
         function showSection(id) {
             const sections = ['entranceCard', 'loginSection', 'formSection', 'dashboardSection', 'productSection', 'adminSection'];
@@ -413,10 +410,9 @@
             loginDashboard();
         }
 
-        function openAdminModal(passKey, portalTitle) {
-            activeAdminPassKey = passKey;
-            document.getElementById('adminPortalTitle').innerText = portalTitle;
+        function openAdminModal() {
             showSection('adminSection');
+            document.getElementById('adminPortalTitle').innerText = "Master Admin Portal";
             document.getElementById('adminLoginBox').style.display = 'block';
             document.getElementById('adminDashboard').style.display = 'none';
             document.getElementById('adminPassInput').value = '';
@@ -424,12 +420,13 @@
 
         function verifyAdmin() {
             const pass = document.getElementById('adminPassInput').value;
-            if(pass === activeAdminPassKey) {
+            // First panel pass: mrsellerhtml, Second panel/Dashboard control pass: mrsellerhtmld
+            if(pass === 'mrsellerhtml' || pass === 'mrsellerhtmld') {
                 document.getElementById('adminLoginBox').style.display = 'none';
                 document.getElementById('adminDashboard').style.display = 'block';
                 loadVendorsTable();
             } else {
-                alert("Incorrect Admin Password for this portal!");
+                alert("Incorrect Admin Password!");
             }
         }
 
