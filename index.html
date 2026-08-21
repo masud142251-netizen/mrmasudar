@@ -24,29 +24,30 @@
             overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Top Header - Fully Centered & Stacked for Mobile Elegance */
         .top-header {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 22px 15px;
+            padding: 25px 15px;
             background: #000;
             border-bottom: 1px solid var(--border-luxury);
-            gap: 14px;
+            gap: 15px;
         }
-        .brand-box {
+        .brand-box-center {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 14px;
-            text-align: left;
-            justify-content: center;
+            text-align: center;
+            gap: 10px;
         }
         .brand-logo-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
             border: 1px solid var(--gold-primary);
             object-fit: cover;
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
         }
         .brand-text h1 {
             font-family: 'Cormorant Garamond', serif;
@@ -57,15 +58,15 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            white-space: nowrap;
         }
         .brand-text span {
-            font-size: 10px;
+            font-size: 9px;
             color: #ddd;
             letter-spacing: 2px;
             text-transform: uppercase;
             display: block;
             font-weight: 600;
+            margin-top: 3px;
         }
 
         .top-badges {
@@ -187,7 +188,7 @@
             box-shadow: 0 0 15px rgba(212,175,55,0.25);
         }
 
-        /* --- Floating Live Chat Widget (Perfect Size & Touch-Friendly) --- */
+        /* --- Floating Live Chat Widget --- */
         .chat-widget-fixed {
             position: fixed;
             bottom: 25px;
@@ -216,7 +217,7 @@
             100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
         }
 
-        /* Standard Touch-Friendly Chat Window */
+        /* Live Chat Window */
         .live-chat-window {
             display: none;
             position: absolute;
@@ -328,9 +329,9 @@
 </head>
 <body>
 
-    <!-- Top Header -->
+    <!-- Top Header - Centered Layout -->
     <div class="top-header">
-        <div class="brand-box">
+        <div class="brand-box-center">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo-img">
             <div class="brand-text">
                 <h1>MR MASUDAR ENTERPRISE</h1>
@@ -423,7 +424,7 @@
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
             <div class="chat-conversation-area" id="chatAreaBox">
-                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! আমাদের প্রধান সেবা: বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B)। কীভাবে সহায়তা করতে পারি?</div>
+                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! আমাদের প্রধান সেবা: বাংলাদেশ ও গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B)। কীভাবে সহায়তা করতে পারি?</div>
             </div>
             <div class="chat-bottom-input">
                 <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)">
@@ -466,6 +467,8 @@
                             agentMsg.innerText = "We offer Bangladesh Market local retail, Global Marketplace with 10+ categories, and Wholesale B2B bulk solutions.";
                         } else if (lowerTxt.includes('wholesale') || lowerTxt.includes('b2b')) {
                             agentMsg.innerText = "Our Wholesale Market provides commercial bulk order solutions and direct B2B trade globally.";
+                        } else if (lowerTxt.includes('hello') || lowerTxt.includes('hi') || lowerTxt.includes('hey')) {
+                            agentMsg.innerText = "Hello! Welcome to Mr Masudar Enterprise. How can we assist you with our global ecosystem today?";
                         } else {
                             agentMsg.innerText = "Thank you for your query. Our 24/7 support team across 237+ countries is ready to assist you instantly!";
                         }
