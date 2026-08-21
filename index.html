@@ -24,78 +24,86 @@
             overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Top Header - Mobile Optimized */
         .top-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 15px 25px;
             background: #000;
             border-bottom: 1px solid var(--border-luxury);
+            flex-wrap: wrap;
+            gap: 15px;
         }
         .brand-box {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             text-align: left;
         }
         .brand-logo-img {
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             border-radius: 8px;
             border: 1px solid var(--gold-primary);
             object-fit: cover;
         }
         .brand-text h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
+            font-size: 18px;
             margin: 0;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         .brand-text span {
             font-size: 8px;
-            color: #888;
+            color: #aaa;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+            display: block;
         }
 
         .top-badges {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: flex-end;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
         }
         .badge {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--border-luxury);
-            color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #FFFFFF;
             font-size: 9px;
-            padding: 5px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(212,175,55,0.15);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .badge i {
+            color: var(--gold-primary);
+            margin-right: 4px;
         }
 
         /* Hero Section */
-        .hero { padding: 35px 20px 30px 20px; }
+        .hero { padding: 30px 20px 20px 20px; }
         .hero h2 { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 32px; 
+            font-size: 28px; 
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase; 
-            letter-spacing: 2px;
-            margin-bottom: 8px; 
+            letter-spacing: 1.5px;
+            margin-bottom: 6px; 
         }
         .hero p { 
-            color: #888; 
-            font-size: 11px; 
+            color: #999; 
+            font-size: 10px; 
             letter-spacing: 1.5px; 
             text-transform: uppercase; 
         }
@@ -104,17 +112,17 @@
         .vertical-container { 
             display: flex;
             flex-direction: column;
-            gap: 25px; 
-            max-width: 950px; 
+            gap: 22px; 
+            max-width: 900px; 
             margin: 0 auto; 
-            padding: 0 20px 90px 20px;
+            padding: 0 20px 80px 20px;
         }
         
         .luxury-card { 
             background: var(--surface-color); 
             border: 1px solid var(--border-luxury); 
             border-radius: 16px; 
-            padding: 35px 30px; 
+            padding: 30px 20px; 
             text-align: center; 
             cursor: pointer; 
             transition: all 0.4s ease; 
@@ -131,24 +139,24 @@
             box-shadow: 0 0 30px rgba(212,175,55,0.3); 
         }
         
-        /* Continuous Smooth Zoom-In / Zoom-Out Animation for Logos */
+        /* Enhanced Smooth Zoom-In / Zoom-Out Animation for Logos */
         .luxury-card i { 
-            font-size: 40px; 
+            font-size: 42px; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            margin-bottom: 18px; 
-            animation: continuousZoom 3s infinite ease-in-out;
+            margin-bottom: 15px; 
+            animation: prominentZoom 2.5s infinite ease-in-out;
         }
-        @keyframes continuousZoom {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+        @keyframes prominentZoom {
+            0% { transform: scale(0.9); }
+            50% { transform: scale(1.25); }
+            100% { transform: scale(0.9); }
         }
 
         .luxury-card h3 { 
             font-size: 15px; 
-            margin-bottom: 6px; 
+            margin-bottom: 5px; 
             color: #fff;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -156,16 +164,16 @@
         .luxury-card p {
             color: #888;
             font-size: 11px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             letter-spacing: 0.5px;
         }
         
-        /* Buttons remain strictly gold gradient without turning white */
+        /* Buttons strictly keep gold gradient */
         .btn { 
             display: inline-block; 
             background: var(--gold-gradient); 
             color: #000; 
-            padding: 10px 26px; 
+            padding: 10px 25px; 
             border-radius: 25px; 
             font-weight: 800; 
             text-transform: uppercase; 
@@ -176,28 +184,26 @@
         }
         .luxury-card:hover .btn {
             transform: scale(1.05);
-            background: var(--gold-gradient);
-            color: #000;
         }
 
-        /* --- Floating Interactive Live Chat Widget (Fixed & Floating Properly) --- */
+        /* --- Floating Live Chat Widget --- */
         .chat-widget-fixed {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             z-index: 99999;
         }
         .live-chat-bubble-btn {
             background: var(--gold-gradient);
             color: #000;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 35px;
             font-weight: 900;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1.5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             box-shadow: 0 5px 25px rgba(212,175,55,0.6);
             border: 2px solid #fff;
             cursor: pointer;
@@ -206,20 +212,20 @@
         }
         @keyframes pulseGlow {
             0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.8); }
-            70% { box-shadow: 0 0 0 15px rgba(212,175,55,0); }
+            70% { box-shadow: 0 0 0 12px rgba(212,175,55,0); }
             100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
         }
         .live-chat-bubble-btn:hover {
             transform: scale(1.08);
         }
 
-        /* Active Human Support Chat Window */
+        /* Live Chat Window */
         .live-chat-window {
             display: none;
             position: absolute;
-            bottom: 70px;
+            bottom: 65px;
             right: 0;
-            width: 340px;
+            width: 320px;
             background: var(--surface-color);
             border: 1px solid var(--gold-primary);
             border-radius: 16px;
@@ -257,7 +263,7 @@
         .close-chat-x:hover { color: #fff; }
 
         .chat-conversation-area {
-            height: 250px;
+            height: 230px;
             padding: 15px;
             overflow-y: auto;
             font-size: 11px;
@@ -304,7 +310,7 @@
         }
         .chat-bottom-input i {
             color: var(--gold-primary);
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             transition: 0.2s;
         }
@@ -318,7 +324,7 @@
         <div class="brand-box">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo-img">
             <div class="brand-text">
-                <h1>MR MASUDAR Enterprise</h1>
+                <h1>MR MASUDAR ENTERPRISE</h1>
                 <span>ALL-IN-ONE . LESS IS MORE</span>
             </div>
         </div>
@@ -402,7 +408,7 @@
         <div class="live-chat-window" id="liveChatWindow">
             <div class="chat-top-bar">
                 <div class="agent-status">
-                    <span class="status-dot"></span> <span>Masudar Support (Manual Live)</span>
+                    <span class="status-dot"></span> <span>Masudar Support</span>
                 </div>
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
@@ -410,8 +416,8 @@
                 <div class="support-agent-msg">Welcome to Mr Masudar Enterprise! Our support team is online. Send your message, upload product photos, or use voice input.</div>
             </div>
             <div class="chat-bottom-input">
-                <input type="text" id="chatInputField" placeholder="Type message to live agent..." onkeypress="handleKey(event)">
-                <i class="fa-solid fa-microphone" title="Voice Input" onclick="activateMicrophone()"></i>
+                <input type="text" id="chatInputField" placeholder="Type message to live support..." onkeypress="handleKey(event)">
+                <i class="fa-solid fa-microphone" title="Voice Input" onclick="startSpeechRecognition()"></i>
                 <i class="fa-solid fa-camera" title="Upload Image" onclick="document.getElementById('hiddenImageUpload').click()"></i>
                 <input type="file" id="hiddenImageUpload" style="display:none" accept="image/*" onchange="handleImageSelected(event)">
                 <i class="fa-solid fa-paper-plane" title="Send" onclick="sendVisitorMessage()"></i>
@@ -438,7 +444,6 @@
                 input.value = '';
                 area.scrollTop = area.scrollHeight;
 
-                // Manual Agent Reply Simulation
                 setTimeout(() => {
                     const agentMsg = document.createElement('div');
                     agentMsg.className = 'support-agent-msg';
@@ -455,13 +460,33 @@
             }
         }
 
-        function activateMicrophone() {
-            const area = document.getElementById('chatAreaBox');
-            const msg = document.createElement('div');
-            msg.className = 'support-agent-msg';
-            msg.innerText = "🎙️ Microphone active. Please speak your requirements directly.";
-            area.appendChild(msg);
-            area.scrollTop = area.scrollHeight;
+        // Real Speech Recognition for Audio / Voice Typing
+        function startSpeechRecognition() {
+            try {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    alert("Speech recognition is not supported in this browser. Please use Chrome or Edge.");
+                    return;
+                }
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.start();
+
+                const inputField = document.getElementById('chatInputField');
+                inputField.placeholder = "Listening... Speak now...";
+
+                recognition.onresult = function(event) {
+                    const speechText = event.results[0][0].transcript;
+                    inputField.value = speechText;
+                    inputField.placeholder = "Type message to live support...";
+                };
+
+                recognition.onerror = function() {
+                    inputField.placeholder = "Type message to live support...";
+                };
+            } catch (err) {
+                alert("Microphone access error.");
+            }
         }
 
         function handleImageSelected(event) {
@@ -470,7 +495,7 @@
                 const area = document.getElementById('chatAreaBox');
                 const imgMsg = document.createElement('div');
                 imgMsg.className = 'visitor-msg';
-                imgMsg.innerText = "📷 Uploaded product image: " + file.name;
+                imgMsg.innerText = "📷 Uploaded image: " + file.name;
                 area.appendChild(imgMsg);
                 area.scrollTop = area.scrollHeight;
 
