@@ -24,71 +24,71 @@
             overflow-x: hidden;
         }
 
-        /* Top Header - Centered & Perfectly Aligned for Mobile */
+        /* Top Header */
         .top-header {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 15px;
+            padding: 22px 15px;
             background: #000;
             border-bottom: 1px solid var(--border-luxury);
-            gap: 12px;
+            gap: 14px;
         }
         .brand-box {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-align: left;
             justify-content: center;
         }
         .brand-logo-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
             border: 1px solid var(--gold-primary);
             object-fit: cover;
         }
         .brand-text h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
+            font-size: 20px;
             margin: 0;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             white-space: nowrap;
         }
         .brand-text span {
-            font-size: 8px;
-            color: #aaa;
-            letter-spacing: 1.5px;
+            font-size: 10px;
+            color: #ddd;
+            letter-spacing: 2px;
             text-transform: uppercase;
             display: block;
+            font-weight: 600;
         }
 
         .top-badges {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             align-items: center;
             flex-wrap: wrap;
             width: 100%;
-            margin-top: 5px;
         }
         .badge {
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             color: #FFFFFF;
-            font-size: 9px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 11px;
+            padding: 7px 14px;
+            border-radius: 22px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             transition: 0.3s;
         }
         .badge i {
@@ -96,22 +96,22 @@
         }
 
         /* Hero Section */
-        .hero { padding: 25px 15px 15px 15px; }
+        .hero { padding: 35px 15px 20px 15px; }
         .hero h2 { 
             font-family: 'Cormorant Garamond', serif; 
-            font-size: 24px; 
+            font-size: 28px; 
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase; 
-            letter-spacing: 1px;
-            margin-bottom: 6px; 
-            line-height: 1.2;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px; 
+            line-height: 1.3;
         }
         .hero p { 
-            color: #999; 
-            font-size: 9px; 
-            letter-spacing: 1px; 
+            color: #aaa; 
+            font-size: 10px; 
+            letter-spacing: 1.5px; 
             text-transform: uppercase; 
         }
 
@@ -119,17 +119,17 @@
         .vertical-container { 
             display: flex;
             flex-direction: column;
-            gap: 20px; 
+            gap: 24px; 
             max-width: 900px; 
             margin: 0 auto; 
-            padding: 0 15px 80px 15px;
+            padding: 0 15px 90px 15px;
         }
         
         .luxury-card { 
             background: var(--surface-color); 
             border: 1px solid var(--border-luxury); 
-            border-radius: 16px; 
-            padding: 25px 15px; 
+            border-radius: 18px; 
+            padding: 30px 20px; 
             text-align: center; 
             cursor: pointer; 
             transition: all 0.4s ease; 
@@ -137,36 +137,40 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.7);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.8);
             position: relative;
         }
+        .luxury-card:hover { 
+            border-color: var(--gold-primary); 
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px rgba(212,175,55,0.35); 
+        }
         
-        /* Prominent Zoom-In / Zoom-Out Animation for Logos */
         .luxury-card i { 
-            font-size: 38px; 
+            font-size: 42px; 
             background: var(--gold-gradient); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            margin-bottom: 12px; 
+            margin-bottom: 15px; 
             animation: prominentZoom 2.5s infinite ease-in-out;
         }
         @keyframes prominentZoom {
-            0% { transform: scale(0.85); }
+            0% { transform: scale(0.9); }
             50% { transform: scale(1.2); }
-            100% { transform: scale(0.85); }
+            100% { transform: scale(0.9); }
         }
 
         .luxury-card h3 { 
-            font-size: 14px; 
-            margin-bottom: 5px; 
+            font-size: 16px; 
+            margin-bottom: 6px; 
             color: #fff;
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
         .luxury-card p {
-            color: #888;
-            font-size: 10px;
-            margin-bottom: 18px;
+            color: #999;
+            font-size: 11px;
+            margin-bottom: 22px;
             letter-spacing: 0.5px;
         }
         
@@ -174,61 +178,61 @@
             display: inline-block; 
             background: var(--gold-gradient); 
             color: #000; 
-            padding: 9px 22px; 
-            border-radius: 25px; 
+            padding: 11px 26px; 
+            border-radius: 28px; 
             font-weight: 800; 
             text-transform: uppercase; 
-            font-size: 9px; 
+            font-size: 10px; 
             letter-spacing: 1.5px;
-            box-shadow: 0 0 15px rgba(212,175,55,0.2);
+            box-shadow: 0 0 15px rgba(212,175,55,0.25);
         }
 
-        /* --- Floating Live Chat Widget (Compact & Perfectly Fitted) --- */
+        /* --- Floating Live Chat Widget (Perfect Size & Touch-Friendly) --- */
         .chat-widget-fixed {
             position: fixed;
-            bottom: 20px;
-            right: 15px;
+            bottom: 25px;
+            right: 20px;
             z-index: 99999;
         }
         .live-chat-bubble-btn {
             background: var(--gold-gradient);
             color: #000;
-            padding: 10px 20px;
-            border-radius: 35px;
+            padding: 13px 26px;
+            border-radius: 38px;
             font-weight: 900;
-            font-size: 10px;
+            font-size: 12px;
             letter-spacing: 1.5px;
             display: flex;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 5px 20px rgba(212,175,55,0.6);
+            gap: 8px;
+            box-shadow: 0 6px 25px rgba(212,175,55,0.6);
             border: 2px solid #fff;
             cursor: pointer;
             animation: pulseGlow 2s infinite;
         }
         @keyframes pulseGlow {
             0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.8); }
-            70% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
+            70% { box-shadow: 0 0 0 14px rgba(212,175,55,0); }
             100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
         }
 
-        /* Compact Live Chat Window */
+        /* Standard Touch-Friendly Chat Window */
         .live-chat-window {
             display: none;
             position: absolute;
-            bottom: 55px;
+            bottom: 70px;
             right: 0;
-            width: 290px;
+            width: 310px;
             background: var(--surface-color);
             border: 1px solid var(--gold-primary);
-            border-radius: 14px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.95);
+            border-radius: 16px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.95);
             overflow: hidden;
             text-align: left;
         }
         .chat-top-bar {
             background: #000;
-            padding: 10px 12px;
+            padding: 12px 15px;
             border-bottom: 1px solid var(--border-luxury);
             display: flex;
             justify-content: space-between;
@@ -237,28 +241,29 @@
         .agent-status {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 10px;
+            gap: 8px;
+            font-size: 11px;
             color: var(--gold-primary);
             font-weight: bold;
         }
         .status-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             background: #2ecc71;
             border-radius: 50%;
         }
         .close-chat-x {
             color: #aaa;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 16px;
         }
+        .close-chat-x:hover { color: #fff; }
 
         .chat-conversation-area {
-            height: 190px;
-            padding: 12px;
+            height: 220px;
+            padding: 14px;
             overflow-y: auto;
-            font-size: 10px;
+            font-size: 11px;
             color: #ddd;
             display: flex;
             flex-direction: column;
@@ -267,56 +272,56 @@
         .support-agent-msg {
             background: rgba(212,175,55,0.12);
             border-left: 2px solid var(--gold-primary);
-            padding: 7px 10px;
-            border-radius: 4px;
+            padding: 9px 12px;
+            border-radius: 6px;
             max-width: 90%;
-            line-height: 1.3;
+            line-height: 1.4;
         }
         .visitor-msg {
             background: #222;
             color: #fff;
-            padding: 7px 10px;
-            border-radius: 4px;
+            padding: 9px 12px;
+            border-radius: 6px;
             max-width: 90%;
             align-self: flex-end;
             border-right: 2px solid #fff;
         }
 
         .chat-bottom-input {
-            padding: 8px 10px;
+            padding: 10px 12px;
             background: #000;
             border-top: 1px solid var(--border-luxury);
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
         .chat-bottom-input input {
             background: #111;
             border: 1px solid #333;
-            border-radius: 18px;
-            padding: 6px 10px;
+            border-radius: 20px;
+            padding: 9px 12px;
             color: #fff;
             width: 100%;
             outline: none;
-            font-size: 10px;
+            font-size: 11px;
         }
         .chat-bottom-input i {
             color: var(--gold-primary);
-            font-size: 12px;
+            font-size: 14px;
             cursor: pointer;
-            padding: 0 2px;
+            padding: 0 3px;
         }
         
         .send-btn-text {
             background: var(--gold-gradient);
             color: #000;
             border: none;
-            padding: 5px 10px;
-            border-radius: 12px;
+            padding: 7px 14px;
+            border-radius: 15px;
             font-weight: 800;
-            font-size: 8px;
+            font-size: 9px;
             cursor: pointer;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             white-space: nowrap;
         }
     </style>
@@ -418,10 +423,10 @@
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
             <div class="chat-conversation-area" id="chatAreaBox">
-                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! আমাদের প্রধান সেবা: বাংলাদেশ ও গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B)। কীভাবে সহায়তা করতে পারি?</div>
+                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! আমাদের প্রধান সেবা: বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B)। কীভাবে সহায়তা করতে পারি?</div>
             </div>
             <div class="chat-bottom-input">
-                <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)" oninput="resetInactivityTimer()">
+                <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)">
                 <i class="fa-solid fa-microphone" title="Voice Input" onclick="startSpeechRecognition()"></i>
                 <i class="fa-solid fa-camera" title="Upload Image" onclick="document.getElementById('hiddenImageUpload').click()"></i>
                 <input type="file" id="hiddenImageUpload" style="display:none" accept="image/*" onchange="handleImageSelected(event)">
@@ -431,33 +436,15 @@
     </div>
 
     <script>
-        let inactivityTimer;
-
         function toggleChatWindow() {
             const win = document.getElementById('liveChatWindow');
-            if (win.style.display === 'block') {
-                win.style.display = 'none';
-                clearTimeout(inactivityTimer);
-            } else {
-                win.style.display = 'block';
-                resetInactivityTimer();
-            }
-        }
-
-        function resetInactivityTimer() {
-            clearTimeout(inactivityTimer);
-            inactivityTimer = setTimeout(() => {
-                const area = document.getElementById('chatAreaBox');
-                area.innerHTML = '<div class="support-agent-msg">নিষ্ক্রিয়তার কারণে চ্যাট সেশনটি মেয়াদোত্তীর্ণ হয়েছে। নতুন করে মেসেজ করুন!</div>';
-            }, 30000);
+            win.style.display = (win.style.display === 'block') ? 'none' : 'block';
         }
 
         function sendVisitorMessage() {
             const input = document.getElementById('chatInputField');
             const area = document.getElementById('chatAreaBox');
             if(input.value.trim() !== '') {
-                resetInactivityTimer();
-
                 const userMsg = document.createElement('div');
                 userMsg.className = 'visitor-msg';
                 userMsg.innerText = input.value;
@@ -475,14 +462,20 @@
                     if (/[\u0600-\u06FF]/.test(txt)) {
                         agentMsg.innerText = "أهلاً بك! نقدم خدمات السوق البنغلاديشي، السوق العالمي، والبيع بالجملة. كيف يمكنني مساعدتك؟";
                     } else if (/^[a-zA-Z\s]+$/.test(txt)) {
-                        if (lowerTxt.includes('market') || lowerTxt.includes('global') || lowerTxt.includes('bangladesh')) {
-                            agentMsg.innerText = "We offer Bangladesh Market retail, Global Marketplace with 10+ categories, and Wholesale B2B solutions.";
+                        if (lowerTxt.includes('market') || lowerTxt.includes('global') || lowerTxt.includes('bangladesh') || lowerTxt.includes('retail')) {
+                            agentMsg.innerText = "We offer Bangladesh Market local retail, Global Marketplace with 10+ categories, and Wholesale B2B bulk solutions.";
+                        } else if (lowerTxt.includes('wholesale') || lowerTxt.includes('b2b')) {
+                            agentMsg.innerText = "Our Wholesale Market provides commercial bulk order solutions and direct B2B trade globally.";
                         } else {
-                            agentMsg.innerText = "Thank you for your inquiry. Our global support team (237+ countries) is processing your request!";
+                            agentMsg.innerText = "Thank you for your query. Our 24/7 support team across 237+ countries is ready to assist you instantly!";
                         }
                     } else {
-                        if (lowerTxt.includes('market') || lowerTxt.includes('বাজার') || lowerTxt.includes('সেবা') || lowerTxt.includes('service')) {
-                            agentMsg.innerText = "আমাদের প্রধান সেবার মধ্যে রয়েছে বাংলাদেশ মার্কেট, গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B) সলিউশন।";
+                        if (lowerTxt.includes('market') || lowerTxt.includes('বাজার') || lowerTxt.includes('সেবা') || lowerTxt.includes('service') || lowerTxt.includes('বাংলাদেশ')) {
+                            agentMsg.innerText = "আমাদের প্রধান সেবার মধ্যে রয়েছে বাংলাদেশ মার্কেট (লোকাল রিটেল), গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B) সলিউশন।";
+                        } else if (lowerTxt.includes('wholesale') || lowerTxt.includes('হোলসেল') || lowerTxt.includes('bulk') || lowerTxt.includes('বাল্ক')) {
+                            agentMsg.innerText = "আমাদের হোলসেল মার্কেটে আপনি খুব সহজেই যেকোনো পণ্যের বাল্ক অর্ডার বা B2B সলিউশন পেতে পারেন।";
+                        } else if (lowerTxt.includes('সালাম') || lowerTxt.includes('কেমন') || lowerTxt.includes('কী') || lowerTxt.includes('হ্যালো')) {
+                            agentMsg.innerText = "ওয়ালাইকুম আসসালাম! Mr Masudar Enterprise-এ আপনাকে স্বাগতম। বলুন আমাদের কোন সার্ভিসটি সম্পর্কে জানতে চান?";
                         } else {
                             agentMsg.innerText = "আপনার কথাটি বুঝতে পেরেছি। আমাদের ২৩৭+ দেশের নেটওয়ার্ক থেকে আপনার রিকোয়েস্টটি দ্রুত প্রসেস করা হচ্ছে।";
                         }
@@ -501,7 +494,6 @@
         }
 
         function startSpeechRecognition() {
-            resetInactivityTimer();
             try {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 if (!SpeechRecognition) {
@@ -529,7 +521,6 @@
         }
 
         function handleImageSelected(event) {
-            resetInactivityTimer();
             const file = event.target.files[0];
             if (file) {
                 const area = document.getElementById('chatAreaBox');
