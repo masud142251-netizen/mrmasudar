@@ -2,17 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Global Marketplace | MR MASUDAR ENTERPRISE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR MASUDAR ENTERPRISE | Global Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #040404; color: #fff; font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #D4AF37; }
-        a { color: #D4AF37; text-decoration: none; font-weight: bold; }
+        /* (পূর্বের ডিজাইন স্টাইল সব ঠিক থাকবে, শুধু কারেন্সি এবং লোকেশন ক্যালকুলেটর যুক্ত হয়েছে) */
+        :root { --gold-primary: #D4AF37; }
+        body { background: #000; color: #fff; font-family: 'Montserrat'; }
+        .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 10px; color: #fff; border-radius: 8px; margin-top: 5px; }
     </style>
 </head>
 <body>
-    <h1>Global Marketplace</h1>
-    <p>Welcome to Premium Products Worldwide Ecosystem.</p>
-    <br><br>
-    <a href="index.html">&larr; Back to Home</a>
+
+    <!-- Admin Lock -->
+    <div class="lock-btn-fixed" onclick="openGlobalAdmin()" style="position:fixed; bottom:5px; left:5px; opacity:0.1; cursor:pointer;"><i class="fa fa-lock"></i></div>
+
+    <!-- গ্লোবাল মার্কেটপ্লেস হেডার -->
+    <div class="market-header" style="text-align:center; padding:20px;">
+        <h1 style="color:var(--gold-primary);">GLOBAL MARKETPLACE</h1>
+        <p>Premium Products Worldwide</p>
+    </div>
+
+    <script>
+        // ২৩৭টি দেশ ট্র্যাক করার জন্য অটো-লোকেশন ফিচার
+        async function detectLocation() {
+            try {
+                let res = await fetch('https://ipapi.co/json/');
+                let data = await res.json();
+                document.getElementById('custCity').value = data.city;
+                document.getElementById('custCountry').value = data.country_name;
+                // ইন্টারন্যাশনাল শিপিং অটো ক্যালকুলেটর (সহজ উদাহরন)
+                activeShipping = data.country_name === "Bangladesh" ? 10 : 30; 
+            } catch(e) { console.log("Location detection failed"); }
+        }
+
+        function openGlobalAdmin() {
+            let p = prompt("Enter Global Admin Password:");
+            if(p === 'mrbtrmlc') {
+                // গ্লোবাল অর্ডারের লিস্ট দেখাবে
+                alert("Welcome to Global Admin Panel");
+            } else {
+                alert("Incorrect Password!");
+            }
+        }
+
+        // বাকি সবকিছু বাংলাদেশ মার্কেটের মতোই থাকবে, শুধু কারেন্সি চিহ্ন $ হবে।
+        window.onload = detectLocation;
+    </script>
 </body>
 </html>
