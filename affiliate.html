@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #030303;
-            --surface-card: #111111;
+            --bg-color: #000000;
+            --surface-card: #0b0b0b;
             --gold-primary: #D4AF37;
             --gold-light: #F3E5AB;
             --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             --border-luxury: rgba(212, 175, 55, 0.4);
+            --text-white: #ffffff;
+            --text-gray: #999999;
         }
-        body { background-color: var(--bg-color); color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; }
+        body { background-color: var(--bg-color); color: var(--text-white); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; }
 
         /* Ultra-Small Secret Lock */
         .lock-btn-fixed {
@@ -64,12 +66,12 @@
             border: 2px solid var(--gold-primary);
             object-fit: cover;
             margin-bottom: 18px;
-            box-shadow: 0 0 30px rgba(212,175,55,0.5);
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
             animation: logoPulse 2.5s infinite ease-in-out;
         }
         @keyframes logoPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212,175,55,0.4)); }
-            50% { transform: scale(1.06); filter: drop-shadow(0 0 20px rgba(212,175,55,0.8)); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 18px rgba(212,175,55,0.7)); }
         }
 
         .luxury-card h1 {
@@ -83,7 +85,7 @@
             margin: 0 0 8px 0;
         }
         .luxury-card p {
-            color: #888;
+            color: var(--text-gray);
             font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -91,25 +93,24 @@
             font-weight: 600;
         }
 
-        /* Luxury Cash/Coin Animation Banner */
+        /* Clean Luxury Cash/Coin Animation Banner */
         .gold-effect-banner {
-            background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(0,0,0,0.8));
+            background: linear-gradient(135deg, rgba(15,15,15,0.9), rgba(5,5,5,0.95));
             border: 1px solid var(--gold-primary);
-            padding: 18px;
+            padding: 20px;
             border-radius: 16px;
             margin-bottom: 30px;
             font-size: 11px;
             color: var(--gold-light);
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 25px rgba(212,175,55,0.25);
+            letter-spacing: 1.2px;
+            line-height: 1.6;
+            box-shadow: 0 0 25px rgba(212,175,55,0.15);
         }
-        .gold-effect-banner::after {
-            content: '💵 🪙 💸 🪙 💵';
+        .gold-effect-banner span {
             display: block;
             font-size: 16px;
-            margin-top: 8px;
+            margin-top: 10px;
+            letter-spacing: 5px;
             animation: coinFloat 3s infinite ease-in-out alternate;
         }
         @keyframes coinFloat {
@@ -199,7 +200,7 @@
 
         /* Profile Preview Card */
         .cv-preview-card {
-            background: #050505;
+            background: #000000;
             border: 1px solid var(--gold-primary);
             border-radius: 16px;
             padding: 25px;
@@ -207,13 +208,53 @@
             max-height: 380px;
             overflow-y: auto;
             margin-bottom: 25px;
-            box-shadow: inset 0 0 15px rgba(212,175,55,0.1);
         }
-        .cv-header-box { text-align: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 15px; }
+        .cv-header-box { text-align: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 15px; }
         .cv-avatar { width: 85px; height: 85px; border-radius: 50%; border: 2px solid var(--gold-primary); object-fit: cover; margin-bottom: 10px; box-shadow: 0 0 15px rgba(212,175,55,0.4); }
         .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px; line-height: 1.6; }
         .cv-full { grid-column: span 2; }
         .cv-label { color: var(--gold-primary); font-weight: 700; text-transform: uppercase; font-size: 9px; }
+
+        /* International Standard Dashboard */
+        .dashboard-container {
+            background: #050505;
+            border: 1px solid var(--gold-primary);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: left;
+            box-shadow: inset 0 0 20px rgba(212,175,55,0.08);
+        }
+        .dash-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .dash-stat-box {
+            background: #0f0f0f;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+        .dash-stat-box .number {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--gold-primary);
+            margin-top: 5px;
+            display: block;
+        }
+        .link-box {
+            background: #000;
+            border: 1px solid #333;
+            padding: 10px;
+            border-radius: 8px;
+            color: #fff;
+            width: 100%;
+            font-size: 11px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
 
         /* Admin Table */
         .admin-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 15px; }
@@ -222,7 +263,7 @@
         .wa-chat-link { color: #2ecc71; text-decoration: none; font-weight: bold; }
 
         @media(max-width: 700px) {
-            .form-grid, .cv-grid { grid-template-columns: 1fr; }
+            .form-grid, .cv-grid, .dash-stats-grid { grid-template-columns: 1fr; }
             .full-width, .cv-full { grid-column: span 1; }
         }
     </style>
@@ -238,11 +279,12 @@
         <div class="luxury-card" id="entranceCard">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
             <h1>MR MASUDAR ENTERPRISE</h1>
-            <p>Global Affiliate Ecosystem & High-Purity Earnings Portal</p>
+            <p>Global Affiliate Ecosystem & Professional Earnings Portal</p>
             
             <div class="gold-effect-banner">
-                <b>EXCLUSIVE AFFILIATE PROGRAM</b><br>
-                Earn up to 15% Global Commissions on Every Successful Sale Worldwide! Secure Your Partner Status Today.
+                <b>EXCLUSIVE GLOBAL AFFILIATE PROGRAM</b><br>
+                Monetize your audience worldwide and scale your digital revenue streams through our premium partnership network.
+                <span>💵 🪙 💸 🪙 💵</span>
             </div>
 
             <button class="apply-btn" onclick="showApplicationForm()">Join Affiliate Program</button>
@@ -395,11 +437,13 @@
             </div>
         </div>
 
-        <!-- 4. Luxury Affiliate Dashboard -->
+        <!-- 4. International Standard Luxury Affiliate Dashboard -->
         <div class="luxury-card dashboard-section" id="dashboardSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:22px;">Partner Earning Dashboard</h2>
-            <div id="partnerWelcomeBox" style="background:#000; padding:20px; border-radius:12px; border:1px solid var(--border-luxury); text-align:left; margin-bottom:20px;"></div>
-            <button class="apply-btn" style="background:#222; color:#fff; font-size:10px; padding:10px 20px;" onclick="location.reload()">Logout</button>
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:22px;">Partner Earnings Dashboard</h2>
+            <div id="partnerWelcomeBox" class="dashboard-container"></div>
+            <div style="margin-top:20px; text-align:center;">
+                <button class="apply-btn" style="background:#222; color:#fff; font-size:10px; padding:10px 25px;" onclick="location.reload()">Logout Session</button>
+            </div>
         </div>
 
         <!-- 5. Admin Panel Section -->
@@ -588,15 +632,36 @@
                 let shortLink2 = `https://mms.click/${found.id}`;
 
                 let dashHtml = `
-                    <h3 style="color:var(--gold-primary); margin-top:0;">Welcome, ${found.name}</h3>
-                    <p><b>Partner ID:</b> ${found.id} | <span style="color:#2ecc71;">Status: Active</span></p>
-                    <hr style="border-color:#333;">
-                    <p><span class="cv-label">Medium Referral Link:</span><br><input type="text" value="${shortLink1}" readonly style="background:#000; border:1px solid #333; color:#fff; padding:6px; width:100%; font-size:10px; margin-top:4px;"></p>
-                    <p><span class="cv-label">Ultra Short Custom Link:</span><br><input type="text" value="${shortLink2}" readonly style="background:#000; border:1px solid #333; color:#fff; padding:6px; width:100%; font-size:10px; margin-top:4px;"></p>
-                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:15px; text-align:center;">
-                        <div style="background:#111; padding:10px; border-radius:8px;"><span class="cv-label">Total Clicks</span><br><b style="font-size:16px; color:#fff;">${found.clicks}</b></div>
-                        <div style="background:#111; padding:10px; border-radius:8px;"><span class="cv-label">Total Sales</span><br><b style="font-size:16px; color:#fff;">${found.sales}</b></div>
-                        <div style="background:#111; padding:10px; border-radius:8px;"><span class="cv-label">Earnings</span><br><b style="font-size:16px; color:var(--gold-primary);">${found.earnings}</b></div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:12px; margin-bottom:15px;">
+                        <div>
+                            <h3 style="color:var(--gold-primary); margin:0; font-family:'Cormorant Garamond',serif; font-size:22px;">Welcome Back, ${found.name}</h3>
+                            <span style="font-size:10px; color:#aaa; letter-spacing:1px;">PARTNER ID: ${found.id}</span>
+                        </div>
+                        <span style="background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc71; padding:4px 10px; border-radius:20px; font-size:10px; font-weight:bold;">● ACTIVE STATUS</span>
+                    </div>
+
+                    <div class="dash-stats-grid">
+                        <div class="dash-stat-box">
+                            <span class="cv-label">Total Clicks</span>
+                            <span class="number">${found.clicks}</span>
+                        </div>
+                        <div class="dash-stat-box">
+                            <span class="cv-label">Successful Sales</span>
+                            <span class="number">${found.sales}</span>
+                        </div>
+                        <div class="dash-stat-box">
+                            <span class="cv-label">Total Earnings</span>
+                            <span class="number" style="color:var(--gold-primary);">${found.earnings}</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <label class="cv-label">Standard Referral Link</label>
+                        <input type="text" value="${shortLink1}" readonly class="link-box">
+                    </div>
+                    <div style="margin-top:12px;">
+                        <label class="cv-label">Ultra Short Custom Tracking Link</label>
+                        <input type="text" value="${shortLink2}" readonly class="link-box">
                     </div>
                 `;
                 document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
