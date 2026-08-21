@@ -81,7 +81,7 @@
             padding: 0 6px;
         }
 
-        /* Auto-Sliding Luxury Category Menu */
+        /* Clean Auto-Sliding Luxury Categories Menu (No 'All', No Double Bar) */
         .category-menu-wrap {
             max-width: 1200px;
             margin: 0 auto 15px auto;
@@ -93,12 +93,12 @@
             display: flex;
             gap: 10px;
             width: max-content;
-            animation: autoScrollCat 25s linear infinite;
+            animation: autoScrollCat 20s linear infinite;
         }
         .category-menu:hover { animation-play-state: paused; }
         @keyframes autoScrollCat {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-33.33%); }
         }
         .cat-chip {
             background: var(--surface-card);
@@ -119,7 +119,7 @@
             border-color: #fff;
         }
 
-        /* Medium Sized Draggable & Floating Luxury Basket with Continuous Animation Effect */
+        /* Medium Sized Draggable & Floating Luxury Basket */
         .floating-basket {
             position: fixed;
             top: 20px;
@@ -246,21 +246,26 @@
             display: flex; align-items: center; justify-content: center;
         }
 
+        /* Perfectly Sized & Responsive Add to Cart Button */
         .apply-btn {
             background: var(--gold-gradient);
             border: none;
-            padding: 12px;
+            padding: 10px 20px;
             font-weight: 800;
             text-transform: uppercase;
-            border-radius: 25px;
+            border-radius: 20px;
             cursor: pointer;
             color: #000;
             width: 100%;
+            max-width: 280px;
+            display: block;
+            margin: 15px auto 0 auto;
             letter-spacing: 1px;
             box-shadow: 0 0 15px rgba(212,175,55,0.3);
             font-size: 11px;
-            margin-top: 15px;
+            transition: 0.2s;
         }
+        .apply-btn:active { transform: scale(0.97); }
 
         .grand-total-box {
             background: rgba(212, 175, 55, 0.12);
@@ -279,15 +284,14 @@
         }
 
         .details-stack { display: flex; flex-direction: column; gap: 12px; }
-        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 1/1; width: 100%; max-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; }
+        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 1/1; width: 100%; max-height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; }
         .large-preview-wrap img { width: 100%; height: 100%; object-fit: contain; }
         .thumb-gallery { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; padding-bottom: 4px; }
-        .thumb-img { width: 50px; height: 50px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); object-fit: cover; cursor: pointer; background: #000; flex-shrink: 0; }
+        .thumb-img { width: 45px; height: 45px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); object-fit: cover; cursor: pointer; background: #000; flex-shrink: 0; }
         
-        .qty-box { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
-        .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+        .qty-box { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; }
+        .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-weight: bold; }
 
-        /* Cart Item Management Styles */
         .cart-item-row { display: flex; justify-content: space-between; align-items: center; background: #000; border: 1px solid #333; padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; font-size: 11px; }
         .cart-remove-btn { color: #ff4d4d; cursor: pointer; font-size: 13px; background: none; border: none; }
 
@@ -327,7 +331,7 @@
     <!-- Admin Lock -->
     <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
 
-    <!-- Floating Basket with Animation -->
+    <!-- Floating Basket -->
     <div class="floating-basket" id="floatingBasket" title="Checkout">
         <i class="fa-solid fa-basket-shopping"></i>
         <span class="basket-count" id="cartBadge">0</span>
@@ -347,17 +351,20 @@
         </div>
     </div>
 
-    <!-- Auto-Sliding Luxury Categories Menu -->
+    <!-- Auto-Sliding Luxury Categories Menu (Clean Single Bar, No 'All') -->
     <div class="category-menu-wrap">
         <div class="category-menu" id="catMenu">
-            <div class="cat-chip active" onclick="filterCategory('All', this)">🌟 All</div>
+            <div class="cat-chip active" onclick="filterCategory("Women's Fashion", this)">👗 Women's Fashion</div>
+            <div class="cat-chip" onclick="filterCategory("Men's Fashion", this)">👔 Men's Fashion</div>
+            <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
+            <div class="cat-chip" onclick="filterCategory('Gift', this)">🎁 Gift</div>
+            <div class="cat-chip" onclick="filterCategory('Decor', this)">🏺 Decor</div>
+            <!-- Seamless infinite loop duplication -->
             <div class="cat-chip" onclick="filterCategory("Women's Fashion", this)">👗 Women's Fashion</div>
             <div class="cat-chip" onclick="filterCategory("Men's Fashion", this)">👔 Men's Fashion</div>
             <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
             <div class="cat-chip" onclick="filterCategory('Gift', this)">🎁 Gift</div>
             <div class="cat-chip" onclick="filterCategory('Decor', this)">🏺 Decor</div>
-            <!-- Duplicate for infinite scrolling loop effect -->
-            <div class="cat-chip" onclick="filterCategory('All', this)">🌟 All</div>
             <div class="cat-chip" onclick="filterCategory("Women's Fashion", this)">👗 Women's Fashion</div>
             <div class="cat-chip" onclick="filterCategory("Men's Fashion", this)">👔 Men's Fashion</div>
             <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
@@ -375,7 +382,6 @@
     </div>
 
     <script>
-        // Bangla to English Translation Mapping for Search & Voice
         const searchMap = {
             "বিছানা": "Bed", "পোশাক": "Suit", "শাড়ি": "Saree", "বেবি": "Baby", "উপহার": "Gift", "সাজসজ্জা": "Decor", "ঘড়ি": "Watch", "স্যুট": "Suit"
         };
@@ -388,17 +394,17 @@
             return lower;
         }
 
-        // 5 Minutes Inactivity Timer (Resets and clears cart if 5 mins pass)
+        // 5 Minutes Inactivity Timer
         let idleTimer;
         function resetIdleTimer() {
             clearTimeout(idleTimer);
             idleTimer = setTimeout(() => {
                 localStorage.removeItem('mme_cart_details');
                 location.reload();
-            }, 300000); // 300,000 ms = 5 minutes
+            }, 300000);
         }
         window.onload = () => {
-            loadMarketProducts('All');
+            loadMarketProducts("Women's Fashion");
             resetIdleTimer();
             updateCartBadgeCount();
         };
@@ -411,7 +417,7 @@
             document.getElementById('cartBadge').innerText = totalQty;
         }
 
-        // Draggable & Smooth Floating Basket
+        // Draggable Basket
         const basket = document.getElementById('floatingBasket');
         let isDragging = false, startX, startY, initialX, initialY;
 
@@ -443,12 +449,8 @@
         }
 
         function dragEnd() { isDragging = false; }
+        basket.onclick = function() { if(!isDragging) { openCheckoutModal(); } };
 
-        basket.onclick = function() {
-            if(!isDragging) { openCheckoutModal(); }
-        };
-
-        // Products Data
         function getProducts() {
             let p = JSON.parse(localStorage.getItem('mme_products') || '[]');
             if(p.length === 0) {
@@ -463,24 +465,21 @@
             return p;
         }
 
-        function loadMarketProducts(filterCat = 'All') {
+        function loadMarketProducts(filterCat = "Women's Fashion") {
             let grid = document.getElementById('marketProductGrid');
-            let products = getProducts();
-            if(filterCat !== 'All') {
-                products = products.filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
-            }
+            let products = getProducts().filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
             grid.innerHTML = products.map((p, index) => `
                 <div class="product-card">
-                    <div class="product-img-box" onclick="openProductDetails(${index})">
+                    <div class="product-img-box" onclick="openProductDetails('${p.title}')">
                         <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" alt="Product">
                     </div>
                     <div class="product-info">
-                        <div class="product-title" onclick="openProductDetails(${index})">${p.title}</div>
+                        <div class="product-title" onclick="openProductDetails('${p.title}')">${p.title}</div>
                         <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                         <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
                     </div>
                     <div class="card-actions">
-                        <button class="card-btn" onclick="openProductDetails(${index})">View Details</button>
+                        <button class="card-btn" onclick="openProductDetails('${p.title}')">View Details</button>
                     </div>
                 </div>
             `).join('');
@@ -493,41 +492,34 @@
         }
 
         function filterProducts() {
-            let rawVal = document.getElementById('searchInput').value;
-            let query = translateSearch(rawVal);
+            let query = translateSearch(document.getElementById('searchInput').value);
             let products = getProducts();
             let grid = document.getElementById('marketProductGrid');
-            grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p, index) => `
+            grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => `
                 <div class="product-card">
-                    <div class="product-img-box" onclick="openProductDetails(${index})"><img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png"></div>
+                    <div class="product-img-box" onclick="openProductDetails('${p.title}')"><img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png"></div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
                         <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                         <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
                     </div>
-                    <div class="card-actions"><button class="card-btn" onclick="openProductDetails(${index})">View Details</button></div>
+                    <div class="card-actions"><button class="card-btn" onclick="openProductDetails('${p.title}')">View Details</button></div>
                 </div>
             `).join('');
         }
 
-        // Voice Search with Auto Bangla-to-English Conversion typing into Search Bar
         function startVoiceSearch() {
             try {
                 let rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
                 rec.lang = 'bn-BD';
                 rec.onresult = (e) => {
-                    let spoken = e.results[0][0].transcript;
-                    let translated = translateSearch(spoken);
-                    document.getElementById('searchInput').value = translated;
+                    document.getElementById('searchInput').value = translateSearch(e.results[0][0].transcript);
                     filterProducts();
                 };
                 rec.start();
             } catch(e) {
                 let txt = prompt("প্রোডাক্টের নাম বলুন:");
-                if(txt) {
-                    document.getElementById('searchInput').value = translateSearch(txt);
-                    filterProducts();
-                }
+                if(txt) { document.getElementById('searchInput').value = translateSearch(txt); filterProducts(); }
             }
         }
 
@@ -537,11 +529,13 @@
         let currentQty = 1;
         let activePrice = 0;
         let activeShipping = 0;
+        let activeTitle = "";
 
-        function openProductDetails(index) {
-            let p = getProducts()[index];
+        function openProductDetails(title) {
+            let p = getProducts().find(item => item.title === title) || getProducts()[0];
             activePrice = p.price;
             activeShipping = p.shipping;
+            activeTitle = p.title;
             currentQty = 1;
 
             document.getElementById('modalBody').innerHTML = `
@@ -570,13 +564,18 @@
                             <button class="qty-btn" onclick="updateQty(1)">+</button>
                         </div>
 
-                        <div style="font-size:13px; color:#fff; font-weight:bold; margin-bottom:10px;">Subtotal: ৳ <span id="totalItemPrice">${(activePrice + activeShipping).toLocaleString()}</span></div>
+                        <div style="font-size:13px; color:#fff; font-weight:bold; text-align:center; margin-bottom:10px;">Subtotal: ৳ <span id="totalItemPrice">${(activePrice + activeShipping).toLocaleString()}</span></div>
 
-                        <button class="apply-btn" onclick="addCartAndAnimate(event, '${p.title}', ${activePrice}, ${activeShipping})">ADD TO CART</button>
+                        <button class="apply-btn" id="addToCartBtn">ADD TO CART</button>
                     </div>
                 </div>
             `;
             document.getElementById('productModal').style.display = 'flex';
+
+            // Bind click event directly for robust touch and click response
+            document.getElementById('addToCartBtn').onclick = function(e) {
+                addCartAndAnimate(e, activeTitle, activePrice, activeShipping);
+            };
         }
 
         function updateQty(change) {
@@ -587,7 +586,6 @@
             document.getElementById('totalItemPrice').innerText = subtotal.toLocaleString();
         }
 
-        // Flying Coin Animation + Central Basket Pop Effect
         function addCartAndAnimate(event, name, price, shipping) {
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
             cart.push({ name: name, qty: currentQty, price: price, shipping: shipping });
@@ -644,7 +642,6 @@
             } catch(e) {}
         }
 
-        // Accurate Grand Total Calculation & Item Removal feature in Checkout Modal
         function openCheckoutModal() {
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
             
@@ -660,7 +657,7 @@
             let cartItemsHTML = cart.map((item, idx) => `
                 <div class="cart-item-row">
                     <span><b>${item.name}</b> (x${item.qty}) - ৳ ${(item.price * item.qty).toLocaleString()}</span>
-                    <button class="cart-remove-btn" onclick="removeCartItem(${idx})" title="Remove Item"><i class="fa-solid fa-trash"></i></button>
+                    <button class="cart-remove-btn" onclick="removeCartItem(${idx})"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `).join('');
 
@@ -727,7 +724,7 @@
             cart.splice(index, 1);
             localStorage.setItem('mme_cart_details', JSON.stringify(cart));
             updateCartBadgeCount();
-            openCheckoutModal(); // Refresh modal
+            openCheckoutModal();
         }
 
         function togglePaymentFields() {
