@@ -3,104 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR MASUDAR ENTERPRISE | Affiliate Portal</title>
+    <title>MR MASUDAR ENTERPRISE | Elite Affiliate Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #030303;
-            --surface-card: #0a0a0a;
-            --gold-primary: #D4AF37;
-            --gold-light: #FBF5B7;
-            --white-text: #ffffff;
-            --grey-text: #a0a0a0;
-            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            --border-luxury: rgba(212, 175, 55, 0.6);
+            --gold: #D4AF37;
+            --bg: #030303;
+            --surface: #0a0a0a;
+            --text: #ffffff;
+            --gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
         }
-        body { background-color: var(--bg-color); color: var(--white-text); font-family: 'Poppins', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-
-        .lock-btn-fixed { position: fixed; bottom: 10px; left: 10px; color: var(--gold-primary); font-size: 8px; opacity: 0.15; cursor: pointer; transition: 0.3s; }
-        .lock-btn-fixed:hover { opacity: 1; }
-
-        .luxury-card { 
-            background: var(--surface-card); border: 1px solid var(--border-luxury); border-radius: 30px; 
-            padding: 50px 40px; text-align: center; box-shadow: 0 0 50px rgba(0,0,0,0.8); width: 90%; max-width: 500px;
-        }
-
-        h1 { font-family: 'Playfair Display', serif; font-size: 32px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-        p { color: var(--grey-text); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }
-
-        .gold-effect-banner {
-            background: rgba(212,175,55,0.05); border: 1px solid var(--gold-primary); padding: 20px;
-            border-radius: 20px; margin-bottom: 30px; font-size: 12px; line-height: 1.6;
-        }
-
-        .apply-btn {
-            background: var(--gold-gradient); color: #000; padding: 18px 50px; border-radius: 50px;
-            font-weight: 900; text-transform: uppercase; border: none; cursor: pointer; font-size: 12px; letter-spacing: 2px;
-            transition: 0.4s;
-        }
-        .apply-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(212,175,55,0.5); }
-
-        .input-group label { display: block; font-size: 10px; color: var(--gold-primary); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
-        .input-group input { width: 100%; background: #000; border: 1px solid #333; padding: 15px; color: #fff; border-radius: 12px; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
         
-        /* ড্যাশবোর্ডের গ্রাফিক্স কার্ড */
-        .dash-card { background: #111; padding: 20px; border-radius: 20px; border: 1px solid #333; margin-top: 15px; }
-        .stat-value { font-size: 24px; color: var(--gold-primary); font-weight: bold; }
+        .secret-lock { position: fixed; bottom: 5px; left: 5px; opacity: 0.1; font-size: 8px; color: var(--gold); cursor: pointer; z-index: 9999; }
+        
+        .card { background: var(--surface); border: 1px solid var(--gold); border-radius: 30px; padding: 40px; width: 90%; max-width: 450px; text-align: center; box-shadow: 0 0 40px rgba(212,175,55,0.2); animation: appear 1s ease-out; }
+        @keyframes appear { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        
+        h1 { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 28px; margin: 10px 0; }
+        
+        .btn { background: var(--gradient); border: none; padding: 15px 30px; border-radius: 30px; color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--gold); }
+        
+        .input-group { text-align: left; margin-bottom: 15px; }
+        input, select, textarea { width: 100%; background: #000; border: 1px solid #333; padding: 12px; color: #fff; border-radius: 10px; box-sizing: border-box; }
+        input:focus { border-color: var(--gold); outline: none; }
+        
+        .hidden { display: none; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .stat-box { background: #111; padding: 15px; border-radius: 15px; border: 1px solid #222; }
     </style>
 </head>
 <body>
 
-    <div class="lock-btn-fixed" id="secretLock" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
+    <div class="secret-lock" onclick="openAdmin()"><i class="fa fa-lock"></i></div>
 
-    <div class="portal-wrapper">
-        <div class="luxury-card" id="entranceCard">
-            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" class="brand-logo">
-            <h1>MR MASUDAR ENTERPRISE</h1>
-            <p>Global Affiliate Ecosystem</p>
-            <div class="gold-effect-banner">
-                <i class="fa-solid fa-star" style="color:var(--gold-primary)"></i> Unlock 15% Global Commission.<br>
-                Professional Affiliate Marketing Partner Portal.
-            </div>
-            <button class="apply-btn" onclick="showApplicationForm()">Join Affiliate Program</button>
-        </div>
+    <!-- Entrance -->
+    <div id="entrance" class="card">
+        <h1>MR MASUDAR ENTERPRISE</h1>
+        <p style="color:var(--gold); font-size:12px;">GLOBAL AFFILIATE ECOSYSTEM</p>
+        <button class="btn" onclick="showSection('formSection')">JOIN AFFILIATE PROGRAM</button>
+        <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:#777; margin-top:15px; cursor:pointer;">Already a partner? Login</button>
+    </div>
 
-        <!-- ফর্ম এবং অন্যান্য অংশ আগের লজিক অনুযায়ী থাকবে, শুধু পাসওয়ার্ড ও ভ্যালিডেশন আপডেট করা হয়েছে -->
-        <div class="luxury-card form-section" id="formSection" style="display:none;">
-             <h2 style="color:var(--gold-primary);">REGISTRATION</h2>
-             <div class="input-group">
-                <label>Password (Min 10 chars, Upper, Lower, Number, Special)</label>
-                <input type="password" id="partnerPassword" onchange="validatePassword()">
-             </div>
-             <div class="input-group">
-                <label>Confirm Password</label>
-                <input type="password" id="confirmPassword" onchange="validatePassword()">
-             </div>
-             <!-- অন্যান্য ইনপুট -->
-             <button class="apply-btn" onclick="submitApplication()">SUBMIT APPLICATION</button>
+    <!-- Registration Form -->
+    <div id="formSection" class="card hidden">
+        <h2 style="color:var(--gold)">PARTNER REGISTRATION</h2>
+        <div class="input-group">
+            <label>Full Legal Name</label>
+            <input type="text" id="fullName" placeholder="Full Name">
         </div>
+        <div class="input-group">
+            <label>WhatsApp (Only Numbers)</label>
+            <input type="text" id="whatsapp" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="01XXXXXXXXX">
+        </div>
+        <div class="input-group">
+            <label>NID (Only Numbers)</label>
+            <input type="text" id="nid" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Enter NID">
+        </div>
+        <div class="input-group">
+            <label>Password (Min 10, Upper, Lower, Num, Symbol)</label>
+            <input type="password" id="pass1">
+        </div>
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" id="pass2">
+        </div>
+        <button class="btn" onclick="register()">SUBMIT REGISTRATION</button>
+    </div>
+
+    <!-- Login Section -->
+    <div id="loginSection" class="card hidden">
+        <h2 style="color:var(--gold)">PARTNER LOGIN</h2>
+        <input type="text" id="loginId" placeholder="Partner ID (e.g., AFF-XXXX)">
+        <input type="password" id="loginPass" placeholder="Password" style="margin-top:10px;">
+        <button class="btn" onclick="login()">ENTER DASHBOARD</button>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardSection" class="card hidden">
+        <h2 style="color:var(--gold)">YOUR DASHBOARD</h2>
+        <div class="dashboard-grid">
+            <div class="stat-box">CLICKS<br><span id="clicks">0</span></div>
+            <div class="stat-box">SALES<br><span id="sales">0</span></div>
+        </div>
+        <input type="text" id="genLink" readonly style="margin-top:15px;">
+        <button class="btn" onclick="location.reload()">LOGOUT</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminSection" class="card hidden">
+        <h2 style="color:var(--gold)">ADMIN PORTAL</h2>
+        <input type="password" id="adminPass" placeholder="Enter Admin Password">
+        <button class="btn" onclick="verifyAdmin()">ACCESS</button>
+        <div id="adminData" class="hidden"></div>
     </div>
 
     <script>
-        function validatePassword() {
-            const pass = document.getElementById('partnerPassword').value;
-            const confirm = document.getElementById('confirmPassword').value;
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
-            
-            if (!regex.test(pass)) {
-                alert("Password must be 10+ characters, contain Uppercase, Lowercase, Number, and Special Character.");
-                return false;
-            }
-            if (pass !== confirm) {
-                alert("Passwords do not match!");
-                return false;
-            }
-            return true;
+        function showSection(id) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
         }
 
-        function submitApplication() {
-            if(!validatePassword()) return;
-            // বাকি সাবমিট লজিক...
+        function register() {
+            let p1 = document.getElementById('pass1').value;
+            let p2 = document.getElementById('pass2').value;
+            let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
+            
+            if(!regex.test(p1)) return alert("Password must be 10+ chars with Upper, Lower, Number & Symbol!");
+            if(p1 !== p2) return alert("Passwords do not match!");
+            
+            let user = { id: 'AFF-'+Math.floor(Math.random()*9000), name: document.getElementById('fullName').value, pass: p1, status: 'Pending' };
+            let users = JSON.parse(localStorage.getItem('affiliates') || '[]');
+            users.push(user);
+            localStorage.setItem('affiliates', JSON.stringify(users));
+            alert("Success! ID: " + user.id);
+            location.reload();
+        }
+
+        function login() {
+            let id = document.getElementById('loginId').value;
+            let pass = document.getElementById('loginPass').value;
+            let users = JSON.parse(localStorage.getItem('affiliates') || '[]');
+            let user = users.find(u => u.id === id && u.pass === pass);
+            
+            if(user && user.status === 'Active') {
+                showSection('dashboardSection');
+                document.getElementById('genLink').value = "mrmasudar.com/?ref=" + user.id;
+            } else {
+                alert("Invalid credentials or account not approved!");
+            }
+        }
+
+        function openAdmin() { showSection('adminSection'); }
+
+        function verifyAdmin() {
+            let p = document.getElementById('adminPass').value;
+            if(p === 'mraffiliate.html' || p === 'mraffiliate.htmld') {
+                document.getElementById('adminData').classList.remove('hidden');
+                let users = JSON.parse(localStorage.getItem('affiliates') || '[]');
+                let html = "<table style='width:100%'>";
+                users.forEach((u, i) => {
+                    html += `<tr><td>${u.name}</td><td><button onclick="approve(${i})">${u.status}</button></td></tr>`;
+                });
+                document.getElementById('adminData').innerHTML = html + "</table>";
+            }
+        }
+
+        function approve(i) {
+            let users = JSON.parse(localStorage.getItem('affiliates'));
+            users[i].status = users[i].status === 'Active' ? 'Pending' : 'Active';
+            localStorage.setItem('affiliates', JSON.stringify(users));
+            location.reload();
         }
     </script>
 </body>
