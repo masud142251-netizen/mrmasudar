@@ -388,7 +388,6 @@
                     detectedCity = data.city || "Metropolitan City";
                     detectedPhoneCode = data.country_calling_code || "+1";
                     
-                    // Exact dynamic shipping calculations based on visitor region
                     if(data.country_name === "Bangladesh") {
                         autoShippingRate = 10;
                     } else if(data.continent_code === 'AS') {
@@ -679,10 +678,6 @@
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:20px; text-align:center; margin-bottom:5px;">Global Secure Checkout</h3>
-                
-                <div style="margin-bottom: 10px; font-size:9px; color:var(--gold-light); text-align:center;">
-                    Live Tracked Location: <b>${detectedCountry}, ${detectedCity}</b> | Explicit Shipping: <b>$${shipCost}</b>
-                </div>
 
                 <div style="margin-bottom: 15px;">
                     <div style="font-size:9px; color:var(--gold-light); text-transform:uppercase; margin-bottom:5px; font-weight:bold;">Selected Cart Items (Manage / Remove):</div>
@@ -690,7 +685,7 @@
                 </div>
 
                 <div class="grand-total-box">
-                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Explicit Shipping)</div>
+                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Shipping)</div>
                     <div class="grand-total-price">$ ${grandTotal}</div>
                     <div style="font-size:9px; color:var(--gold-light);">Items: ${cart.length} | Shipping Included: $ ${shipCost}</div>
                 </div>
