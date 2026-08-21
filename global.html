@@ -6,48 +6,86 @@
     <title>MR MASUDAR ENTERPRISE | Global Marketplace</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* (পূর্বের ডিজাইন স্টাইল সব ঠিক থাকবে, শুধু কারেন্সি এবং লোকেশন ক্যালকুলেটর যুক্ত হয়েছে) */
-        :root { --gold-primary: #D4AF37; }
-        body { background: #000; color: #fff; font-family: 'Montserrat'; }
-        .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 10px; color: #fff; border-radius: 8px; margin-top: 5px; }
+        :root { --bg-color: #000; --gold: #D4AF37; --gold-grad: linear-gradient(135deg, #BF953F, #FCF6BA, #AA771C); }
+        body { background: var(--bg-color); color: #fff; font-family: 'Montserrat', sans-serif; margin: 0; padding: 10px; }
+        
+        .market-header { text-align: center; padding: 20px; border: 1px solid var(--gold); border-radius: 20px; margin-bottom: 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 800px; margin: auto; }
+        .product-card { background: #111; border: 1px solid #333; padding: 15px; border-radius: 15px; text-align: center; }
+        .btn-gold { background: var(--gold-grad); border: none; padding: 10px; width: 100%; border-radius: 20px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        
+        /* Modal Styles */
+        .modal { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; padding:10px; z-index:9999; }
+        .modal-content { background:#111; border: 1px solid var(--gold); padding:20px; border-radius:20px; width:100%; max-width:400px; }
+        .input-f { width:100%; padding:10px; margin:5px 0; background:#000; border:1px solid #444; color:#fff; border-radius:5px; box-sizing:border-box; }
     </style>
 </head>
 <body>
 
-    <!-- Admin Lock -->
-    <div class="lock-btn-fixed" onclick="openGlobalAdmin()" style="position:fixed; bottom:5px; left:5px; opacity:0.1; cursor:pointer;"><i class="fa fa-lock"></i></div>
-
-    <!-- গ্লোবাল মার্কেটপ্লেস হেডার -->
-    <div class="market-header" style="text-align:center; padding:20px;">
-        <h1 style="color:var(--gold-primary);">GLOBAL MARKETPLACE</h1>
+    <div class="market-header">
+        <h1>GLOBAL MARKETPLACE</h1>
         <p>Premium Products Worldwide</p>
     </div>
 
+    <div class="product-grid" id="grid">
+        <!-- প্রোডাক্ট লোড হবে -->
+    </div>
+
+    <div class="modal" id="modal"><div class="modal-content" id="modalBody"></div></div>
+
     <script>
-        // ২৩৭টি দেশ ট্র্যাক করার জন্য অটো-লোকেশন ফিচার
-        async function detectLocation() {
+        // গ্লোবাল প্রোডাক্ট ডাটা (ডলারে)
+        const products = [
+            { name: "Luxury Silk Saree", price: 150 },
+            { name: "Handcrafted Bed", price: 450 }
+        ];
+
+        // অটো লোকেশন ডিটেকশন
+        async function initLocation() {
             try {
                 let res = await fetch('https://ipapi.co/json/');
                 let data = await res.json();
-                document.getElementById('custCity').value = data.city;
-                document.getElementById('custCountry').value = data.country_name;
-                // ইন্টারন্যাশনাল শিপিং অটো ক্যালকুলেটর (সহজ উদাহরন)
-                activeShipping = data.country_name === "Bangladesh" ? 10 : 30; 
-            } catch(e) { console.log("Location detection failed"); }
+                localStorage.setItem('user_loc', `${data.city}, ${data.country_name}`);
+                console.log("Location detected:", data.country_name);
+            } catch(e) { localStorage.setItem('user_loc', "Global Customer"); }
+            loadProducts();
         }
 
+        function loadProducts() {
+            let grid = document.getElementById('grid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <p>${p.name}</p>
+                    <p style="color:var(--gold);">$ ${p.price}</p>
+                    <button class="btn-gold" onclick="openCheckout(${p.price})">BUY NOW</button>
+                </div>
+            `).join('');
+        }
+
+        function openCheckout(price) {
+            let loc = localStorage.getItem('user_loc') || "Global";
+            let ship = 25; // ফিক্সড গ্লোবাল শিপিং
+            let total = price + ship;
+            document.getElementById('modalBody').innerHTML = `
+                <h3>Checkout</h3>
+                <p>Location: ${loc}</p>
+                <p>Shipping Cost: $${ship}</p>
+                <p><b>Total: $${total}</b></p>
+                <input class="input-f" type="text" placeholder="Full Name">
+                <input class="input-f" type="email" placeholder="Email">
+                <button class="btn-gold" onclick="alert('Order Placed Successfully!')">PAY NOW</button>
+                <button class="btn-gold" style="background:#444;" onclick="document.getElementById('modal').style.display='none'">CLOSE</button>
+            `;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // অ্যাডমিন পাসওয়ার্ড
         function openGlobalAdmin() {
-            let p = prompt("Enter Global Admin Password:");
-            if(p === 'mrbtrmlc') {
-                // গ্লোবাল অর্ডারের লিস্ট দেখাবে
-                alert("Welcome to Global Admin Panel");
-            } else {
-                alert("Incorrect Password!");
-            }
+            let p = prompt("Enter Admin Password:");
+            if(p === 'mrbtrmlc') alert("Welcome Admin!");
         }
 
-        // বাকি সবকিছু বাংলাদেশ মার্কেটের মতোই থাকবে, শুধু কারেন্সি চিহ্ন $ হবে।
-        window.onload = detectLocation;
+        window.onload = initLocation;
     </script>
 </body>
 </html>
