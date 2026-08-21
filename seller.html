@@ -56,12 +56,16 @@
         .phone-group select { width: 110px; flex-shrink: 0; }
         .section-title { color: var(--gold-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px dashed var(--border-luxury); padding-bottom: 5px; margin: 12px 0 8px 0; font-weight: 700; }
 
-        /* Luxury Dashboard */
+        /* Luxury Dashboard & ID Card */
         .dashboard-container { background: #050505; border: 1px solid var(--gold-primary); border-radius: 20px; padding: 25px; text-align: left; box-shadow: inset 0 0 25px rgba(212,175,55,0.1); }
         .dash-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
         .dash-stat-box { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; padding: 15px; text-align: center; }
         .dash-stat-box .number { font-size: 18px; font-weight: 800; color: var(--gold-primary); margin-top: 5px; display: block; }
         .cv-label { color: var(--gold-primary); font-weight: 700; text-transform: uppercase; font-size: 9px; }
+
+        /* Digital ID Card inside Dashboard */
+        .digital-id-card { background: linear-gradient(135deg, #111, #050505); border: 2px solid var(--gold-primary); border-radius: 15px; padding: 20px; display: flex; gap: 20px; align-items: center; margin-bottom: 20px; box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+        .id-avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-primary); object-fit: cover; background: #222; }
 
         .tier-box { background: #000; border: 1px solid #333; padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
 
@@ -71,7 +75,7 @@
         .admin-table th { background: rgba(212,175,55,0.15); color: var(--gold-primary); }
         .wa-chat-link { color: #2ecc71; text-decoration: none; font-weight: bold; }
 
-        @media(max-width: 700px) { .form-grid, .dash-stats-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
+        @media(max-width: 700px) { .form-grid, .dash-stats-grid, .digital-id-card { grid-template-columns: 1fr; flex-direction: column; text-align: center; } .full-width { grid-column: span 1; } }
     </style>
 </head>
 <body>
@@ -93,22 +97,22 @@
                 <span>💼 🌐 📈 🚀 💰</span>
             </div>
 
-            <button class="apply-btn" onclick="showSection('formSection')">Become a Global Seller</button>
+            <button class="apply-btn" onclick="showSection('formSection')">Register / Sign Up as Seller</button>
             <div style="margin-top:15px;">
-                <button onclick="showSection('loginSection')" style="background:transparent; border:none; color:var(--gold-primary); font-size:10px; cursor:pointer; text-decoration:underline; letter-spacing:1px;">Already Approved? Seller Login</button>
+                <button onclick="showSection('loginSection')" style="background:transparent; border:none; color:var(--gold-primary); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:1px; font-weight:bold;">Already Registered? Seller Login (Gmail & Password)</button>
             </div>
         </div>
 
-        <!-- 2. Seller Login Section -->
+        <!-- 2. Seller Login Section (Gmail & Password) -->
         <div class="luxury-card portal-section" id="loginSection">
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:22px;">Seller Dashboard Login</h2>
             <div class="input-group" style="max-width:350px; margin:0 auto 15px auto;">
-                <label>Vendor ID (e.g., VEN-XXXX)</label>
-                <input type="text" id="loginId" placeholder="Enter Vendor ID">
+                <label>Official Gmail Address</label>
+                <input type="email" id="loginEmail" placeholder="seller@gmail.com" required>
             </div>
             <div class="input-group" style="max-width:350px; margin:0 auto 20px auto;">
                 <label>Dashboard Password</label>
-                <input type="password" id="loginPass" placeholder="Enter Password">
+                <input type="password" id="loginPass" placeholder="Enter Password" required>
             </div>
             <div style="text-align:center;">
                 <button class="apply-btn" onclick="loginDashboard()">Access Dashboard</button>
@@ -126,7 +130,7 @@
                 <div class="input-group"><label>Father's Name *</label><input type="text" id="fatherName" required></div>
                 <div class="input-group"><label>Mother's Name *</label><input type="text" id="motherName" required></div>
 
-                <div class="input-group"><label>Official Gmail Address *</label><input type="email" id="email" required></div>
+                <div class="input-group"><label>Official Gmail Address (Used for Login) *</label><input type="email" id="email" required></div>
                 <div class="input-group"><label>Date of Birth *</label><input type="date" id="dob" required></div>
 
                 <div class="input-group"><label>Dashboard Password (Min 10, Upper, Lower, Num, Symbol) *</label><input type="password" id="partnerPassword" required></div>
@@ -160,7 +164,7 @@
 
                 <div class="input-group full-width">
                     <div class="section-title">Verification & Tracking</div>
-                    <label>Upload Passport Size Photo *</label><input type="file" id="applicantPhoto" accept="image/*" required>
+                    <label>Upload Passport Size Photo / ID Card Image *</label><input type="file" id="applicantPhoto" accept="image/*" required>
                 </div>
             </div>
 
@@ -174,12 +178,12 @@
             <i class="fa-solid fa-hourglass-half" style="font-size: 40px; color: var(--gold-primary); margin-bottom: 15px;"></i>
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); margin-bottom:15px; font-size:24px;">Application Under Professional Review</h2>
             <p style="font-size: 11px; line-height: 1.8; color: #ccc; max-width: 600px; margin: 0 auto 25px auto;">
-                আপনার আবেদন সফলভাবে জমা হয়েছে এবং এটি বর্তমানে আমাদের সিকিউরিটি ও ভেন্ডর রিভিউ টিম কর্তৃক পর্যালোচনার অধীনে রয়েছে। অনুগ্রহ করে ধৈর্য ধরে অপেক্ষা করুন; আমরা সাধারণত **২৪ ঘণ্টার মধ্যে** আপনার অ্যাকাউন্ট যাচাই করে একটিভ করে দেব। একটিভ হওয়ার পর আপনি আপনার নির্দিষ্ট **Vendor ID** ও পাসওয়ার্ড দিয়ে ড্যাশবোর্ডে প্রবেশ করতে পারবেন।
+                আপনার আবেদন সফলভাবে জমা হয়েছে এবং এটি বর্তমানে আমাদের সিকিউরিটি ও ভেন্ডর রিভিউ টিম কর্তৃক পর্যালোচনার অধীনে রয়েছে। অনুগ্রহ করে ধৈর্য ধরে অপেক্ষা করুন; আমরা সাধারণত **২৪ ঘণ্টার মধ্যে** আপনার অ্যাকাউন্ট যাচাই করে একটিভ করে দেব। একটিভ হওয়ার পর আপনি আপনার জিমেইল ও পাসওয়ার্ড দিয়ে সরাসরি ড্যাশবোর্ডে প্রবেশ করতে পারবেন।
             </p>
             <button class="apply-btn" onclick="showSection('entranceCard')">Return to Home</button>
         </div>
 
-        <!-- 5. Approved Luxury Seller Dashboard -->
+        <!-- 5. Approved Luxury Seller Dashboard with Digital ID Card -->
         <div class="luxury-card portal-section" id="dashboardSection">
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:22px;">Vendor Earning Dashboard</h2>
             <div id="partnerWelcomeBox" class="dashboard-container"></div>
@@ -292,7 +296,7 @@
                         <thead>
                             <tr>
                                 <th>Vendor ID & Store</th>
-                                <th>WhatsApp</th>
+                                <th>Gmail / Contact</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -318,7 +322,7 @@
 
         function submitSellerApp() {
             const name = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.trim().toLowerCase();
             const phone = document.getElementById('countryCode1').value + document.getElementById('whatsapp').value;
             const biz = document.getElementById('bizName').value;
             const pass = document.getElementById('partnerPassword').value;
@@ -349,15 +353,14 @@
             sellers.push(vendor);
             localStorage.setItem('mme_sellers', JSON.stringify(sellers));
 
-            // Show Review Notice Screen
             showSection('reviewNoticeSection');
         }
 
         function loginDashboard() {
-            let id = document.getElementById('loginId').value.trim();
+            let email = document.getElementById('loginEmail').value.trim().toLowerCase();
             let pass = document.getElementById('loginPass').value.trim();
             let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
-            let found = sellers.find(s => s.id === id && s.pass === pass);
+            let found = sellers.find(s => s.email === email && s.pass === pass);
 
             if(found) {
                 if(found.status !== 'Active') {
@@ -368,11 +371,19 @@
                 showSection('dashboardSection');
 
                 let dashHtml = `
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:12px; margin-bottom:15px;">
+                    <!-- Digital ID Card inside Dashboard -->
+                    <div class="digital-id-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="ID Avatar" class="id-avatar">
                         <div>
-                            <h3 style="color:var(--gold-primary); margin:0; font-family:'Cormorant Garamond',serif; font-size:24px;">${found.biz}</h3>
-                            <span style="font-size:10px; color:#aaa; letter-spacing:1px;">VENDOR ID: <b>${found.id}</b> | OWNER: ${found.name}</span>
+                            <span style="font-size:10px; color:var(--gold-primary); letter-spacing:2px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD</span>
+                            <h3 style="margin:4px 0; color:#fff; font-size:20px;">${found.biz}</h3>
+                            <p style="margin:0; font-size:11px; color:#aaa;">Owner: ${found.name} | ID: <b style="color:var(--gold-primary);">${found.id}</b></p>
+                            <p style="margin:4px 0 0 0; font-size:10px; color:#888;">Gmail: ${found.email} | WhatsApp: ${found.whatsapp}</p>
                         </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:10px; margin-bottom:15px;">
+                        <h3 style="color:var(--gold-primary); margin:0; font-size:16px; text-transform:uppercase;">Performance Overview</h3>
                         <span style="background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc71; padding:4px 12px; border-radius:20px; font-size:10px; font-weight:bold;">● ACTIVE VENDOR</span>
                     </div>
 
@@ -385,7 +396,7 @@
                 `;
                 document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
             } else {
-                alert("Invalid Vendor ID or Password!");
+                alert("Invalid Gmail or Password, or account not approved yet!");
             }
         }
 
@@ -470,15 +481,50 @@
                 let tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td><b>[${s.id}]</b><br><span style="color:#fff; font-weight:bold;">${s.biz}</span></td>
-                    <td><a href="https://wa.me/${cleanWa}" target="_blank" class="wa-chat-link"><i class="fa-brands fa-whatsapp"></i> ${s.whatsapp}</a></td>
+                    <td>${s.email}<br><a href="https://wa.me/${cleanWa}" target="_blank" class="wa-chat-link"><i class="fa-brands fa-whatsapp"></i> ${s.whatsapp}</a></td>
                     <td><span style="color:${s.status==='Active'?'#2ecc71':'#f39c12'}; font-weight:bold;">${s.status}</span></td>
                     <td>
                         <button onclick="toggleSellerStatus(${index})" style="background:${s.status==='Active'?'#c0392b':'#27ae60'}; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; font-size:9px;">${s.status==='Active'?'Deactivate':'Approve'}</button>
+                        <button onclick="adminBypassLogin('${s.email}')" style="background:var(--gold-primary); color:#000; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; font-size:9px; margin-left:4px; font-weight:bold;" title="Instant Direct Login">Direct Login</button>
                         <button onclick="deleteVendor(${index})" style="background:#555; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; font-size:9px; margin-left:4px;">Delete</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function adminBypassLogin(email) {
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+            let found = sellers.find(s => s.email === email);
+            if(found) {
+                found.status = 'Active'; // Auto approve for instant check
+                localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+                currentActiveVendor = found;
+                showSection('dashboardSection');
+                // Render dashboard directly
+                let dashHtml = `
+                    <div class="digital-id-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="ID Avatar" class="id-avatar">
+                        <div>
+                            <span style="font-size:10px; color:var(--gold-primary); letter-spacing:2px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (ADMIN BYPASS)</span>
+                            <h3 style="margin:4px 0; color:#fff; font-size:20px;">${found.biz}</h3>
+                            <p style="margin:0; font-size:11px; color:#aaa;">Owner: ${found.name} | ID: <b style="color:var(--gold-primary);">${found.id}</b></p>
+                            <p style="margin:4px 0 0 0; font-size:10px; color:#888;">Gmail: ${found.email} | WhatsApp: ${found.whatsapp}</p>
+                        </div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:10px; margin-bottom:15px;">
+                        <h3 style="color:var(--gold-primary); margin:0; font-size:16px; text-transform:uppercase;">Performance Overview</h3>
+                        <span style="background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc71; padding:4px 12px; border-radius:20px; font-size:10px; font-weight:bold;">● ACTIVE VENDOR</span>
+                    </div>
+                    <div class="dash-stats-grid">
+                        <div class="dash-stat-box"><span class="cv-label">Product Views / Clicks</span><span class="number">${found.totalClicks || 0}</span></div>
+                        <div class="dash-stat-box"><span class="cv-label">Products Uploaded</span><span class="number">${found.productsCount} / 3 Daily</span></div>
+                        <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-primary);">${found.totalEarnings}</span></div>
+                        <div class="dash-stat-box"><span class="cv-label">Market Status</span><span class="number" style="color:#2ecc71;">Global Live</span></div>
+                    </div>
+                `;
+                document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
+            }
         }
 
         function toggleSellerStatus(index) {
