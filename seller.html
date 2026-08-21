@@ -14,7 +14,7 @@
             --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             --border-luxury: rgba(212, 175, 55, 0.4);
             --text-white: #ffffff;
-            --text-gray: #999999;
+            --text-gray: #aaaaaa;
         }
         body { background-color: var(--bg-color); color: var(--text-white); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; }
 
@@ -65,16 +65,16 @@
         .dash-stat-box .number { font-size: 18px; font-weight: 800; color: var(--gold-primary); margin-top: 5px; display: block; }
         .cv-label { color: var(--gold-primary); font-weight: 700; text-transform: uppercase; font-size: 9px; }
 
-        /* Digital ID Card inside Dashboard */
+        /* Digital ID Card */
         .digital-id-card { background: linear-gradient(135deg, #111111, #050505); border: 2px solid var(--gold-primary); border-radius: 18px; padding: 20px; display: flex; gap: 20px; align-items: center; margin-bottom: 20px; box-shadow: 0 0 25px rgba(212,175,55,0.2); }
         .id-avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-primary); object-fit: cover; background: #222; }
 
-        /* Super Luxury Animated Bar Chart */
-        .chart-container { display: flex; align-items: flex-end; justify-content: space-around; height: 160px; background: linear-gradient(180deg, #0a0a0a, #030303); border: 1px solid var(--gold-primary); border-radius: 15px; padding: 20px 10px 10px 10px; margin: 20px 0; box-shadow: inset 0 0 15px rgba(212,175,55,0.15); }
-        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
-        .chart-bar { width: 32px; background: var(--gold-gradient); border-radius: 8px 8px 0 0; animation: barRise 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate; transform-origin: bottom; box-shadow: 0 0 18px rgba(212,175,55,0.6); }
-        @keyframes barRise { 0% { transform: scaleY(0.4); opacity: 0.5; } 100% { transform: scaleY(1); opacity: 1; } }
-        .chart-label { font-size: 9px; color: var(--gold-light); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        /* Fully Visible, High-Contrast Luxury Animated Bar Chart (Gold & White) */
+        .chart-container { display: flex; align-items: flex-end; justify-content: space-around; height: 210px; background: linear-gradient(180deg, #121212, #050505); border: 2px solid var(--gold-primary); border-radius: 16px; padding: 30px 15px 15px 15px; margin: 20px 0; box-shadow: 0 0 25px rgba(212,175,55,0.3); position: relative; }
+        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; z-index: 2; height: 100%; justify-content: flex-end; }
+        .chart-bar { width: 38px; background: var(--gold-gradient); border-radius: 8px 8px 0 0; animation: barAnimation 2.2s ease-in-out infinite alternate; transform-origin: bottom; box-shadow: 0 0 20px rgba(212,175,55,0.9); }
+        @keyframes barAnimation { 0% { transform: scaleY(0.3); filter: brightness(0.7); } 100% { transform: scaleY(1); filter: brightness(1.2); } }
+        .chart-label { font-size: 11px; color: #ffffff; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
 
         /* Editable Wholesale Tiers */
         .tier-box { background: #080808; border: 1px solid #333; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; gap: 10px; align-items: center; }
@@ -107,13 +107,13 @@
                 <span>💼 🌐 📈 🚀 💰</span>
             </div>
 
-            <button class="apply-btn" onclick="showSection('formSection')">Register / Sign Up as Seller</button>
+            <button class="apply-btn" onclick="showSection('formSection')">Become a Seller</button>
             <div style="margin-top:15px;">
-                <button onclick="showSection('loginSection')" style="background:transparent; border:none; color:var(--gold-primary); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:1px; font-weight:bold;">Already Registered? Seller Login (Gmail & Password)</button>
+                <button onclick="showSection('loginSection')" style="background:transparent; border:none; color:var(--gold-primary); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:1px; font-weight:bold;">Already Registered? Seller Login</button>
             </div>
         </div>
 
-        <!-- 2. Seller Login Section (Gmail & Password) -->
+        <!-- 2. Seller Login Section -->
         <div class="luxury-card portal-section" id="loginSection">
             <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:22px;">Seller Dashboard Login</h2>
             <div class="input-group" style="max-width:350px; margin:0 auto 15px auto;">
@@ -203,18 +203,18 @@
             </div>
         </div>
 
-        <!-- 6. Advanced Product Upload Terminal -->
+        <!-- 6. Advanced Product Upload Terminal (Short Heading: PRODUCT UPLOAD, No Checkboxes, Direct Rate Input & Others) -->
         <div class="luxury-card portal-section" id="productSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Product & Video Upload Terminal</h2>
-            <p style="font-size:10px; color:#aaa; margin-bottom:20px;">দৈনিক সর্বোচ্চ ৩টি প্রোডাক্ট আপলোড করা যাবে। প্রোডাক্টগুলো অটোমেটিকভাবে সংশ্লিষ্ট মার্কেটপ্লেসে রাউট হবে।</p>
+            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:14px; text-transform:uppercase; letter-spacing:1px;">PRODUCT UPLOAD</h2>
+            <p style="font-size:10px; color:#aaa; margin-bottom:20px; text-align:center;">দৈনিক সর্বোচ্চ ৩টি প্রোডাক্ট আপলোড করা যাবে।</p>
 
             <div class="form-grid" style="text-align:left;">
                 <div class="input-group full-width"><label>Product Name *</label><input type="text" id="prodName" placeholder="Product Name (e.g. Royal Teak Bed)" required></div>
                 <div class="input-group full-width"><label>Product Title *</label><input type="text" id="prodTitle" placeholder="Engaging Product Display Title" required></div>
-                <div class="input-group full-width"><label>Product Description *</label><textarea id="prodDesc" rows="3" placeholder="Full specifications, material details, and quality parameters..." required></textarea></div>
+                <div class="input-group full-width"><label>Product Description *</label><textarea id="prodDesc" rows="3" placeholder="Full specifications, material details..." required></textarea></div>
                 
                 <div class="input-group">
-                    <label>Select Category (Luxury Standard) *</label>
+                    <label>Select Category *</label>
                     <select id="prodCategory">
                         <option value="FASHION (MEN)">FASHION (MEN)</option>
                         <option value="FASHION (WOMEN)">FASHION (WOMEN)</option>
@@ -225,56 +225,62 @@
                     </select>
                 </div>
 
-                <div class="input-group"><label>Stock Quantity Available *</label><input type="number" id="prodStock" placeholder="e.g. 150" required></div>
+                <div class="input-group"><label>Stock Quantity *</label><input type="number" id="prodStock" placeholder="e.g. 150" required></div>
                 
-                <div class="input-group"><label>Product / Video File *</label><input type="file" id="prodImg" accept="image/*,video/*" required></div>
-                <div class="input-group"><label>YouTube / Video Review URL (Optional)</label><input type="url" id="prodVideo" placeholder="https://youtube.com/watch?v=..."></div>
+                <div class="input-group"><label>Product Image / Video File *</label><input type="file" id="prodImg" accept="image/*,video/*" required></div>
+                <div class="input-group"><label>YouTube Review URL (Optional)</label><input type="url" id="prodVideo" placeholder="https://youtube.com/watch?v=..."></div>
 
                 <!-- Multi-Market Pricing -->
                 <div class="input-group full-width"><div class="section-title">Multi-Market Pricing & Commission Slabs</div></div>
                 
                 <div class="input-group">
-                    <label>Bangladesh Retail Price (BDT ৳) [5% Platform Commission]</label>
+                    <label>Bangladesh Retail Price (BDT ৳) [5% Commission]</label>
                     <input type="number" id="priceBD" placeholder="৳ 1500">
                 </div>
                 <div class="input-group">
-                    <label>Global Retail Price (USD $) [20% Platform Commission]</label>
+                    <label>Global Retail Price (USD $) [20% Commission]</label>
                     <input type="number" id="priceGlobal" placeholder="$ 25.00">
                 </div>
 
-                <!-- Fully Editable Wholesale Bulk Pricing Tiers -->
-                <div class="input-group full-width"><div class="section-title">Wholesale Bulk Pricing Tiers (USD $) [5% Commission]</div></div>
+                <!-- Wholesale Bulk Pricing Tiers -->
+                <div class="input-group full-width"><div class="section-title">Wholesale Bulk Pricing Tiers (USD $)</div></div>
                 <div class="input-group full-width">
                     <div class="tier-box">
                         <span style="font-size:10px; color:var(--gold-light); width:110px;">Small Tier:</span>
-                        <input type="text" value="10 - 50 Pcs" id="wSmallRange" style="width:35%;" placeholder="Qty Range">
+                        <input type="text" value="10 - 50 Pcs" id="wSmallRange" style="width:35%;" placeholder="Qty">
                         <input type="number" placeholder="Price per unit ($)" id="wSmallPrice" style="width:45%;">
                     </div>
                     <div class="tier-box">
                         <span style="font-size:10px; color:var(--gold-light); width:110px;">Medium Tier:</span>
-                        <input type="text" value="51 - 200 Pcs" id="wMedRange" style="width:35%;" placeholder="Qty Range">
+                        <input type="text" value="51 - 200 Pcs" id="wMedRange" style="width:35%;" placeholder="Qty">
                         <input type="number" placeholder="Price per unit ($)" id="wMedPrice" style="width:45%;">
                     </div>
                     <div class="tier-box">
                         <span style="font-size:10px; color:var(--gold-light); width:110px;">Long / Unlimited:</span>
-                        <input type="text" value="201+ (Unlimited)" id="wLongRange" style="width:35%;" placeholder="Qty Range">
+                        <input type="text" value="201+ (Unlimited)" id="wLongRange" style="width:35%;" placeholder="Qty">
                         <input type="number" placeholder="Price per unit ($)" id="wLongPrice" style="width:45%;">
                     </div>
                 </div>
 
-                <!-- Manual Multi-Country Shipping Matrix -->
-                <div class="input-group full-width"><div class="section-title">Manual International Shipping Matrix</div></div>
+                <!-- Manual International Shipping Matrix with direct amount inputs -->
+                <div class="input-group full-width"><div class="section-title">Manual International Shipping Matrix (Set Price in $)</div></div>
                 <div class="input-group full-width">
-                    <label>Select Target Countries / Regions & Set Shipping Rate ($)</label>
-                    <div style="background:#000; padding:15px; border-radius:10px; border:1px solid #333; font-size:11px; max-height:140px; overflow-y:auto;">
-                        <label><input type="checkbox" value="USA" checked> United States (USA) - Standard Rate: $15.00</label><br>
-                        <label><input type="checkbox" value="UK" checked> United Kingdom (UK) - Standard Rate: $12.50</label><br>
-                        <label><input type="checkbox" value="Canada"> Canada - Standard Rate: $18.00</label><br>
-                        <label><input type="checkbox" value="Australia"> Australia - Standard Rate: $20.00</label><br>
-                        <label><input type="checkbox" value="France"> France - Standard Rate: $14.00</label><br>
-                        <label><input type="checkbox" value="Spain"> Spain - Standard Rate: $14.50</label><br>
-                        <label><input type="checkbox" value="Asia"> Asia Continent - Standard Rate: $8.00</label><br>
-                        <label><input type="checkbox" value="Europe"> Europe Continent - Standard Rate: $16.00</label>
+                    <div style="background:#000; padding:15px; border-radius:10px; border:1px solid #333; font-size:12px; display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                        <div><label style="font-size:9px; color:var(--gold-light);">United States (USA)</label><input type="number" id="shipUSA" placeholder="Rate ($)" value="15.00"></div>
+                        <div><label style="font-size:9px; color:var(--gold-light);">United Kingdom (UK)</label><input type="number" id="shipUK" placeholder="Rate ($)" value="12.50"></div>
+                        <div><label style="font-size:9px; color:var(--gold-light);">Canada</label><input type="number" id="shipCanada" placeholder="Rate ($)"></div>
+                        <div><label style="font-size:9px; color:#aaa;">Australia</label><input type="number" id="shipAustralia" placeholder="Rate ($)"></div>
+                        <div><label style="font-size:9px; color:#aaa;">Europe Continent</label><input type="number" id="shipEurope" placeholder="Rate ($)"></div>
+                        <div><label style="font-size:9px; color:#aaa;">Asia Continent</label><input type="number" id="shipAsia" placeholder="Rate ($)"></div>
+                    </div>
+                </div>
+
+                <!-- Others Custom Region Shipping -->
+                <div class="input-group full-width">
+                    <label>Others (Custom Country & Rate)</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="customCountryName" placeholder="Country Name (e.g., UAE, Japan)" style="flex:1;">
+                        <input type="number" id="customCountryRate" placeholder="Rate ($)" style="width:120px;">
                     </div>
                 </div>
 
@@ -389,10 +395,9 @@
         function renderVendorDashboard(found) {
             showSection('dashboardSection');
 
-            // Render uploaded products list or single indicator
             let productsHtml = found.uploadedProducts && found.uploadedProducts.length > 0 ? 
-                found.uploadedProducts.map(p => `<div style="background:#111; border:1px solid #333; padding:10px; border-radius:8px; margin-top:8px; display:flex; justify-content:space-between; align-items:center;"><span><b>${p.name}</b> (${p.category})</span> <span style="color:var(--gold-primary); font-size:11px;">Stock: ${p.stock} | ${p.global}</span></div>`).join('') :
-                `<p style="color:#777; font-size:11px; text-align:center; margin:10px 0;">No products published yet. Click below to upload.</p>`;
+                found.uploadedProducts.map(p => `<div style="background:#111; border:1px solid #333; padding:12px; border-radius:10px; margin-top:8px; display:flex; justify-content:space-between; align-items:center;"><span><b style="color:var(--gold-light);">${p.name}</b> <br><small style="color:#aaa;">${p.category} | Stock: ${p.stock}</small></span> <span style="color:var(--gold-primary); font-size:11px; font-weight:bold;">${p.global}</span></div>`).join('') :
+                `<p style="color:#777; font-size:11px; text-align:center; margin:15px 0;">No products published yet. Click below to upload.</p>`;
 
             let dashHtml = `
                 <!-- Digital ID Card inside Dashboard -->
@@ -406,12 +411,12 @@
                     </div>
                 </div>
 
-                <!-- Super Luxury Animated Interactive Bar Chart -->
+                <!-- Highly Visible Luxury Animated Interactive Bar Chart (Gold & White Theme) -->
                 <div style="margin:15px 0 5px 0;"><span class="cv-label">Vendor Growth & Analytics Live Chart</span></div>
                 <div class="chart-container">
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 70%; animation-delay: 0.1s;"></div><span class="chart-label">Views</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 75%; animation-delay: 0.1s;"></div><span class="chart-label">Views</span></div>
                     <div class="chart-bar-wrap"><div class="chart-bar" style="height: 90%; animation-delay: 0.3s;"></div><span class="chart-label">Clicks</span></div>
-                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 50%; animation-delay: 0.5s;"></div><span class="chart-label">Sales</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 60%; animation-delay: 0.5s;"></div><span class="chart-label">Sales</span></div>
                     <div class="chart-bar-wrap"><div class="chart-bar" style="height: 95%; animation-delay: 0.7s;"></div><span class="chart-label">Earnings</span></div>
                 </div>
 
