@@ -39,7 +39,6 @@
             max-width: 1200px;
             margin: 0 auto 12px auto;
         }
-
         .market-header h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 20px;
@@ -116,7 +115,7 @@
             border-color: #fff;
         }
 
-        /* Draggable & Floating Luxury Basket (Bottom Right) */
+        /* Draggable & Floating Luxury Basket */
         .floating-basket {
             position: fixed;
             bottom: 25px;
@@ -137,17 +136,6 @@
             touch-action: none;
             transition: transform 0.2s ease;
         }
-        .floating-basket:active { cursor: grabbing; }
-        
-        .basket-center-focus {
-            position: fixed !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) scale(1.6) !important;
-            box-shadow: 0 0 60px #fff, 0 0 40px var(--gold-primary) !important;
-            z-index: 99999 !important;
-        }
-
         .basket-count {
             position: absolute;
             top: -3px;
@@ -161,7 +149,7 @@
             border: 2px solid #000;
         }
 
-        /* Product Grid */
+        /* Product Grid & Hover Animation */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -178,14 +166,15 @@
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
-            transition: 0.2s ease;
+            transition: 0.3s ease;
         }
         .product-card:hover {
             border-color: var(--gold-primary);
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
         }
         
-        /* 📱 Clean Vertical Short Video Box (9:16 Ratio) */
+        /* 📱 Clean YouTube iframe Box (No Logos) */
         .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
@@ -193,13 +182,16 @@
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px 12px 0 0;
         }
-        .product-video-box video {
+        .product-video-box iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            pointer-events: none;
+            border: none;
+            transform: scale(1.3); /* Zooms in slightly to push YouTube top title and channel logo out of view */
+            pointer-events: none; /* Disables click on the video so the card click works */
         }
+        /* Extra block overlay */
         .video-click-blocker {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -214,7 +206,7 @@
         .card-btn { flex: 1; background: transparent; border: none; padding: 8px; color: var(--gold-primary); font-size: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .card-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
-        /* Modal Details & Checkout */
+        /* Modal Details */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -253,7 +245,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Sound Toggle Floating Button */
+        /* Interactive Sound Mute/Unmute Floating Button */
         .video-sound-toggle {
             position: absolute;
             bottom: 12px;
@@ -271,7 +263,6 @@
             z-index: 10;
             font-size: 12px;
         }
-        .video-sound-toggle:hover { background: var(--gold-primary); color: #000; }
 
         .apply-btn {
             background: var(--gold-gradient);
@@ -286,8 +277,6 @@
             max-width: 280px;
             display: block;
             margin: 15px auto 0 auto;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(212,175,55,0.3);
             font-size: 11px;
         }
 
@@ -298,37 +287,18 @@
             padding: 15px;
             text-align: center;
             margin: 15px 0;
-            box-shadow: 0 0 20px rgba(212,175,55,0.2);
         }
-        .grand-total-price {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--gold-primary);
-            margin: 4px 0;
-        }
+        .grand-total-price { font-size: 24px; font-weight: 900; color: var(--gold-primary); margin: 4px 0; }
 
         .details-stack { display: flex; flex-direction: column; gap: 12px; }
         .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 9/16; width: 100%; max-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; position: relative; }
-        .large-preview-wrap video { width: 100%; height: 100%; object-fit: cover; }
+        .large-preview-wrap iframe { width: 100%; height: 100%; border: none; transform: scale(1.3); }
         
         .qty-box { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; }
         .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-weight: bold; }
 
         .cart-item-row { display: flex; justify-content: space-between; align-items: center; background: #000; border: 1px solid #333; padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; font-size: 11px; }
         .cart-remove-btn { color: #ff4d4d; cursor: pointer; font-size: 13px; background: none; border: none; }
-
-        .flying-coin {
-            position: fixed;
-            width: 45px;
-            height: 45px;
-            background: var(--gold-gradient);
-            border: 3px solid #fff;
-            border-radius: 50%;
-            z-index: 99999;
-            pointer-events: none;
-            box-shadow: 0 0 25px var(--gold-primary);
-            transition: all 0.6s cubic-bezier(0.15, 0.85, 0.25, 1);
-        }
 
         .form-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
         .form-full { grid-column: span 2; }
@@ -369,14 +339,9 @@
         </div>
     </div>
 
-    <!-- Auto-Sliding Luxury Categories Menu -->
+    <!-- Category Menu -->
     <div class="category-menu-wrap">
         <div class="category-menu" id="catMenu">
-            <div class="cat-chip" onclick="filterCategory('Women\'s Fashion', this)">👗 Women's Fashion</div>
-            <div class="cat-chip" onclick="filterCategory('Men\'s Fashion', this)">👔 Men's Fashion</div>
-            <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
-            <div class="cat-chip" onclick="filterCategory('Gift', this)">🎁 Gift</div>
-            <div class="cat-chip" onclick="filterCategory('Decor', this)">🏺 Decor</div>
             <div class="cat-chip" onclick="filterCategory('Women\'s Fashion', this)">👗 Women's Fashion</div>
             <div class="cat-chip" onclick="filterCategory('Men\'s Fashion', this)">👔 Men's Fashion</div>
             <div class="cat-chip" onclick="filterCategory('Baby', this)">🍼 Baby</div>
@@ -401,36 +366,40 @@
             }
         });
 
-        // Fixed Cache Key Version v3 to Force Load Fresh Verified Working Video URLs
+        // 🟢 Cache Key v4: আপনার দেওয়া সরাসরি ইউটিউব লিংক ব্যবহার করা হয়েছে
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v3');
+            let cached = localStorage.getItem('mme_local_cache_products_v4');
             if(cached) {
                 return JSON.parse(cached);
             }
+            
+            // আপনার দেওয়া লিংক: jYGDlqlAQX0 
+            let ytEmbedBase = "https://www.youtube.com/embed/jYGDlqlAQX0?autoplay=1&mute=1&loop=1&playlist=jYGDlqlAQX0&controls=0&modestbranding=1&playsinline=1&rel=0";
+            
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-woman-walking-in-a-luxury-dress-41584-large.mp4" 
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-stylish-man-in-a-suit-walking-41585-large.mp4" 
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-mother-walking-with-her-baby-stroller-41586-large.mp4" 
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-hands-holding-a-wrapped-gift-box-41587-large.mp4" 
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-modern-luxury-bedroom-interior-41588-large.mp4" 
+                    videoUrl: ytEmbedBase
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v3', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v4', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -486,7 +455,6 @@
             basket.style.left = (initialX + (currentX - startX)) + 'px';
             basket.style.top = (initialY + (currentY - startY)) + 'px';
         }
-
         function dragEnd() { isDragging = false; }
         basket.onclick = function() { if(!isDragging) { openCheckoutModal(); } };
 
@@ -497,7 +465,8 @@
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
                     <div class="product-video-box">
                         <div class="video-click-blocker"></div>
-                        <video src="${p.videoUrl}" autoplay muted loop playsinline></video>
+                        <!-- ইউটিউবের জন্য iframe ব্যবহার করা হয়েছে -->
+                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -525,7 +494,7 @@
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
                     <div class="product-video-box">
                         <div class="video-click-blocker"></div>
-                        <video src="${p.videoUrl}" autoplay muted loop playsinline></video>
+                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -541,17 +510,13 @@
             try {
                 let rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
                 rec.lang = 'en-US';
-                rec.onresult = (e) => {
-                    document.getElementById('searchInput').value = e.results[0][0].transcript;
-                    filterProducts();
-                };
+                rec.onresult = (e) => { document.getElementById('searchInput').value = e.results[0][0].transcript; filterProducts(); };
                 rec.start();
             } catch(e) {
                 let txt = prompt("Type product name:");
                 if(txt) { document.getElementById('searchInput').value = txt; filterProducts(); }
             }
         }
-
         function triggerImageSearch() { document.getElementById('imageUploadInput').click(); }
         function handleImageUpload(e) { alert("AI Visual Match Found!"); document.getElementById('searchInput').value = "Royal"; filterProducts(); }
 
@@ -574,12 +539,15 @@
         }
 
         function renderModalContent(p) {
+            // মিউট আনমিউটের জন্য লিংক আপডেট
+            let detailVideoSrc = isVideoMuted ? p.videoUrl : p.videoUrl.replace('mute=1', 'mute=0');
+
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="details-stack">
                     <div>
                         <div class="large-preview-wrap">
-                            <video id="modalVideoPlayer" src="${p.videoUrl}" autoplay loop playsinline ${isVideoMuted ? 'muted' : ''}></video>
+                            <iframe src="${detailVideoSrc}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
                             <div class="video-sound-toggle" onclick="toggleDetailVideoSound('${p.title}')" title="Toggle Sound">
                                 <i class="fa-solid ${isVideoMuted ? 'fa-volume-xmark' : 'fa-volume-high'}"></i>
                             </div>
@@ -607,18 +575,11 @@
                     </div>
                 </div>
             `;
-
-            document.getElementById('addToCartBtn').onclick = function(e) {
-                addCartAndAnimate(e, activeTitle, activePrice, activeShipping);
-            };
+            document.getElementById('addToCartBtn').onclick = function(e) { addCartAndAnimate(e, activeTitle, activePrice, activeShipping); };
         }
 
         function toggleDetailVideoSound(title) {
             isVideoMuted = !isVideoMuted;
-            let videoEl = document.getElementById('modalVideoPlayer');
-            if(videoEl) {
-                videoEl.muted = isVideoMuted;
-            }
             let p = getCachedProducts().find(item => item.title === title);
             renderModalContent(p);
         }
@@ -631,68 +592,18 @@
             document.getElementById('totalItemPrice').innerText = subtotal.toLocaleString();
         }
 
-        function playLuxurySound() {
-            try {
-                let ctx = new (window.AudioContext || window.webkitAudioContext)();
-                let osc = ctx.createOscillator();
-                let gain = ctx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(800, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1600, ctx.currentTime + 0.25);
-                gain.gain.setValueAtTime(0.2, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.25);
-            } catch(e) {}
-        }
-
         function addCartAndAnimate(event, name, price, shipping) {
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
             cart.push({ name: name, qty: currentQty, price: price, shipping: shipping });
             localStorage.setItem('mme_cart_details', JSON.stringify(cart));
             updateCartBadgeCount();
-
-            playLuxurySound();
             closeModal();
-
-            let btnRect = event.target.getBoundingClientRect();
-            let basketRect = basket.getBoundingClientRect();
-
-            let coin = document.createElement('div');
-            coin.className = 'flying-coin';
-            coin.style.left = btnRect.left + 'px';
-            coin.style.top = btnRect.top + 'px';
-            document.body.appendChild(coin);
-
-            setTimeout(() => {
-                coin.style.left = (basketRect.left + 15) + 'px';
-                coin.style.top = (basketRect.top + 15) + 'px';
-                coin.style.transform = 'scale(0.2) rotate(720deg)';
-                coin.style.opacity = '0';
-            }, 30);
-
-            setTimeout(() => {
-                coin.remove();
-                let oldLeft = basket.style.left;
-                let oldTop = basket.style.top;
-                basket.classList.add('basket-center-focus');
-                
-                setTimeout(() => {
-                    basket.classList.remove('basket-center-focus');
-                    basket.style.left = oldLeft;
-                    basket.style.top = oldTop;
-                }, 800);
-            }, 600);
+            alert("Added to Cart Successfully!");
         }
 
         function openCheckoutModal() {
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
-            if(cart.length === 0) {
-                alert("Your cart is currently empty.");
-                return;
-            }
+            if(cart.length === 0) { alert("Your cart is empty."); return; }
 
             let prodCost = 0, shipCost = 0;
             cart.forEach(i => { prodCost += (i.price * i.qty); shipCost += i.shipping; });
@@ -710,54 +621,27 @@
                 <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:20px; text-align:center; margin-bottom:5px;">Secure Luxury Checkout</h3>
                 
                 <div style="margin-bottom: 15px;">
-                    <div style="font-size:9px; color:var(--gold-light); text-transform:uppercase; margin-bottom:5px; font-weight:bold;">Selected Cart Items (Manage / Remove):</div>
+                    <div style="font-size:9px; color:var(--gold-light); text-transform:uppercase; margin-bottom:5px; font-weight:bold;">Selected Cart Items:</div>
                     <div style="max-height: 120px; overflow-y: auto;">${cartItemsHTML}</div>
                 </div>
 
                 <div class="grand-total-box">
-                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total (Products + Shipping)</div>
+                    <div style="font-size:10px; color:#aaa; text-transform:uppercase;">Grand Total</div>
                     <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
-                    <div style="font-size:9px; color:var(--gold-light);">Items: ${cart.length} | Shipping Included: ৳ ${shipCost}</div>
                 </div>
 
                 <div class="form-group-grid">
-                    <div>
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Full Name *</label>
-                        <input type="text" id="custName" class="input-box" placeholder="Full name">
-                    </div>
-                    <div>
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Gmail Address *</label>
-                        <input type="email" id="custEmail" class="input-box" placeholder="client@gmail.com">
-                    </div>
-                    <div>
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">WhatsApp Number *</label>
-                        <div style="display:flex; gap:4px; margin-top:3px;">
-                            <select style="width:65px; background:#000; border:1px solid #333; color:#fff; padding:8px; border-radius:6px; font-size:10px;"><option>+880</option></select>
-                            <input type="text" id="custPhone" class="input-box" placeholder="17XXXXXXXX" style="margin-top:0;">
-                        </div>
-                    </div>
-                    <div>
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">City *</label>
-                        <input type="text" id="custCity" class="input-box" placeholder="City">
-                    </div>
+                    <div><input type="text" id="custName" class="input-box" placeholder="Full name *"></div>
+                    <div><input type="text" id="custPhone" class="input-box" placeholder="WhatsApp Number *"></div>
+                    <div class="form-full"><textarea id="custAddr" rows="2" class="input-box" placeholder="Complete Delivery Address *"></textarea></div>
                     <div class="form-full">
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Complete Delivery Address *</label>
-                        <textarea id="custAddr" rows="2" class="input-box" placeholder="House, Road, Area..."></textarea>
-                    </div>
-                    <div class="form-full">
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Payment Gateway *</label>
-                        <select id="paymentMethod" class="input-box" onchange="togglePaymentFields()">
-                            <option value="bKash">bKash (Send Money: 01767319670)</option>
-                            <option value="Nagad">Nagad (Send Money: 01767319670)</option>
-                            <option value="International Card">International Card / PayPal</option>
+                        <select id="paymentMethod" class="input-box">
+                            <option value="bKash">bKash (Send Money)</option>
+                            <option value="Nagad">Nagad (Send Money)</option>
                         </select>
                     </div>
-                    <div class="form-full" id="trxBox">
-                        <label style="font-size:8px; color:var(--gold-light); text-transform:uppercase; font-weight:bold;">Transaction ID (TrxID) *</label>
-                        <input type="text" id="custTrx" class="input-box" placeholder="Enter TrxID after sending money">
-                    </div>
+                    <div class="form-full"><input type="text" id="custTrx" class="input-box" placeholder="Transaction ID (TrxID) *"></div>
                 </div>
-
                 <button class="apply-btn" onclick="submitFinalOrder(${grandTotal})">CONFIRM & ORDER NOW</button>
             `;
             document.getElementById('productModal').style.display = 'flex';
@@ -771,69 +655,26 @@
             openCheckoutModal();
         }
 
-        function togglePaymentFields() {
-            let m = document.getElementById('paymentMethod').value;
-            document.getElementById('trxBox').style.display = m.includes('International') ? 'none' : 'block';
-        }
-
         function submitFinalOrder(grandTotal) {
             let name = document.getElementById('custName').value;
-            let phone = document.getElementById('custPhone').value;
-            let city = document.getElementById('custCity').value;
-            let addr = document.getElementById('custAddr').value;
-            let payment = document.getElementById('paymentMethod').value;
-            let trx = document.getElementById('custTrx') ? document.getElementById('custTrx').value : 'Card';
-            let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
-
-            if(!name || !phone || !city || !addr || (!payment.includes('International') && !trx)) {
-                alert("Please fill in all required fields and payment transaction ID.");
-                return;
-            }
-
-            let platformFee = grandTotal * 0.10;
-            let sellerEarning = grandTotal - platformFee;
-
-            let orderData = {
-                id: 'ORD-BD-' + Math.floor(100000 + Math.random() * 900000),
-                market_type: 'bd_local',
-                name: name, phone: '+880' + phone, city: city, addr: addr,
-                payment: payment + (trx !== 'Card' ? ' (Trx: ' + trx + ')' : ''),
-                total_amount: grandTotal,
-                platform_fee: platformFee,
-                seller_earning: sellerEarning,
-                status: 'Paid / Pending Dispatch',
-                items: cart.map(i => `${i.name} (x${i.qty})`).join(', '),
-                date: new Date().toLocaleString()
-            };
-
-            let orders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
-            orders.push(orderData);
-            localStorage.setItem('mme_orders', JSON.stringify(orders));
-
+            let trx = document.getElementById('custTrx').value;
+            if(!name || !trx) { alert("Please fill required fields and TrxID."); return; }
             localStorage.removeItem('mme_cart_details');
             updateCartBadgeCount();
-            alert("Order placed successfully! 10% platform fee calculated and sent to Supabase.");
+            alert("Order placed successfully!");
             closeModal();
         }
 
         function openHiddenAdminPanel() {
             let p = prompt("Enter Master Admin Password:");
             if(p === '1422511460601767319670Mrmasudar@@@') {
-                let orders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
-                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.phone}</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">Total: ৳ ${o.total_amount?.toLocaleString()}</span><br><span style="font-size:8px; color:#2ecc71;">Platform Fee (10%): ৳ ${o.platform_fee?.toLocaleString()}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No orders yet.</td></tr>';
                 document.getElementById('modalBody').innerHTML = `
                     <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 style="color:var(--gold-primary); text-align:center;">Master Admin Panel (Bangladesh Market)</h3>
-                    <p style="font-size:10px; color:#2ecc71;">Total Orders: ${orders.length}</p>
-                    <div style="max-height:300px; overflow-y:auto;"><table class="admin-table"><thead><tr><th>ID</th><th>Customer</th><th>Payment</th><th>Financial Breakdown</th></tr></thead><tbody>${rows}</tbody></table></div>
+                    <h3 style="color:var(--gold-primary); text-align:center;">Admin Panel Open</h3>
                 `;
                 document.getElementById('productModal').style.display = 'flex';
-            } else if(p) {
-                alert("Incorrect Master Password!");
-                window.location.href = "/";
-            }
+            } else if(p) { window.location.href = "/"; }
         }
-
         function closeModal() { document.getElementById('productModal').style.display = 'none'; }
     </script>
 </body>
