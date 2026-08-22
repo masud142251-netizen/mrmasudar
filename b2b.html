@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR MASUDAR ENTERPRISE | Elite Luxury & Wholesale Market</title>
+    <title>MR MASUDAR ENTERPRISE | Bangladesh Luxury Market</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -114,42 +114,42 @@
             border-color: #fff;
         }
 
-        /* Wholesale Market Banner Section */
+        /* Wholesale Market Banner */
         .wholesale-banner-card {
             max-width: 1200px;
             margin: 0 auto 12px auto;
             background: var(--surface-card);
             border: 1px solid var(--gold-primary);
             border-radius: 16px;
-            padding: 20px;
+            padding: 18px;
             text-align: center;
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
         .wholesale-banner-card i {
-            font-size: 28px;
+            font-size: 26px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .wholesale-banner-card h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
+            font-size: 17px;
             color: #fff;
-            margin: 4px 0;
+            margin: 3px 0;
             letter-spacing: 1px;
         }
         .wholesale-banner-card p {
             color: var(--text-gray);
-            font-size: 9px;
-            margin: 0 0 12px 0;
+            font-size: 8px;
+            margin: 0 0 10px 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .bulk-order-btn {
             background: var(--gold-gradient);
             border: none;
-            padding: 8px 22px;
+            padding: 7px 20px;
             font-weight: 800;
             text-transform: uppercase;
             border-radius: 20px;
@@ -225,7 +225,6 @@
             transform: translateY(-3px);
         }
         
-        /* 🎬 Auto-Playing Video Box */
         .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
@@ -255,7 +254,7 @@
         .card-btn { flex: 1; background: transparent; border: none; padding: 6px; color: var(--gold-primary); font-size: 9px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .card-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
-        /* Modal Details Layout */
+        /* Modal Layout */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -432,7 +431,7 @@
         </div>
     </div>
 
-    <!-- Wholesale Market Banner Section -->
+    <!-- Wholesale Market Banner -->
     <div class="wholesale-banner-card">
         <i class="fa-solid fa-warehouse"></i>
         <h3>WHOLESALE MARKET</h3>
@@ -449,16 +448,31 @@
     </div>
 
     <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname;
+            if(currentPath.includes('/mr-master-admin')) {
+                openHiddenAdminPanel();
+            }
+        });
+
         function getCachedProducts() {
+            let cached = localStorage.getItem('mme_local_cache_products_v23');
+            if(cached) {
+                return JSON.parse(cached);
+            }
+            
             let ytEmbedBase = "https://www.youtube.com/embed/ZVTRyR7Ubas?autoplay=1&mute=1&loop=1&playlist=ZVTRyR7Ubas&controls=0&modestbranding=1&playsinline=1&rel=0";
             
-            return [
-                { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, wholesalePrice: 11500, bd: "৳ 15,000", wholesaleBd: "৳ 11,500 (Min. 10 Pcs)", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", videoUrl: ytEmbedBase },
-                { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, wholesalePrice: 6500, bd: "৳ 8,500", wholesaleBd: "৳ 6,500 (Min. 10 Pcs)", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", videoUrl: ytEmbedBase },
-                { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, wholesalePrice: 17500, bd: "৳ 22,000", wholesaleBd: "৳ 17,500 (Min. 5 Pcs)", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", videoUrl: ytEmbedBase },
-                { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, wholesalePrice: 3500, bd: "৳ 4,500", wholesaleBd: "৳ 3,500 (Min. 15 Pcs)", shipping: 50, desc: "Exotic curated luxury gift items for special events.", videoUrl: ytEmbedBase },
-                { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, wholesalePrice: 36000, bd: "৳ 45,000", wholesaleBd: "৳ 36,000 (Min. 3 Pcs)", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", videoUrl: ytEmbedBase }
+            let defaultProducts = [
+                { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, wholesalePrice: 11500, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", videoUrl: ytEmbedBase },
+                { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, wholesalePrice: 6500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", videoUrl: ytEmbedBase },
+                { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, wholesalePrice: 17500, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", videoUrl: ytEmbedBase },
+                { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, wholesalePrice: 3500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", videoUrl: ytEmbedBase },
+                { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, wholesalePrice: 36000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", videoUrl: ytEmbedBase }
             ];
+
+            localStorage.setItem('mme_local_cache_products_v23', JSON.stringify(defaultProducts));
+            return defaultProducts;
         }
 
         let idleTimer;
@@ -590,7 +604,7 @@
             activePrice = wholesale ? p.wholesalePrice : p.price;
             activeShipping = p.shipping;
             activeTitle = p.title + (wholesale ? " [WHOLESALE]" : "");
-            currentQty = wholesale ? 10 : 1;
+            currentQty = wholesale ? 5 : 1;
             isVideoMuted = true;
 
             renderModalContent(p);
@@ -601,7 +615,7 @@
             let products = getCachedProducts();
             let html = products.map(p => `
                 <div class="cart-item-row" style="cursor:pointer;" onclick="openProductDetails('${p.title}', true)">
-                    <span><b>${p.title}</b><br><span style="color:var(--gold-primary);">${p.wholesaleBd}</span></span>
+                    <span><b>${p.title}</b><br><span style="color:var(--gold-primary);">Wholesale Price: ৳ ${p.wholesalePrice.toLocaleString()} (Min. 5 Pcs)</span></span>
                     <button class="card-btn" style="flex:0; padding:4px 8px; border:1px solid var(--gold-primary); border-radius:6px;">Select</button>
                 </div>
             `).join('');
@@ -641,7 +655,7 @@
                             <p style="color:#aaa; font-size:10px; line-height:1.4; margin:5px 0;">${p.desc}</p>
                             
                             <div style="font-size:12px; color:var(--gold-primary); font-weight:bold;">Unit Price: ৳ <span id="unitPrice">${displayPrice.toLocaleString()}</span></div>
-                            <div style="font-size:10px; color:#aaa;">Shipping Fee: ৳ <span id="shippingFee">${activeShipping}</span></div>
+                            <div style="font-size:10px; color:#aaa;">Seller Shipping (Included): ৳ <span id="shippingFee">${activeShipping}</span></div>
 
                             <div class="qty-box">
                                 <span style="font-size:10px; color:var(--gold-light);">Quantity:</span>
@@ -823,6 +837,17 @@
             updateCartBadgeCount();
             alert("Order placed successfully! Thank you for shopping with MR MASUDAR ENTERPRISE.");
             closeModal();
+        }
+
+        function openHiddenAdminPanel() {
+            let p = prompt("Enter Master Admin Password:");
+            if(p === '1422511460601767319670Mrmasudar@@@') {
+                document.getElementById('modalBody').innerHTML = `
+                    <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="modal-scroll-body"><h3 style="color:var(--gold-primary); text-align:center;">Admin Panel Open</h3></div>
+                `;
+                document.getElementById('productModal').style.display = 'flex';
+            } else if(p) { window.location.href = "/"; }
         }
         function closeModal() { document.getElementById('productModal').style.display = 'none'; }
     </script>
