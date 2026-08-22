@@ -38,11 +38,6 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
             max-width: 1200px;
             margin: 0 auto 12px auto;
-            animation: fadeInDown 0.8s ease-out;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .market-header h1 {
@@ -140,14 +135,9 @@
             z-index: 9999;
             user-select: none;
             touch-action: none;
-            animation: basketFloatEffect 3s ease-in-out infinite;
             transition: transform 0.2s ease;
         }
-        @keyframes basketFloatEffect {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-6px) scale(1.05); }
-        }
-        .floating-basket:active { cursor: grabbing; animation: none; }
+        .floating-basket:active { cursor: grabbing; }
         
         .basket-center-focus {
             position: fixed !important;
@@ -156,7 +146,6 @@
             transform: translate(-50%, -50%) scale(1.6) !important;
             box-shadow: 0 0 60px #fff, 0 0 40px var(--gold-primary) !important;
             z-index: 99999 !important;
-            animation: none !important;
         }
 
         .basket-count {
@@ -172,7 +161,7 @@
             border: 2px solid #000;
         }
 
-        /* Product Grid with Slide-in Entrance Animation */
+        /* Product Grid (Clean & Fast) */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -189,34 +178,28 @@
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            animation: slideInSide 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transition: all 0.3s ease;
-        }
-        @keyframes slideInSide {
-            from { opacity: 0; transform: translateX(-40px) scale(0.95); }
-            to { opacity: 1; transform: translateX(0) scale(1); }
+            transition: 0.2s ease;
         }
         .product-card:hover {
             border-color: var(--gold-primary);
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.35);
+            transform: translateY(-4px);
         }
         
-        /* 📱 Logo-Free Clean Vertical Short Video Box (9:16 Ratio using HTML5 Video) */
+        /* 📱 Clean Vertical Short Video Box (9:16 Ratio) */
         .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
-            background: #000;
+            background: #111;
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .product-video-box video {
+        .product-video-box iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            pointer-events: none; /* Disables direct native touch controls on grid */
+            border: none;
+            transform: scale(1.35);
+            pointer-events: none;
         }
         .video-click-blocker {
             position: absolute;
@@ -257,13 +240,7 @@
             padding: 20px;
             position: relative;
             box-sizing: border-box;
-            animation: zoomInModal 0.3s ease-out;
         }
-        @keyframes zoomInModal {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
         .close-modal {
             position: absolute;
             top: 12px; right: 12px;
@@ -277,7 +254,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Interactive Sound Mute/Unmute Floating Button for Video Preview */
+        /* Sound Toggle Floating Button */
         .video-sound-toggle {
             position: absolute;
             bottom: 12px;
@@ -294,7 +271,6 @@
             cursor: pointer;
             z-index: 10;
             font-size: 12px;
-            transition: 0.2s;
         }
         .video-sound-toggle:hover { background: var(--gold-primary); color: #000; }
 
@@ -334,7 +310,7 @@
 
         .details-stack { display: flex; flex-direction: column; gap: 12px; }
         .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 9/16; width: 100%; max-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; position: relative; }
-        .large-preview-wrap video { width: 100%; height: 100%; object-fit: cover; }
+        .large-preview-wrap iframe { width: 100%; height: 100%; border: none; transform: scale(1.3); }
         
         .qty-box { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; }
         .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-weight: bold; }
@@ -419,7 +395,6 @@
     </div>
 
     <script>
-        // Hidden Master Admin Router (`/mr-master-admin`)
         window.addEventListener('DOMContentLoaded', () => {
             const currentPath = window.location.pathname;
             if(currentPath.includes('/mr-master-admin')) {
@@ -427,38 +402,43 @@
             }
         });
 
-        // Nano-Speed Caching with Verified MP4 Short Video URL (Zero Error Guaranteed)
+        // Fast Local Storage Caching with Standard Open Embed URLs
         function getCachedProducts() {
             let cached = localStorage.getItem('mme_local_cache_products');
             if(cached) {
                 return JSON.parse(cached);
             }
-            // Standard MP4 Short Video Link for direct smooth playback without external blocks
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-woman-walking-in-a-luxury-dress-41584-large.mp4" 
+                    ytUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&loop=1&playlist=ScMzIvxBSi4&controls=0&modestbranding=1&playsinline=1", 
+                    fbUrl: "" 
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-stylish-man-in-a-suit-walking-41585-large.mp4" 
+                    ytUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&loop=1&playlist=ScMzIvxBSi4&controls=0&modestbranding=1&playsinline=1", 
+                    fbUrl: "" 
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-mother-walking-with-her-baby-stroller-41586-large.mp4" 
+                    ytUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&loop=1&playlist=ScMzIvxBSi4&controls=0&modestbranding=1&playsinline=1", 
+                    fbUrl: "" 
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-hands-holding-a-wrapped-gift-box-41587-large.mp4" 
+                    ytUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&loop=1&playlist=ScMzIvxBSi4&controls=0&modestbranding=1&playsinline=1", 
+                    fbUrl: "" 
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
-                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-modern-luxury-bedroom-interior-41588-large.mp4" 
+                    ytUrl: "https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&loop=1&playlist=ScMzIvxBSi4&controls=0&modestbranding=1&playsinline=1", 
+                    fbUrl: "" 
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products', JSON.stringify(defaultProducts));
-            return defaultProducts;
+            let verifiedProducts = defaultProducts.filter(p => (p.ytUrl && p.ytUrl.trim() !== '') || (p.fbUrl && p.fbUrl.trim() !== ''));
+            localStorage.setItem('mme_local_cache_products', JSON.stringify(verifiedProducts));
+            return verifiedProducts;
         }
 
         let idleTimer;
@@ -520,22 +500,25 @@
         function loadMarketProducts(filterCat = "Women's Fashion") {
             let grid = document.getElementById('marketProductGrid');
             let products = getCachedProducts().filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
-            grid.innerHTML = products.map((p) => `
-                <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-video-box">
-                        <div class="video-click-blocker"></div>
-                        <video src="${p.videoUrl}" autoplay muted loop playsinline></video>
+            grid.innerHTML = products.map((p) => {
+                let videoSrc = p.ytUrl ? p.ytUrl : (p.fbUrl ? p.fbUrl : '');
+                return `
+                    <div class="product-card" onclick="openProductDetails('${p.title}')">
+                        <div class="product-video-box">
+                            <div class="video-click-blocker"></div>
+                            <iframe src="${videoSrc}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">${p.title}</div>
+                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="card-btn">View Details</button>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <div class="product-title">${p.title}</div>
-                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
-                    </div>
-                    <div class="card-actions">
-                        <button class="card-btn">View Details</button>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function filterCategory(cat, el) {
@@ -548,20 +531,23 @@
             let query = document.getElementById('searchInput').value.toLowerCase();
             let products = getCachedProducts();
             let grid = document.getElementById('marketProductGrid');
-            grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => `
-                <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-video-box">
-                        <div class="video-click-blocker"></div>
-                        <video src="${p.videoUrl}" autoplay muted loop playsinline></video>
+            grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => {
+                let videoSrc = p.ytUrl ? p.ytUrl : (p.fbUrl ? p.fbUrl : '');
+                return `
+                    <div class="product-card" onclick="openProductDetails('${p.title}')">
+                        <div class="product-video-box">
+                            <div class="video-click-blocker"></div>
+                            <iframe src="${videoSrc}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">${p.title}</div>
+                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
+                        </div>
+                        <div class="card-actions"><button class="card-btn">View Details</button></div>
                     </div>
-                    <div class="product-info">
-                        <div class="product-title">${p.title}</div>
-                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <div style="font-size:10px; color:var(--gold-primary); font-weight:bold;">${p.bd}</div>
-                    </div>
-                    <div class="card-actions"><button class="card-btn">View Details</button></div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function startVoiceSearch() {
@@ -601,12 +587,15 @@
         }
 
         function renderModalContent(p) {
+            let baseVideo = p.ytUrl ? p.ytUrl : (p.fbUrl ? p.fbUrl : '');
+            let detailVideoSrc = isVideoMuted ? baseVideo : baseVideo.replace('mute=1', 'mute=0');
+
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="details-stack">
                     <div>
                         <div class="large-preview-wrap">
-                            <video id="modalVideoPlayer" src="${p.videoUrl}" autoplay loop playsinline ${isVideoMuted ? 'muted' : ''}></video>
+                            <iframe src="${detailVideoSrc}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
                             <div class="video-sound-toggle" onclick="toggleDetailVideoSound('${p.title}')" title="Toggle Sound">
                                 <i class="fa-solid ${isVideoMuted ? 'fa-volume-xmark' : 'fa-volume-high'}"></i>
                             </div>
@@ -642,10 +631,6 @@
 
         function toggleDetailVideoSound(title) {
             isVideoMuted = !isVideoMuted;
-            let videoEl = document.getElementById('modalVideoPlayer');
-            if(videoEl) {
-                videoEl.muted = isVideoMuted;
-            }
             let p = getCachedProducts().find(item => item.title === title);
             renderModalContent(p);
         }
