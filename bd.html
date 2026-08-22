@@ -402,9 +402,9 @@
             }
         });
 
-        // 🟢 Cache Key v15: আল্ট্রা ফাস্ট রেন্ডারিং এবং সম্পূর্ণ পেমেন্ট/শিপিং ও কন্টাক্ট ইনফো ফর্ম
+        // 🟢 Cache Key v16: চূড়ান্ত সুপার ফাস্ট রেন্ডারিং ও পেমেন্ট নাম্বারযুক্ত কনফার্মড ভার্সন
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v15');
+            let cached = localStorage.getItem('mme_local_cache_products_v16');
             if(cached) {
                 return JSON.parse(cached);
             }
@@ -434,7 +434,7 @@
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v15', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v16', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -698,12 +698,13 @@
                         <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
                     </div>
 
-                    <!-- Payment Instruction Box -->
+                    <!-- Payment Instruction Box with Exact Numbers -->
                     <div class="payment-info-box">
                         <b>পেমেন্ট নির্দেশিকা (Payment Instructions):</b><br>
-                        দয়া করে মোট <b>৳ ${grandTotal.toLocaleString()}</b> টাকা আমাদের মার্চেন্ট/পার্সোনাল নাম্বারে 'Send Money' করুন:<br>
-                        • <b>bKash / Nagad / Rocket:</b> 018XXXXXXXX (Personal)<br>
-                        টাকা পাঠিয়ে নিচের বক্সে আপনার নাম্বার এবং TrxID দিন।
+                        দয়া করে মোট <b>৳ ${grandTotal.toLocaleString()}</b> টাকা নিচের নাম্বারে 'Send Money' করুন:<br>
+                        • <b>বিকাশ / নগদ (Personal):</b> 01767319670<br>
+                        • <b>বিকাশ / নগদ (Merchant):</b> 01332008886<br>
+                        টাকা পাঠিয়ে নিচের ফর্মে আপনার মোবাইল নাম্বার ও TrxID দিন।
                     </div>
 
                     <div class="form-group-grid">
@@ -712,9 +713,10 @@
                         <div><input type="text" id="custWhatsapp" class="input-box" placeholder="WhatsApp Number *"></div>
                         <div>
                             <select id="paymentMethod" class="input-box">
-                                <option value="bKash">bKash</option>
-                                <option value="Nagad">Nagad</option>
-                                <option value="Rocket">Rocket</option>
+                                <option value="bKash Personal">bKash (Personal - 01767319670)</option>
+                                <option value="Nagad Personal">Nagad (Personal - 01767319670)</option>
+                                <option value="bKash Merchant">bKash (Merchant - 01332008886)</option>
+                                <option value="Nagad Merchant">Nagad (Merchant - 01332008886)</option>
                             </select>
                         </div>
                         <div class="form-full"><textarea id="custAddr" rows="2" class="input-box" placeholder="Complete Delivery Address (House, Road, Thana, District) *"></textarea></div>
