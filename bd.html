@@ -402,9 +402,9 @@
             }
         });
 
-        // 🟢 Cache Key v16: চূড়ান্ত সুপার ফাস্ট রেন্ডারিং ও পেমেন্ট নাম্বারযুক্ত কনফার্মড ভার্সন
+        // 🟢 Cache Key v17: চূড়ান্ত আল্ট্রা ফাস্ট অপ্টিমাইজড ও কাস্টমাইজড পেমেন্ট ফর্ম
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v16');
+            let cached = localStorage.getItem('mme_local_cache_products_v17');
             if(cached) {
                 return JSON.parse(cached);
             }
@@ -434,7 +434,7 @@
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v16', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v17', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -698,29 +698,22 @@
                         <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
                     </div>
 
-                    <!-- Payment Instruction Box with Exact Numbers -->
+                    <!-- Clean Bengali Payment Instruction Box -->
                     <div class="payment-info-box">
-                        <b>পেমেন্ট নির্দেশিকা (Payment Instructions):</b><br>
-                        দয়া করে মোট <b>৳ ${grandTotal.toLocaleString()}</b> টাকা নিচের নাম্বারে 'Send Money' করুন:<br>
-                        • <b>বিকাশ / নগদ (Personal):</b> 01767319670<br>
-                        • <b>বিকাশ / নগদ (Merchant):</b> 01332008886<br>
-                        টাকা পাঠিয়ে নিচের ফর্মে আপনার মোবাইল নাম্বার ও TrxID দিন।
+                        <b>পেমেন্ট নির্দেশিকা:</b><br>
+                        দয়া করে মোট <b>৳ ${grandTotal.toLocaleString()}</b> টাকা নিচের নাম্বারে 'Send Money' বা 'Merchant' করুন:<br>
+                        • <b>পার্সোনাল:</b> 01767319670 (বিকাশ/নগদ)<br>
+                        • <b>মার্চেন্ট:</b> 01332008886 (বিকাশ/নগদ)<br>
+                        টাকা পাঠিয়ে নিচের ফর্মে পেমেন্টকৃত নাম্বার ও TrxID দিন।
                     </div>
 
                     <div class="form-group-grid">
-                        <div><input type="text" id="custName" class="input-box" placeholder="Full Name *"></div>
-                        <div><input type="text" id="custPhone" class="input-box" placeholder="Your Mobile Number *"></div>
-                        <div><input type="text" id="custWhatsapp" class="input-box" placeholder="WhatsApp Number *"></div>
-                        <div>
-                            <select id="paymentMethod" class="input-box">
-                                <option value="bKash Personal">bKash (Personal - 01767319670)</option>
-                                <option value="Nagad Personal">Nagad (Personal - 01767319670)</option>
-                                <option value="bKash Merchant">bKash (Merchant - 01332008886)</option>
-                                <option value="Nagad Merchant">Nagad (Merchant - 01332008886)</option>
-                            </select>
-                        </div>
-                        <div class="form-full"><textarea id="custAddr" rows="2" class="input-box" placeholder="Complete Delivery Address (House, Road, Thana, District) *"></textarea></div>
-                        <div class="form-full"><input type="text" id="custTrx" class="input-box" placeholder="Transaction ID (TrxID) *"></div>
+                        <div><input type="text" id="custName" class="input-box" placeholder="পুরো নাম (Full Name) *"></div>
+                        <div><input type="text" id="custPhone" class="input-box" placeholder="পেমেন্টকৃত মোবাইল নাম্বার *"></div>
+                        <div><input type="text" id="custWhatsapp" class="input-box" placeholder="হোয়াটসঅ্যাপ নাম্বার *"></div>
+                        <div><input type="text" id="custCity" class="input-box" placeholder="সিটি / জেলা (City) *"></div>
+                        <div class="form-full"><textarea id="custAddr" rows="2" class="input-box" placeholder="সম্পূর্ণ ডেলিভারি ঠিকানা (বাসা, রোড, থানা, জেলা) *"></textarea></div>
+                        <div class="form-full"><input type="text" id="custTrx" class="input-box" placeholder="ট্রানজেকশন আইডি (TrxID) *"></div>
                     </div>
                 </div>
                 <div class="modal-sticky-footer">
@@ -742,11 +735,12 @@
             let name = document.getElementById('custName').value;
             let phone = document.getElementById('custPhone').value;
             let whatsapp = document.getElementById('custWhatsapp').value;
+            let city = document.getElementById('custCity').value;
             let addr = document.getElementById('custAddr').value;
             let trx = document.getElementById('custTrx').value;
             
-            if(!name || !phone || !whatsapp || !addr || !trx) { 
-                alert("দয়া করে ফর্মের প্রতিটি তথ্য (নাম, মোবাইল নাম্বার, হোয়াটসঅ্যাপ, ঠিকানা ও TrxID) সঠিকভাবে পূরণ করুন।"); 
+            if(!name || !phone || !whatsapp || !city || !addr || !trx) { 
+                alert("দয়া করে ফর্মের প্রতিটি তথ্য (নাম, পেমেন্টকৃত নাম্বার, হোয়াটসঅ্যাপ, সিটি, ঠিকানা ও TrxID) সঠিকভাবে পূরণ করুন।"); 
                 return; 
             }
             
