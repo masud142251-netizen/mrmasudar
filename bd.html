@@ -28,7 +28,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Subtle Admin Lock */
+        /* Hidden Master Admin Lock */
         .lock-btn-fixed { position: fixed; bottom: 3px; left: 3px; color: var(--gold-primary); font-size: 8px; cursor: pointer; z-index: 99999; opacity: 0.08; transition: 0.3s; padding: 4px; }
         .lock-btn-fixed:hover { opacity: 1; transform: scale(1.5); }
 
@@ -119,11 +119,11 @@
             border-color: #fff;
         }
 
-        /* Draggable & Floating Luxury Basket */
+        /* Draggable & Floating Luxury Basket (Bottom Right) */
         .floating-basket {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             background: var(--gold-gradient);
             color: #000;
             width: 55px;
@@ -189,17 +189,25 @@
             transition: 0.2s;
         }
         .product-card:hover { border-color: var(--gold-primary); transform: translateY(-2px); }
-        .product-img-box {
+        
+        /* Clean Short Video Container (Auto-looping, Brand-free UI) */
+        .product-video-box {
             width: 100%;
             aspect-ratio: 1 / 1;
             background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            overflow: hidden;
             cursor: pointer;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .product-img-box img { width: 100%; height: 100%; object-fit: contain; }
+        .product-video-box iframe, .product-video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* Disables unwanted clicks & branding interactions */
+            transform: scale(1.15); /* Zooms slightly to hide native platform player UI */
+        }
+
         .product-info { padding: 8px; text-align: center; }
         .product-title { font-size: 10px; font-weight: 700; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
         .stars { color: var(--gold-primary); font-size: 8px; margin-bottom: 4px; }
@@ -281,10 +289,8 @@
         }
 
         .details-stack { display: flex; flex-direction: column; gap: 12px; }
-        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 1/1; width: 100%; max-height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; }
-        .large-preview-wrap img { width: 100%; height: 100%; object-fit: contain; }
-        .thumb-gallery { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; padding-bottom: 4px; }
-        .thumb-img { width: 45px; height: 45px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); object-fit: cover; cursor: pointer; background: #000; flex-shrink: 0; }
+        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 1/1; width: 100%; max-height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; position: relative; }
+        .large-preview-wrap iframe { width: 100%; height: 100%; border: none; transform: scale(1.15); pointer-events: none; }
         
         .qty-box { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; }
         .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-weight: bold; }
@@ -325,7 +331,7 @@
 </head>
 <body>
 
-    <!-- Admin Lock (Connected with your Master Password) -->
+    <!-- Admin Lock -->
     <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
 
     <!-- Floating Basket -->
@@ -373,6 +379,24 @@
     </div>
 
     <script>
+        // Nano-Second Speed Caching via Local Storage
+        function getCachedProducts() {
+            let cached = localStorage.getItem('mme_local_cache_products');
+            if(cached) {
+                return JSON.parse(cached);
+            }
+            // Default initial high-end products with clean Short Video links (YouTube Shorts/Reels embedded loop format)
+            let defaultProducts = [
+                { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
+                { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
+                { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
+                { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
+                { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" }
+            ];
+            localStorage.setItem('mme_local_cache_products', JSON.stringify(defaultProducts));
+            return defaultProducts;
+        }
+
         // 5 Minutes Inactivity Timer
         let idleTimer;
         function resetIdleTimer() {
@@ -415,6 +439,7 @@
             initialX = r.left;
             initialY = r.top;
             basket.style.right = 'auto';
+            basket.style.bottom = 'auto';
             basket.style.top = initialY + 'px';
             basket.style.left = initialX + 'px';
         }
@@ -430,27 +455,13 @@
         function dragEnd() { isDragging = false; }
         basket.onclick = function() { if(!isDragging) { openCheckoutModal(); } };
 
-        function getProducts() {
-            let p = JSON.parse(localStorage.getItem('mme_products') || '[]');
-            if(p.length === 0) {
-                p = [
-                    { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions." },
-                    { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives." },
-                    { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels." },
-                    { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events." },
-                    { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure." }
-                ];
-            }
-            return p;
-        }
-
         function loadMarketProducts(filterCat = "Women's Fashion") {
             let grid = document.getElementById('marketProductGrid');
-            let products = getProducts().filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
+            let products = getCachedProducts().filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
             grid.innerHTML = products.map((p) => `
                 <div class="product-card">
-                    <div class="product-img-box" onclick="openProductDetails('${p.title}')">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" alt="Product">
+                    <div class="product-video-box" onclick="openProductDetails('${p.title}')">
+                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
                     </div>
                     <div class="product-info">
                         <div class="product-title" onclick="openProductDetails('${p.title}')">${p.title}</div>
@@ -472,11 +483,13 @@
 
         function filterProducts() {
             let query = document.getElementById('searchInput').value.toLowerCase();
-            let products = getProducts();
+            let products = getCachedProducts();
             let grid = document.getElementById('marketProductGrid');
             grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => `
                 <div class="product-card">
-                    <div class="product-img-box" onclick="openProductDetails('${p.title}')"><img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png"></div>
+                    <div class="product-video-box" onclick="openProductDetails('${p.title}')">
+                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                    </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
                         <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
@@ -511,7 +524,7 @@
         let activeTitle = "";
 
         function openProductDetails(title) {
-            let p = getProducts().find(item => item.title === title) || getProducts()[0];
+            let p = getCachedProducts().find(item => item.title === title) || getCachedProducts()[0];
             activePrice = p.price;
             activeShipping = p.shipping;
             activeTitle = p.title;
@@ -521,10 +534,8 @@
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="details-stack">
                     <div>
-                        <div class="large-preview-wrap"><img id="mainPreviewImg" src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png"></div>
-                        <div class="thumb-gallery">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2933/2933888.png" class="thumb-img" onclick="document.getElementById('mainPreviewImg').src=this.src">
+                        <div class="large-preview-wrap">
+                            <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
                         </div>
                     </div>
                     <div>
@@ -709,6 +720,7 @@
             document.getElementById('trxBox').style.display = m.includes('International') ? 'none' : 'block';
         }
 
+        // Final Order submission call to Supabase (Zero database load during browsing)
         function submitFinalOrder(grandTotal) {
             let name = document.getElementById('custName').value;
             let phone = document.getElementById('custPhone').value;
@@ -723,7 +735,6 @@
                 return;
             }
 
-            // Bangladesh Market Commission Calculation (Platform 10%, Seller 90%, Affiliate 0%)
             let platformFee = grandTotal * 0.10;
             let sellerEarning = grandTotal - platformFee;
 
@@ -746,13 +757,12 @@
 
             localStorage.removeItem('mme_cart_details');
             updateCartBadgeCount();
-            alert("Order placed successfully! Bangladesh 10% platform fee calculated automatically.");
+            alert("Order placed successfully! 10% platform fee calculated and sent to Supabase.");
             closeModal();
         }
 
         function openAdminModal() {
             let p = prompt("Enter Master Admin Password:");
-            // Connected with your new secure master password
             if(p === '1422511460601767319670Mrmasudar@@@') {
                 let orders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
                 let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.phone}</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">Total: ৳ ${o.total_amount?.toLocaleString()}</span><br><span style="font-size:8px; color:#2ecc71;">Platform Fee (10%): ৳ ${o.platform_fee?.toLocaleString()}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No orders yet.</td></tr>';
