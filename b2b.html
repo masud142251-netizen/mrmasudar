@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR MASUDAR ENTERPRISE | B2B Wholesale Marketplace</title>
+    <title>MR MASUDAR ENTERPRISE | Global Affiliate & Wholesale Marketplace</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -28,9 +28,8 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Admin Lock */
-        .lock-btn-fixed { position: fixed; bottom: 3px; left: 3px; color: var(--gold-primary); font-size: 8px; cursor: pointer; z-index: 99999; opacity: 0.08; transition: 0.3s; padding: 4px; }
-        .lock-btn-fixed:hover { opacity: 1; transform: scale(1.5); }
+        /* Completely Hidden Admin Trigger (Double click or tap secret corner) */
+        .lock-btn-fixed { position: fixed; bottom: 0px; left: 0px; width: 15px; height: 15px; cursor: pointer; z-index: 99999; opacity: 0; }
 
         /* Top Header & Search Bar */
         .market-header {
@@ -367,8 +366,8 @@
 </head>
 <body>
 
-    <!-- Admin Lock -->
-    <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
+    <!-- Hidden Admin Trigger (Double click bottom-left corner to access Master Admin Panel) -->
+    <div class="lock-btn-fixed" ondblclick="openAdminModal()" title="Hidden Master Admin Trigger"></div>
 
     <!-- Floating Basket -->
     <div class="floating-basket" id="floatingBasket" title="Checkout">
@@ -379,7 +378,7 @@
     <!-- Header & Search Bar -->
     <div class="market-header">
         <h1>MR MASUDAR ENTERPRISE</h1>
-        <p style="color: var(--text-gray); font-size: 7px; letter-spacing: 1px; text-transform: uppercase; margin: 0;">B2B Wholesale Global Marketplace</p>
+        <p style="color: var(--text-gray); font-size: 7px; letter-spacing: 1px; text-transform: uppercase; margin: 0;">Global Affiliate & B2B Wholesale Marketplace</p>
         
         <div class="search-bar-container">
             <i class="fa-solid fa-magnifying-glass" style="color:var(--gold-primary); margin-left: 4px;"></i>
@@ -500,7 +499,7 @@
         basket.onclick = function() { if(!isDragging) { openCheckoutModal(); } };
 
         function getProducts() {
-            let p = JSON.parse(localStorage.getItem('mme_b2b_products_v2') || '[]');
+            let p = JSON.parse(localStorage.getItem('mme_b2b_products_v3') || '[]');
             let ytEmbedBase = "https://www.youtube.com/embed/ZVTRyR7Ubas?autoplay=1&mute=1&loop=1&playlist=ZVTRyR7Ubas&controls=0&modestbranding=1&playsinline=1&rel=0";
 
             if(p.length === 0) {
@@ -511,7 +510,7 @@
                     { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box (Bulk)", category: "Gift", price: 45, tiers: [{qty: 20, price: 45}, {qty: 50, price: 40}, {qty: 100, price: 35}], shipping: autoShippingRate - 15, desc: "Exotic curated wholesale luxury gift items.", videoUrl: ytEmbedBase },
                     { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed (Bulk)", category: "Decor", price: 420, tiers: [{qty: 2, price: 420}, {qty: 10, price: 380}, {qty: 25, price: 340}], shipping: autoShippingRate + 60, desc: "Solid Gamar wood furniture wholesale bulk export.", videoUrl: ytEmbedBase }
                 ];
-                localStorage.setItem('mme_b2b_products_v2', JSON.stringify(p));
+                localStorage.setItem('mme_b2b_products_v3', JSON.stringify(p));
             }
             return p;
         }
@@ -903,11 +902,17 @@
                 return;
             }
 
+            // Commission Distribution Calculations
+            let sellerTotal = Math.round(grandTotal * 0.90);     // Seller: 90%
+            let affiliateTotal = Math.round(grandTotal * 0.01);  // Affiliate: 1%
+            let platformTotal = Math.round(grandTotal * 0.03);   // Owner/Platform: 3%
+
             let orderData = {
                 id: 'B2B-' + Math.floor(100000 + Math.random() * 900000),
                 name: name, email: email, phone: phoneCode + ' ' + phone, country: country, city: city, addr: addr,
                 payment: payment,
                 total: '$ ' + grandTotal,
+                commissions: `Seller (90%): $${sellerTotal} | Affiliate (1%): $${affiliateTotal} | Platform (3%): $${platformTotal}`,
                 status: 'Wholesale Processing / Bulk Dispatch',
                 items: cart.map(i => `${i.name} (Qty: ${i.qty})`).join(', '),
                 date: new Date().toLocaleString()
@@ -919,20 +924,20 @@
 
             localStorage.removeItem('mme_b2b_cart');
             updateCartBadgeCount();
-            alert("B2B Wholesale Order Placed Successfully!");
+            alert("B2B Wholesale Order Placed Successfully! Commission distributed to Master Ledger.");
             closeModal();
         }
 
         function openAdminModal() {
-            let p = prompt("Enter B2B Admin Password:");
+            let p = prompt("Enter Master Admin Password:");
             if(p === 'mrbtrmlc') {
                 let orders = JSON.parse(localStorage.getItem('mme_b2b_orders') || '[]');
-                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.email} (${o.phone})</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">${o.total}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No wholesale orders yet.</td></tr>';
+                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.email} (${o.phone})</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">${o.total}</span><br><span style="font-size:8px; color:#2ecc71;">${o.commissions || ''}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No wholesale orders yet.</td></tr>';
                 document.getElementById('modalBody').innerHTML = `
                     <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 style="color:var(--gold-primary); text-align:center;">B2B Master Admin Panel</h3>
-                    <p style="font-size:10px; color:#2ecc71;">Total Wholesale Orders: ${orders.length}</p>
-                    <div style="max-height:300px; overflow-y:auto;"><table class="admin-table"><thead><tr><th>ID</th><th>Buyer</th><th>Status/Gateway</th><th>Total/Items</th></tr></thead><tbody>${rows}</tbody></table></div>
+                    <h3 style="color:var(--gold-primary); text-align:center;">B2B Master Admin Panel (Revenue & Commission Ledger)</h3>
+                    <p style="font-size:10px; color:#2ecc71;">Total Wholesale Orders: ${orders.length} | Seller: 90% | Affiliate: 1% | Owner: 3%</p>
+                    <div style="max-height:300px; overflow-y:auto;"><table class="admin-table"><thead><tr><th>ID</th><th>Buyer</th><th>Status/Gateway</th><th>Total / Commissions</th></tr></thead><tbody>${rows}</tbody></table></div>
                 `;
                 document.getElementById('productModal').style.display = 'flex';
             } else if(p) {
