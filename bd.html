@@ -180,26 +180,27 @@
             transform: translateY(-3px);
         }
         
-        /* 🖼️ Safe Image Box (No Cropping / Full View - মাথা বা পা কাটবে না) */
-        .product-img-box {
+        /* 🎬 Auto-Playing Video Box */
+        .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
-            background: #000000;
+            background: #000;
             position: relative;
             overflow: hidden;
             border-radius: 11px 11px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        .product-img-box img {
+        .product-video-box iframe {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
+            border: none;
+            transform: scale(1.35);
+            pointer-events: none;
         }
-        .product-card:hover .product-img-box img {
-            transform: scale(1.03);
+        .video-click-blocker {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5;
+            background: transparent;
         }
 
         .product-info { padding: 6px; text-align: center; }
@@ -321,6 +322,7 @@
         .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 8px; color: #fff; border-radius: 6px; margin-top: 2px; font-size: 11px; box-sizing: border-box; outline: none; }
         .input-box:focus { border-color: var(--gold-primary); }
 
+        /* Glowing Luxury Notice Board */
         .payment-info-box {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.8));
             border: 1px solid var(--gold-primary);
@@ -403,9 +405,9 @@
             }
         });
 
-        // 🟢 Cache Key v22: সুপার ফাস্ট লাইটওয়েট রকেট স্পিড ও সেফ ইমেজ ভিউ
+        // 🟢 Cache Key v23: অটো-প্লে ভিডিও গ্রিড এবং প্রিমিয়াম ইংলিশ বিকাশ চেকআউট সিস্টেম
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v22');
+            let cached = localStorage.getItem('mme_local_cache_products_v23');
             if(cached) {
                 return JSON.parse(cached);
             }
@@ -415,32 +417,27 @@
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
-                    imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
-                    imageUrl: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
-                    imageUrl: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
-                    imageUrl: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
-                    imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v22', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v23', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -504,8 +501,9 @@
             let products = getCachedProducts().filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
             grid.innerHTML = products.map((p) => `
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-img-box">
-                        <img src="${p.imageUrl}" alt="${p.title}" loading="eager">
+                    <div class="product-video-box">
+                        <div class="video-click-blocker"></div>
+                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline loading="eager"></iframe>
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -531,8 +529,9 @@
             let grid = document.getElementById('marketProductGrid');
             grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => `
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-img-box">
-                        <img src="${p.imageUrl}" alt="${p.title}" loading="eager">
+                    <div class="product-video-box">
+                        <div class="video-click-blocker"></div>
+                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline loading="eager"></iframe>
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -562,6 +561,7 @@
         let activePrice = 0;
         let activeShipping = 0;
         let activeTitle = "";
+        let isVideoMuted = true;
 
         function openProductDetails(title) {
             let p = getCachedProducts().find(item => item.title === title) || getCachedProducts()[0];
@@ -569,12 +569,15 @@
             activeShipping = p.shipping;
             activeTitle = p.title;
             currentQty = 1;
+            isVideoMuted = true;
 
             renderModalContent(p);
             document.getElementById('productModal').style.display = 'flex';
         }
 
         function renderModalContent(p) {
+            let detailVideoSrc = isVideoMuted ? p.videoUrl : p.videoUrl.replace('mute=1', 'mute=0');
+
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 
@@ -582,7 +585,10 @@
                     <div class="details-stack">
                         <div>
                             <div class="large-preview-wrap">
-                                <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                                <iframe src="${detailVideoSrc}" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                                <div class="video-sound-toggle" onclick="toggleDetailVideoSound('${p.title}')" title="Toggle Sound">
+                                    <i class="fa-solid ${isVideoMuted ? 'fa-volume-xmark' : 'fa-volume-high'}"></i>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -611,6 +617,12 @@
                 </div>
             `;
             document.getElementById('addToCartBtn').onclick = function(e) { addCartAndAnimate(e, activeTitle, activePrice, activeShipping); };
+        }
+
+        function toggleDetailVideoSound(title) {
+            isVideoMuted = !isVideoMuted;
+            let p = getCachedProducts().find(item => item.title === title);
+            renderModalContent(p);
         }
 
         function updateQty(change) {
@@ -689,7 +701,7 @@
                         <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
                     </div>
 
-                    <!-- Glowing Luxury Payment Notice Board -->
+                    <!-- Glowing Luxury Payment Notice Board (English & bKash Only) -->
                     <div class="payment-info-box">
                         <b style="color: #fff; font-size: 11px;"><i class="fa-solid fa-circle-info" style="color:var(--gold-primary);"></i> PAYMENT INSTRUCTIONS:</b><br>
                         Please Send Money total <b>৳ ${grandTotal.toLocaleString()}</b> to bKash below:<br>
