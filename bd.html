@@ -180,26 +180,26 @@
             transform: translateY(-3px);
         }
         
-        .product-video-box {
+        /* 🖼️ Safe Image Box: object-fit: contain ব্যবহার করা হয়েছে যাতে কোনো অংশ কাটা না পড়ে */
+        .product-img-box {
             width: 100%;
             aspect-ratio: 9 / 16;
-            background: #000;
+            background: #000000;
             position: relative;
             overflow: hidden;
             border-radius: 11px 11px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .product-video-box iframe {
+        .product-img-box img {
             width: 100%;
             height: 100%;
-            border: none;
-            transform: scale(1.35);
-            pointer-events: none;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
-        .video-click-blocker {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 5;
-            background: transparent;
+        .product-card:hover .product-img-box img {
+            transform: scale(1.03);
         }
 
         .product-info { padding: 6px; text-align: center; }
@@ -321,7 +321,6 @@
         .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 8px; color: #fff; border-radius: 6px; margin-top: 2px; font-size: 11px; box-sizing: border-box; outline: none; }
         .input-box:focus { border-color: var(--gold-primary); }
 
-        /* Glowing Luxury Notice Board */
         .payment-info-box {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.8));
             border: 1px solid var(--gold-primary);
@@ -404,9 +403,9 @@
             }
         });
 
-        // 🟢 Cache Key v18: প্রিমিয়াম ইংলিশ ফর্ম এবং গ্লোয়িং লাক্সারি বিকাশ নোটিশ বোর্ড
+        // 🟢 Cache Key v20: সেফ ইমেজ ভিউ (No Cropping / Full View) এবং লাক্সারি ইংলিশ চেকআউট
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v18');
+            let cached = localStorage.getItem('mme_local_cache_products_v20');
             if(cached) {
                 return JSON.parse(cached);
             }
@@ -416,27 +415,32 @@
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
+                    imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
+                    imageUrl: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
+                    imageUrl: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
+                    imageUrl: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
+                    imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
                     videoUrl: ytEmbedBase
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v18', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v20', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -500,9 +504,8 @@
             let products = getCachedProducts().filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
             grid.innerHTML = products.map((p) => `
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-video-box">
-                        <div class="video-click-blocker"></div>
-                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline loading="eager"></iframe>
+                    <div class="product-img-box">
+                        <img src="${p.imageUrl}" alt="${p.title}" loading="eager">
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -528,9 +531,8 @@
             let grid = document.getElementById('marketProductGrid');
             grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => `
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-video-box">
-                        <div class="video-click-blocker"></div>
-                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline loading="eager"></iframe>
+                    <div class="product-img-box">
+                        <img src="${p.imageUrl}" alt="${p.title}" loading="eager">
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
