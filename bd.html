@@ -149,7 +149,7 @@
             border: 2px solid #000;
         }
 
-        /* Product Grid & Hover Animation */
+        /* Product Grid */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -160,7 +160,7 @@
         .product-card {
             background: var(--surface-card);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -174,21 +174,19 @@
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
         }
         
-        /* 📱 Clean YouTube iframe Box (No Logos) */
+        /* 📱 100% Clean Rounded Video Box (Zero Edge Cut Issues) */
         .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
             background: #000;
             position: relative;
             overflow: hidden;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px 12px 0 0;
+            border-radius: 13px 13px 0 0; /* Matches card curve perfectly */
         }
-        .product-video-box iframe {
+        .product-video-box video {
             width: 100%;
             height: 100%;
-            border: none;
-            transform: scale(1.3);
+            object-fit: cover;
             pointer-events: none;
         }
         .video-click-blocker {
@@ -290,7 +288,7 @@
 
         .details-stack { display: flex; flex-direction: column; gap: 12px; }
         .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 9/16; width: 100%; max-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; position: relative; }
-        .large-preview-wrap iframe { width: 100%; height: 100%; border: none; transform: scale(1.3); }
+        .large-preview-wrap video { width: 100%; height: 100%; object-fit: cover; }
         
         .qty-box { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; }
         .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-weight: bold; }
@@ -364,40 +362,37 @@
             }
         });
 
-        // 🟢 Cache Key v5: আপনার নতুন ইউটিউব শর্টস লিংক (ZVTRyR7Ubas) দিয়ে আপডেট করা হয়েছে
+        // 🟢 Cache Key v6: ক্লিন এমপিফোর শর্ট ভিডিও লিংক দিয়ে আপডেট করা হয়েছে (কোনো ইউটিউব লোগো বা কাটা দাগ থাকবে না)
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v5');
+            let cached = localStorage.getItem('mme_local_cache_products_v6');
             if(cached) {
                 return JSON.parse(cached);
             }
             
-            // আপনার নতুন ইউটিউব শর্টস আইডি: ZVTRyR7Ubas
-            let ytEmbedBase = "https://www.youtube.com/embed/ZVTRyR7Ubas?autoplay=1&mute=1&loop=1&playlist=ZVTRyR7Ubas&controls=0&modestbranding=1&playsinline=1&rel=0";
-            
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
-                    videoUrl: ytEmbedBase
+                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-woman-walking-in-a-luxury-dress-41584-large.mp4" 
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
-                    videoUrl: ytEmbedBase
+                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-stylish-man-in-a-suit-walking-41585-large.mp4" 
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
-                    videoUrl: ytEmbedBase
+                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-mother-walking-with-her-baby-stroller-41586-large.mp4" 
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
-                    videoUrl: ytEmbedBase
+                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-hands-holding-a-wrapped-gift-box-41587-large.mp4" 
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
-                    videoUrl: ytEmbedBase
+                    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-modern-luxury-bedroom-interior-41588-large.mp4" 
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v5', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v6', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -463,7 +458,7 @@
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
                     <div class="product-video-box">
                         <div class="video-click-blocker"></div>
-                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                        <video src="${p.videoUrl}" autoplay muted loop playsinline></video>
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -491,7 +486,7 @@
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
                     <div class="product-video-box">
                         <div class="video-click-blocker"></div>
-                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
+                        <video src="${p.videoUrl}" autoplay muted loop playsinline></video>
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -536,14 +531,12 @@
         }
 
         function renderModalContent(p) {
-            let detailVideoSrc = isVideoMuted ? p.videoUrl : p.videoUrl.replace('mute=1', 'mute=0');
-
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="details-stack">
                     <div>
                         <div class="large-preview-wrap">
-                            <iframe src="${detailVideoSrc}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                            <video id="modalVideoPlayer" src="${p.videoUrl}" autoplay loop playsinline ${isVideoMuted ? 'muted' : ''}></video>
                             <div class="video-sound-toggle" onclick="toggleDetailVideoSound('${p.title}')" title="Toggle Sound">
                                 <i class="fa-solid ${isVideoMuted ? 'fa-volume-xmark' : 'fa-volume-high'}"></i>
                             </div>
@@ -576,6 +569,8 @@
 
         function toggleDetailVideoSound(title) {
             isVideoMuted = !isVideoMuted;
+            let videoEl = document.getElementById('modalVideoPlayer');
+            if(videoEl) { videoEl.muted = isVideoMuted; }
             let p = getCachedProducts().find(item => item.title === title);
             renderModalContent(p);
         }
