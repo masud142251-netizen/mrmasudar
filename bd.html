@@ -38,7 +38,13 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
             max-width: 1200px;
             margin: 0 auto 12px auto;
+            animation: fadeInDown 0.8s ease-out;
         }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .market-header h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 20px;
@@ -166,7 +172,7 @@
             border: 2px solid #000;
         }
 
-        /* Product Grid & Alive Card Animation */
+        /* Product Grid with Slide & Alive Entrance Animation */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -182,17 +188,22 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            animation: slideInSide 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: all 0.3s ease;
+        }
+        @keyframes slideInSide {
+            from { opacity: 0; transform: translateX(-40px) scale(0.95); }
+            to { opacity: 1; transform: translateX(0) scale(1); }
         }
         .product-card:hover {
             border-color: var(--gold-primary);
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.35);
         }
         
-        /* 📱 100% Logo-Free & Clean Vertical Short Video Reels Box (9:16 Ratio) */
+        /* 📱 Logo-Free Clean Vertical Short Video Reels Box (9:16 Ratio) */
         .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
@@ -205,10 +216,9 @@
             width: 100%;
             height: 100%;
             border: none;
-            transform: scale(1.5); /* Massive zoom to permanently hide any YouTube/FB top bar, branding or titles */
+            transform: scale(1.45); /* Hides all YouTube branding, titles, and watermarks */
             pointer-events: none;
         }
-        /* Anti-Branding Overlay Blocker */
         .video-click-blocker {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -248,7 +258,13 @@
             padding: 20px;
             position: relative;
             box-sizing: border-box;
+            animation: zoomInModal 0.3s ease-out;
         }
+        @keyframes zoomInModal {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         .close-modal {
             position: absolute;
             top: 12px; right: 12px;
@@ -261,6 +277,27 @@
             font-size: 11px;
             display: flex; align-items: center; justify-content: center;
         }
+
+        /* Interactive Sound Mute/Unmute Floating Button for Video Preview */
+        .video-sound-toggle {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+        .video-sound-toggle:hover { background: var(--gold-primary); color: #000; }
 
         .apply-btn {
             background: var(--gold-gradient);
@@ -397,40 +434,39 @@
             if(cached) {
                 return JSON.parse(cached);
             }
-            // Standard Products with YouTube / Facebook Fallback & Clean Short Video Format
+            // Working YouTube Short Video Link with Auto-Loop & Clean Mute State
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
-                    ytUrl: "https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1&mute=1&loop=1&playlist=9bZkp7q19f0&controls=0&modestbranding=1&playsinline=1", 
-                    fbUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/facebook/videos/10153231379946729/&show_text=0&autoplay=1&mute=1" 
+                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
+                    fbUrl: "" 
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
-                    ytUrl: "https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1&mute=1&loop=1&playlist=9bZkp7q19f0&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
-                    ytUrl: "https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1&mute=1&loop=1&playlist=9bZkp7q19f0&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
-                    ytUrl: "https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1&mute=1&loop=1&playlist=9bZkp7q19f0&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
-                    ytUrl: "https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1&mute=1&loop=1&playlist=9bZkp7q19f0&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 }
             ];
 
-            // Clean-Up & Fallback Validation (Auto-delete if both links fail)
             let verifiedProducts = defaultProducts.filter(p => {
                 if(p.ytUrl && p.ytUrl.trim() !== '') return true;
                 if(p.fbUrl && p.fbUrl.trim() !== '') return true;
-                return false; // Auto-deleted from cache if empty or dead
+                return false;
             });
 
             localStorage.setItem('mme_local_cache_products', JSON.stringify(verifiedProducts));
@@ -568,6 +604,7 @@
         let activePrice = 0;
         let activeShipping = 0;
         let activeTitle = "";
+        let isVideoMuted = true;
 
         function openProductDetails(title) {
             let p = getCachedProducts().find(item => item.title === title) || getCachedProducts()[0];
@@ -575,17 +612,27 @@
             activeShipping = p.shipping;
             activeTitle = p.title;
             currentQty = 1;
+            isVideoMuted = true;
 
-            let detailVideoSrc = (p.ytUrl ? p.ytUrl : (p.fbUrl ? p.fbUrl : '')).replace('mute=1', 'mute=0'); // Unmute option available in details view
+            renderModalContent(p);
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function renderModalContent(p) {
+            let baseVideo = p.ytUrl ? p.ytUrl : (p.fbUrl ? p.fbUrl : '');
+            // Toggle mute state based on user button click
+            let detailVideoSrc = isVideoMuted ? baseVideo : baseVideo.replace('mute=1', 'mute=0');
 
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="details-stack">
                     <div>
                         <div class="large-preview-wrap">
-                            <iframe src="${detailVideoSrc}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                            <iframe id="detailVideoIframe" src="${detailVideoSrc}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                            <div class="video-sound-toggle" onclick="toggleDetailVideoSound('${p.title}')" title="Toggle Sound">
+                                <i class="fa-solid ${isVideoMuted ? 'fa-volume-xmark' : 'fa-volume-high'}"></i>
+                            </div>
                         </div>
-                        <div style="font-size:8px; color:var(--gold-light); text-align:center; margin-top:4px;">Audio unmuted for detailed preview</div>
                     </div>
                     <div>
                         <span style="font-size:8px; color:var(--gold-primary); font-weight:bold; letter-spacing:1px;">${p.category}</span>
@@ -609,11 +656,16 @@
                     </div>
                 </div>
             `;
-            document.getElementById('productModal').style.display = 'flex';
 
             document.getElementById('addToCartBtn').onclick = function(e) {
                 addCartAndAnimate(e, activeTitle, activePrice, activeShipping);
             };
+        }
+
+        function toggleDetailVideoSound(title) {
+            isVideoMuted = !isVideoMuted;
+            let p = getCachedProducts().find(item => item.title === title);
+            renderModalContent(p);
         }
 
         function updateQty(change) {
