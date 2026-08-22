@@ -393,15 +393,7 @@
             <span class="btn">OPEN PORTAL</span>
         </a>
 
-        <!-- 6. Careers & Talent -->
-        <a href="career.html" class="luxury-card">
-            <i class="fa-solid fa-users-gear"></i>
-            <h3>CAREERS & TALENT</h3>
-            <p>Join the Elite Workforce</p>
-            <span class="btn">APPLY NOW</span>
-        </a>
-
-        <!-- 7. Enterprise Solutions -->
+        <!-- 6. Enterprise Solutions -->
         <a href="enterprise.html" class="luxury-card">
             <i class="fa-solid fa-gem"></i>
             <h3>ENTERPRISE SOLUTIONS</h3>
@@ -424,7 +416,7 @@
                 <span class="close-chat-x" onclick="toggleChatWindow()">&times;</span>
             </div>
             <div class="chat-conversation-area" id="chatAreaBox">
-                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! আমাদের প্রধান সেবা: বাংলাদেশ ও গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B)। কীভাবে সহায়তা করতে পারি?</div>
+                <div class="support-agent-msg">Mr Masudar Enterprise-এ স্বাগতম! আমাদের প্রধান সেবা: বাংলাদেশ ও গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B)। কীভাবে সহায়তা করতে পারি?</div>
             </div>
             <div class="chat-bottom-input">
                 <input type="text" id="chatInputField" placeholder="Type message..." onkeypress="handleKey(event)">
@@ -474,13 +466,13 @@
                         }
                     } else {
                         if (lowerTxt.includes('market') || lowerTxt.includes('বাজার') || lowerTxt.includes('সেবা') || lowerTxt.includes('service') || lowerTxt.includes('বাংলাদেশ')) {
-                            agentMsg.innerText = "আমাদের প্রধান সেবার মধ্যে রয়েছে বাংলাদেশ মার্কেট (লোকাল রিটেল), গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B) সলিউশন।";
+                            agentMsg.innerText = "আমাদের প্রধান সেবার মধ্যে রয়েছে বাংলাদেশ মার্কেট (লোকাল রিটেল), গ্লোবাল মার্কেটপ্লেস এবং হোলসেল (B2B) সলিউশন।";
                         } else if (lowerTxt.includes('wholesale') || lowerTxt.includes('হোলসেল') || lowerTxt.includes('bulk') || lowerTxt.includes('বাল্ক')) {
                             agentMsg.innerText = "আমাদের হোলসেল মার্কেটে আপনি খুব সহজেই যেকোনো পণ্যের বাল্ক অর্ডার বা B2B সলিউশন পেতে পারেন।";
                         } else if (lowerTxt.includes('সালাম') || lowerTxt.includes('কেমন') || lowerTxt.includes('কী') || lowerTxt.includes('হ্যালো')) {
-                            agentMsg.innerText = "ওয়ালাইকুম আসসালাম! Mr Masudar Enterprise-এ আপনাকে স্বাগতম। বলুন আমাদের কোন সার্ভিসটি সম্পর্কে জানতে চান?";
+                            agentMsg.innerText = "ওয়ালাইকুম আসসালাম! Mr Masudar Enterprise-এ আপনাকে স্বাগতম। বলুন আমাদের কোন সার্ভিসটি সম্পর্কে জানতে চান?";
                         } else {
-                            agentMsg.innerText = "আপনার কথাটি বুঝতে পেরেছি। আমাদের ২৩৭+ দেশের নেটওয়ার্ক থেকে আপনার রিকোয়েস্টটি দ্রুত প্রসেস করা হচ্ছে।";
+                            agentMsg.innerText = "আপনার কথাটি বুঝতে পেরেছি। আমাদের ২৩৭+ দেশের নেটওয়ার্ক থেকে আপনার রিকোয়েস্টটি দ্রুত প্রসেস করা হচ্ছে।";
                         }
                     }
 
@@ -536,7 +528,7 @@
                 setTimeout(() => {
                     const reply = document.createElement('div');
                     reply.className = 'support-agent-msg';
-                    reply.innerText = "ছবিটি পেয়েছি! আমাদের প্রতিনিধি প্রোডাক্ট স্পেসিফিকেশন চেক করছেন।";
+                    reply.innerText = "ছবিটি পেয়েছি! আমাদের প্রতিনিধি প্রোডাক্ট স্পেসিফিকেশন চেক করছেন।";
                     area.appendChild(reply);
                     area.scrollTop = area.scrollHeight;
                 }, 800);
