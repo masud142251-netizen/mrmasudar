@@ -321,16 +321,18 @@
         .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 8px; color: #fff; border-radius: 6px; margin-top: 2px; font-size: 11px; box-sizing: border-box; outline: none; }
         .input-box:focus { border-color: var(--gold-primary); }
 
+        /* Glowing Luxury Notice Board */
         .payment-info-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px dashed var(--gold-primary);
-            border-radius: 8px;
-            padding: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.8));
+            border: 1px solid var(--gold-primary);
+            border-radius: 10px;
+            padding: 10px;
             margin: 8px 0;
             font-size: 10px;
             color: var(--gold-light);
             text-align: left;
-            line-height: 1.4;
+            line-height: 1.5;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
         /* Flying Coin Effect */
@@ -402,9 +404,9 @@
             }
         });
 
-        // 🟢 Cache Key v17: চূড়ান্ত আল্ট্রা ফাস্ট অপ্টিমাইজড ও কাস্টমাইজড পেমেন্ট ফর্ম
+        // 🟢 Cache Key v18: প্রিমিয়াম ইংলিশ ফর্ম এবং গ্লোয়িং লাক্সারি বিকাশ নোটিশ বোর্ড
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v17');
+            let cached = localStorage.getItem('mme_local_cache_products_v18');
             if(cached) {
                 return JSON.parse(cached);
             }
@@ -434,7 +436,7 @@
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v17', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v18', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -698,22 +700,22 @@
                         <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
                     </div>
 
-                    <!-- Clean Bengali Payment Instruction Box -->
+                    <!-- Glowing Luxury Payment Notice Board (English & bKash Only) -->
                     <div class="payment-info-box">
-                        <b>পেমেন্ট নির্দেশিকা:</b><br>
-                        দয়া করে মোট <b>৳ ${grandTotal.toLocaleString()}</b> টাকা নিচের নাম্বারে 'Send Money' বা 'Merchant' করুন:<br>
-                        • <b>পার্সোনাল:</b> 01767319670 (বিকাশ/নগদ)<br>
-                        • <b>মার্চেন্ট:</b> 01332008886 (বিকাশ/নগদ)<br>
-                        টাকা পাঠিয়ে নিচের ফর্মে পেমেন্টকৃত নাম্বার ও TrxID দিন।
+                        <b style="color: #fff; font-size: 11px;"><i class="fa-solid fa-circle-info" style="color:var(--gold-primary);"></i> PAYMENT INSTRUCTIONS:</b><br>
+                        Please Send Money total <b>৳ ${grandTotal.toLocaleString()}</b> to bKash below:<br>
+                        • <b>bKash Personal:</b> 01767319670<br>
+                        • <b>bKash Merchant:</b> 01332008886<br>
+                        After payment, fill up your paid mobile number & TrxID below.
                     </div>
 
                     <div class="form-group-grid">
-                        <div><input type="text" id="custName" class="input-box" placeholder="পুরো নাম (Full Name) *"></div>
-                        <div><input type="text" id="custPhone" class="input-box" placeholder="পেমেন্টকৃত মোবাইল নাম্বার *"></div>
-                        <div><input type="text" id="custWhatsapp" class="input-box" placeholder="হোয়াটসঅ্যাপ নাম্বার *"></div>
-                        <div><input type="text" id="custCity" class="input-box" placeholder="সিটি / জেলা (City) *"></div>
-                        <div class="form-full"><textarea id="custAddr" rows="2" class="input-box" placeholder="সম্পূর্ণ ডেলিভারি ঠিকানা (বাসা, রোড, থানা, জেলা) *"></textarea></div>
-                        <div class="form-full"><input type="text" id="custTrx" class="input-box" placeholder="ট্রানজেকশন আইডি (TrxID) *"></div>
+                        <div><input type="text" id="custName" class="input-box" placeholder="Full Name *"></div>
+                        <div><input type="text" id="custPhone" class="input-box" placeholder="Paid Mobile Number *"></div>
+                        <div><input type="text" id="custWhatsapp" class="input-box" placeholder="WhatsApp Number *"></div>
+                        <div><input type="text" id="custCity" class="input-box" placeholder="City / District *"></div>
+                        <div class="form-full"><textarea id="custAddr" rows="2" class="input-box" placeholder="Complete Delivery Address (House, Road, Thana) *"></textarea></div>
+                        <div class="form-full"><input type="text" id="custTrx" class="input-box" placeholder="Transaction ID (TrxID) *"></div>
                     </div>
                 </div>
                 <div class="modal-sticky-footer">
@@ -740,13 +742,13 @@
             let trx = document.getElementById('custTrx').value;
             
             if(!name || !phone || !whatsapp || !city || !addr || !trx) { 
-                alert("দয়া করে ফর্মের প্রতিটি তথ্য (নাম, পেমেন্টকৃত নাম্বার, হোয়াটসঅ্যাপ, সিটি, ঠিকানা ও TrxID) সঠিকভাবে পূরণ করুন।"); 
+                alert("Please fill all required fields (Name, Paid Number, WhatsApp, City, Address & TrxID) correctly."); 
                 return; 
             }
             
             localStorage.removeItem('mme_cart_details');
             updateCartBadgeCount();
-            alert("অর্ডার সফলভাবে সম্পন্ন হয়েছে! MR MASUDAR ENTERPRISE-এর সাথে থাকার জন্য ধন্যবাদ।");
+            alert("Order placed successfully! Thank you for shopping with MR MASUDAR ENTERPRISE.");
             closeModal();
         }
 
