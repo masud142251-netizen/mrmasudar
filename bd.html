@@ -180,8 +180,8 @@
             transform: translateY(-3px);
         }
         
-        /* 🎬 Auto-Playing Video Box (No Crop / Full View) */
-        .product-video-box {
+        /* 🖼️ Safe Image Box (No Cropping / Full View - মাথা বা পা কাটবে না) */
+        .product-img-box {
             width: 100%;
             aspect-ratio: 9 / 16;
             background: #000000;
@@ -192,17 +192,14 @@
             align-items: center;
             justify-content: center;
         }
-        .product-video-box video {
+        .product-img-box img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            pointer-events: none;
+            transition: transform 0.3s ease;
         }
-        .video-click-blocker {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 5;
-            background: transparent;
+        .product-card:hover .product-img-box img {
+            transform: scale(1.03);
         }
 
         .product-info { padding: 6px; text-align: center; }
@@ -267,6 +264,24 @@
             flex-shrink: 0;
         }
 
+        .video-sound-toggle {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 10px;
+        }
+
         .apply-btn {
             background: var(--gold-gradient);
             border: none;
@@ -293,7 +308,7 @@
 
         .details-stack { display: flex; flex-direction: column; gap: 8px; }
         .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; aspect-ratio: 9/16; width: 100%; max-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; position: relative; }
-        .large-preview-wrap video { width: 100%; height: 100%; object-fit: contain; }
+        .large-preview-wrap iframe { width: 100%; height: 100%; border: none; transform: scale(1.3); }
         
         .qty-box { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 5px 0; }
         .qty-btn { background: #222; border: 1px solid var(--gold-primary); color: #fff; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; font-weight: bold; }
@@ -388,40 +403,44 @@
             }
         });
 
-        // 🟢 Cache Key v21: সুপার ফাস্ট লাইটওয়েট ডিরেক্ট ভিডিও অটো-প্লে ও লাক্সারি সিস্টেম
+        // 🟢 Cache Key v22: সুপার ফাস্ট লাইটওয়েট রকেট স্পিড ও সেফ ইমেজ ভিউ
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v21');
+            let cached = localStorage.getItem('mme_local_cache_products_v22');
             if(cached) {
                 return JSON.parse(cached);
             }
             
-            // ডিরেক্ট অপ্টিমাইজড ফাস্ট ভিডিও সোর্স (স্যাম্পল এমপি ফোর ফাইল যা ইনস্ট্যান্ট চলবে)
-            let sampleMp4 = "https://assets.mixkit.co/videos/preview/mixkit-stylish-woman-walking-in-front-of-a-store-42999-large.mp4";
+            let ytEmbedBase = "https://www.youtube.com/embed/ZVTRyR7Ubas?autoplay=1&mute=1&loop=1&playlist=ZVTRyR7Ubas&controls=0&modestbranding=1&playsinline=1&rel=0";
             
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
-                    videoUrl: sampleMp4
+                    imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
-                    videoUrl: sampleMp4
+                    imageUrl: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80",
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
-                    videoUrl: sampleMp4
+                    imageUrl: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=600&q=80",
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
-                    videoUrl: sampleMp4
+                    imageUrl: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+                    videoUrl: ytEmbedBase
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
-                    videoUrl: sampleMp4
+                    imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
+                    videoUrl: ytEmbedBase
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v21', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v22', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
@@ -485,9 +504,8 @@
             let products = getCachedProducts().filter(p => p.category && p.category.toLowerCase() === filterCat.toLowerCase());
             grid.innerHTML = products.map((p) => `
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-video-box">
-                        <div class="video-click-blocker"></div>
-                        <video src="${p.videoUrl}" autoplay muted loop playsinline preload="metadata"></video>
+                    <div class="product-img-box">
+                        <img src="${p.imageUrl}" alt="${p.title}" loading="eager">
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -513,9 +531,8 @@
             let grid = document.getElementById('marketProductGrid');
             grid.innerHTML = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query)).map((p) => `
                 <div class="product-card" onclick="openProductDetails('${p.title}')">
-                    <div class="product-video-box">
-                        <div class="video-click-blocker"></div>
-                        <video src="${p.videoUrl}" autoplay muted loop playsinline preload="metadata"></video>
+                    <div class="product-img-box">
+                        <img src="${p.imageUrl}" alt="${p.title}" loading="eager">
                     </div>
                     <div class="product-info">
                         <div class="product-title">${p.title}</div>
@@ -565,7 +582,7 @@
                     <div class="details-stack">
                         <div>
                             <div class="large-preview-wrap">
-                                <video src="${p.videoUrl}" autoplay muted loop playsinline controls></video>
+                                <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" playsinline></iframe>
                             </div>
                         </div>
                         <div>
@@ -672,6 +689,7 @@
                         <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
                     </div>
 
+                    <!-- Glowing Luxury Payment Notice Board -->
                     <div class="payment-info-box">
                         <b style="color: #fff; font-size: 11px;"><i class="fa-solid fa-circle-info" style="color:var(--gold-primary);"></i> PAYMENT INSTRUCTIONS:</b><br>
                         Please Send Money total <b>৳ ${grandTotal.toLocaleString()}</b> to bKash below:<br>
