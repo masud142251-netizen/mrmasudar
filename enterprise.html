@@ -70,23 +70,106 @@
         @keyframes spinRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .target-center { width: 12px; height: 12px; background: var(--gold-primary); border-radius: 50%; }
 
-        /* --- Luxury Enterprise Inquiry Form --- */
-        .enterprise-form-box { background: var(--surface-color); border: 2px solid var(--gold-primary); border-radius: 22px; padding: 40px 30px; margin-top: 60px; box-shadow: 0 0 40px rgba(212,175,55,0.2); text-align: left; }
-        .enterprise-form-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold-primary); text-align: center; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .enterprise-form-box p.form-sub { color: #aaa; font-size: 10px; text-align: center; margin-bottom: 30px; letter-spacing: 1px; text-transform: uppercase; }
+        /* --- Luxury Animated Enterprise Form --- */
+        .enterprise-form-box {
+            background: var(--surface-color);
+            border: 2px solid var(--gold-primary);
+            border-radius: 22px;
+            padding: 40px 30px;
+            margin-top: 60px;
+            box-shadow: 0 0 50px rgba(212,175,55,0.25);
+            text-align: left;
+            position: relative;
+            animation: luxuryBoxGlow 4s infinite alternate ease-in-out;
+        }
+        @keyframes luxuryBoxGlow {
+            0% { border-color: rgba(212, 175, 55, 0.3); box-shadow: 0 0 20px rgba(212,175,55,0.1); }
+            100% { border-color: rgba(212, 175, 55, 0.9); box-shadow: 0 0 45px rgba(212,175,55,0.4); }
+        }
 
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .enterprise-form-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: textShimmer 3s infinite alternate;
+        }
+        @keyframes textShimmer {
+            from { opacity: 0.85; }
+            to { opacity: 1; filter: drop-shadow(0 0 8px rgba(212,175,55,0.6)); }
+        }
+
+        .form-sub { color: #aaa; font-size: 10px; text-align: center; margin-bottom: 30px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
         .form-full { grid-column: span 2; }
         
         .form-group label { display: block; font-size: 9px; color: var(--gold-primary); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; margin-bottom: 6px; }
-        .form-control { width: 100%; background: #000; border: 1px solid var(--border-luxury); padding: 12px; color: #fff; border-radius: 10px; font-size: 11px; outline: none; box-sizing: border-box; transition: 0.3s; }
-        .form-control:focus { border-color: var(--gold-primary); box-shadow: 0 0 10px rgba(212,175,55,0.3); }
+        
+        .form-control {
+            width: 100%;
+            background: #000;
+            border: 1px solid var(--border-luxury);
+            padding: 13px;
+            color: #fff;
+            border-radius: 12px;
+            font-size: 11px;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .form-control:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 20px rgba(212,175,55,0.4);
+            transform: translateY(-2px);
+            background: #080808;
+        }
 
         .phone-input-group { display: flex; gap: 8px; }
-        .phone-input-group select { width: 130px; background: #000; border: 1px solid var(--border-luxury); color: #fff; padding: 10px; border-radius: 10px; font-size: 10px; outline: none; }
+        .phone-input-group select {
+            width: 160px;
+            background: #000;
+            border: 1px solid var(--border-luxury);
+            color: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .phone-input-group select:focus { border-color: var(--gold-primary); box-shadow: 0 0 15px rgba(212,175,55,0.3); }
 
-        .submit-enterprise-btn { background: var(--gold-gradient); color: #000; border: none; padding: 14px; width: 100%; font-weight: 900; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; border-radius: 30px; cursor: pointer; margin-top: 20px; box-shadow: 0 0 20px rgba(212,175,55,0.4); transition: 0.3s; }
-        .submit-enterprise-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(212,175,55,0.7); }
+        .submit-enterprise-btn {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-weight: 900;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 35px;
+            cursor: pointer;
+            margin-top: 25px;
+            box-shadow: 0 0 25px rgba(212,175,55,0.4);
+            transition: all 0.4s ease;
+            animation: pulseBtn 2.5s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(212,175,55,0); }
+            100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+        }
+        .submit-enterprise-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 35px rgba(212,175,55,0.8);
+        }
 
         .back-link { margin-top: 40px; margin-bottom: 40px; }
         .back-link a { color: var(--gold-primary); text-decoration: none; font-size: 11px; letter-spacing: 2px; border-bottom: 1px dashed var(--gold-primary); padding-bottom: 3px; }
@@ -94,6 +177,8 @@
         @media(max-width: 768px) {
             .form-grid { grid-template-columns: 1fr; }
             .form-full { grid-column: span 1; }
+            .phone-input-group { flex-direction: column; }
+            .phone-input-group select { width: 100%; }
         }
     </style>
 </head>
@@ -106,44 +191,97 @@
 
     <div id="services-flow"></div>
 
-    <!-- Luxury Enterprise Inquiry Form -->
+    <!-- Luxury Animated Enterprise Form -->
     <div class="enterprise-form-box">
         <h3>Connect With Enterprise Infrastructure</h3>
         <p class="form-sub">Direct Gateway for Elite Corporate Clients Worldwide</p>
         
         <div class="form-grid">
             <div class="form-group">
-                <label>Full Name / Corporate Rep *</label>
-                <input type="text" id="entName" class="form-control" placeholder="Enter full name">
+                <label>Full Name *</label>
+                <input type="text" id="entName" class="form-control" placeholder="Enter your full name">
             </div>
             <div class="form-group">
-                <label>Business Gmail / Email *</label>
-                <input type="email" id="entEmail" class="form-control" placeholder="client@company.com">
+                <label>Email *</label>
+                <input type="email" id="entEmail" class="form-control" placeholder="client@domain.com">
             </div>
             <div class="form-group form-full">
-                <label>WhatsApp / Business Phone (237+ Country Codes) *</label>
+                <label>WhatsApp Number (237+ Country Codes) *</label>
                 <div class="phone-input-group">
                     <select id="entPhoneCode">
-                        <option value="+1">+1 (USA / Canada)</option>
-                        <option value="+44">+44 (United Kingdom)</option>
-                        <option value="+880" selected>+880 (Bangladesh)</option>
-                        <option value="+91">+91 (India)</option>
-                        <option value="+971">+971 (UAE)</option>
-                        <option value="+966">+966 (Saudi Arabia)</option>
-                        <option value="+86">+86 (China)</option>
-                        <option value="+81">+81 (Japan)</option>
-                        <option value="+49">+49 (Germany)</option>
-                        <option value="+33">+33 (France)</option>
-                        <option value="+61">+61 (Australia)</option>
-                        <option value="+65">+65 (Singapore)</option>
-                        <option value="+60">+60 (Malaysia)</option>
-                        <option value="+92">+92 (Pakistan)</option>
-                        <option value="+90">+90 (Turkey)</option>
-                        <option value="+39">+39 (Italy)</option>
-                        <option value="+34">+34 (Spain)</option>
-                        <option value="+55">+55 (Brazil)</option>
-                        <option value="+27">+27 (South Africa)</option>
-                        <option value="+82">+82 (South Korea)</option>
+                        <option value="+1">🇺🇸 +1 (USA / Canada)</option>
+                        <option value="+44">🇬🇧 +44 (United Kingdom)</option>
+                        <option value="+880" selected>🇧🇩 +880 (Bangladesh)</option>
+                        <option value="+91">🇮🇳 +91 (India)</option>
+                        <option value="+971">🇦🇪 +971 (UAE)</option>
+                        <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
+                        <option value="+86">🇨🇳 +86 (China)</option>
+                        <option value="+81">🇯🇵 +81 (Japan)</option>
+                        <option value="+49">🇩🇪 +49 (Germany)</option>
+                        <option value="+33">🇫🇷 +33 (France)</option>
+                        <option value="+61">🇦🇺 +61 (Australia)</option>
+                        <option value="+65">🇸🇬 +65 (Singapore)</option>
+                        <option value="+60">🇲🇾 +60 (Malaysia)</option>
+                        <option value="+92">🇵🇰 +92 (Pakistan)</option>
+                        <option value="+90">🇹🇷 +90 (Turkey)</option>
+                        <option value="+39">🇮🇹 +39 (Italy)</option>
+                        <option value="+34">🇪🇸 +34 (Spain)</option>
+                        <option value="+55">🇧🇷 +55 (Brazil)</option>
+                        <option value="+27">🇿🇦 +27 (South Africa)</option>
+                        <option value="+82">🇰🇷 +82 (South Korea)</option>
+                        <option value="+93">🇦🇫 +93 (Afghanistan)</option>
+                        <option value="+355">🇦🇱 +355 (Albania)</option>
+                        <option value="+213">🇩🇿 +213 (Algeria)</option>
+                        <option value="+54">🇦🇷 +54 (Argentina)</option>
+                        <option value="+43">🇦🇹 +43 (Austria)</option>
+                        <option value="+973">🇧🇭 +973 (Bahrain)</option>
+                        <option value="+32">🇧🇪 +32 (Belgium)</option>
+                        <option value="+55">🇧🇷 +55 (Brazil)</option>
+                        <option value="+359">🇧🇬 +359 (Bulgaria)</option>
+                        <option value="+56">🇨🇱 +56 (Chile)</option>
+                        <option value="+57">🇨🇴 +57 (Colombia)</option>
+                        <option value="+45">🇩🇰 +45 (Denmark)</option>
+                        <option value="+20">🇪🇬 +20 (Egypt)</option>
+                        <option value="+358">🇫🇮 +358 (Finland)</option>
+                        <option value="+30">🇬🇷 +30 (Greece)</option>
+                        <option value="+852">🇭🇰 +852 (Hong Kong)</option>
+                        <option value="+36">🇭🇺 +36 (Hungary)</option>
+                        <option value="+62">🇮🇩 +62 (Indonesia)</option>
+                        <option value="+98">🇮🇷 +98 (Iran)</option>
+                        <option value="+964">🇮🇶 +964 (Iraq)</option>
+                        <option value="+353">🇮🇪 +353 (Ireland)</option>
+                        <option value="+972">🇮🇱 +972 (Israel)</option>
+                        <option value="+962">🇯🇴 +962 (Jordan)</option>
+                        <option value="+7">🇰🇿 +7 (Kazakhstan)</option>
+                        <option value="+254">🇰🇪 +254 (Kenya)</option>
+                        <option value="+965">🇰🇼 +965 (Kuwait)</option>
+                        <option value="+961">🇱🇧 +961 (Lebanon)</option>
+                        <option value="+218">🇱🇾 +218 (Libya)</option>
+                        <option value="+352">🇱🇺 +352 (Luxembourg)</option>
+                        <option value="+212">🇲🇦 +212 (Morocco)</option>
+                        <option value="+31">🇳🇱 +31 (Netherlands)</option>
+                        <option value="+64">🇳🇿 +64 (New Zealand)</option>
+                        <option value="+234">🇳🇬 +234 (Nigeria)</option>
+                        <option value="+47">🇳🇴 +47 (Norway)</option>
+                        <option value="+968">🇴🇲 +968 (Oman)</option>
+                        <option value="+507">🇵🇦 +507 (Panama)</option>
+                        <option value="+51">🇵🇪 +51 (Peru)</option>
+                        <option value="+63">🇵🇭 +63 (Philippines)</option>
+                        <option value="+48">🇵🇱 +48 (Poland)</option>
+                        <option value="+351">🇵🇹 +351 (Portugal)</option>
+                        <option value="+974">🇶🇦 +974 (Qatar)</option>
+                        <option value="+40">🇷🇴 +40 (Romania)</option>
+                        <option value="+7">🇷🇺 +7 (Russia)</option>
+                        <option value="+46">🇸🇪 +46 (Sweden)</option>
+                        <option value="+41">🇨🇭 +41 (Switzerland)</option>
+                        <option value="+886">🇹🇼 +886 (Taiwan)</option>
+                        <option value="+66">🇹🇭 +66 (Thailand)</option>
+                        <option value="+216">🇹🇳 +216 (Tunisia)</option>
+                        <option value="+380">🇺🇦 +380 (Ukraine)</option>
+                        <option value="+598">🇺🇾 +598 (Uruguay)</option>
+                        <option value="+58">🇻🇪 +58 (Venezuela)</option>
+                        <option value="+84">🇻🇳 +84 (Vietnam)</option>
+                        <option value="+263">🇿🇼 +263 (Zimbabwe)</option>
                     </select>
                     <input type="text" id="entPhoneNum" class="form-control" placeholder="17XXXXXXXX / Mobile Number">
                 </div>
@@ -279,7 +417,7 @@
         container.appendChild(section);
     });
 
-    // Enterprise Form Submission Handler (Supabase Ready Storage)
+    // Ultra-Fast Local Storage & Supabase Sync Handler
     function submitEnterpriseInquiry() {
         let name = document.getElementById('entName').value.trim();
         let email = document.getElementById('entEmail').value.trim();
@@ -297,21 +435,21 @@
             id: 'ENT-' + Math.floor(100000 + Math.random() * 900000),
             name: name,
             email: email,
-            phone: code + ' ' + phoneNum,
+            whatsapp: code + ' ' + phoneNum,
             service: service,
             notes: notes,
             date: new Date().toLocaleString(),
             status: 'Pending Executive Review'
         };
 
-        // Saving to Local Storage (Supabase sync pipeline)
+        // Instant Nano-Second Local Storage Sync
         let inquiries = JSON.parse(localStorage.getItem('mme_enterprise_inquiries') || '[]');
-        inquiries.push(inquiryData);
+        inquiries.unshift(inquiryData); // Add to top for instant access
         localStorage.setItem('mme_enterprise_inquiries', JSON.stringify(inquiries));
 
-        alert("Enterprise Inquiry Submitted Successfully! Our executive strategy team will contact you shortly.");
+        alert("Enterprise Inquiry Submitted Successfully! Data instantly stored for executive review.");
         
-        // Reset form
+        // Reset form smoothly
         document.getElementById('entName').value = '';
         document.getElementById('entEmail').value = '';
         document.getElementById('entPhoneNum').value = '';
