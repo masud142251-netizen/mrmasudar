@@ -190,10 +190,10 @@
         }
         .product-card:hover { border-color: var(--gold-primary); transform: translateY(-2px); }
         
-        /* Clean Short Video Container (Auto-looping, Brand-free UI) */
+        /* 📱 Vertical Short Video Reels Format (TikTok / Reels Style Auto-looping & Clean UI) */
         .product-video-box {
             width: 100%;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 9 / 16; /* True Vertical Reels Ratio */
             background: #000;
             position: relative;
             overflow: hidden;
@@ -204,8 +204,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* Disables unwanted clicks & branding interactions */
-            transform: scale(1.15); /* Zooms slightly to hide native platform player UI */
+            pointer-events: none; /* Blocks native controls & platform branding */
+            transform: scale(1.2); /* Zoomed in to completely hide YouTube/Facebook borders & headers */
         }
 
         .product-info { padding: 8px; text-align: center; }
@@ -289,7 +289,7 @@
         }
 
         .details-stack { display: flex; flex-direction: column; gap: 12px; }
-        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 1/1; width: 100%; max-height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; position: relative; }
+        .large-preview-wrap { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; aspect-ratio: 9/16; width: 100%; max-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto; position: relative; }
         .large-preview-wrap iframe { width: 100%; height: 100%; border: none; transform: scale(1.15); pointer-events: none; }
         
         .qty-box { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; }
@@ -385,13 +385,13 @@
             if(cached) {
                 return JSON.parse(cached);
             }
-            // Default initial high-end products with clean Short Video links (YouTube Shorts/Reels embedded loop format)
+            // Products with Short Video Reels Format (Clean Auto-looping Embeds with Fallback Logic)
             let defaultProducts = [
-                { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
-                { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
-                { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
-                { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" },
-                { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1" }
+                { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1", fbVideoUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/facebook/videos/10153231379946729/&show_text=0&autoplay=1" },
+                { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1", fbVideoUrl: "" },
+                { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1", fbVideoUrl: "" },
+                { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1", fbVideoUrl: "" },
+                { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1", fbVideoUrl: "" }
             ];
             localStorage.setItem('mme_local_cache_products', JSON.stringify(defaultProducts));
             return defaultProducts;
@@ -461,7 +461,7 @@
             grid.innerHTML = products.map((p) => `
                 <div class="product-card">
                     <div class="product-video-box" onclick="openProductDetails('${p.title}')">
-                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                        <iframe src="${p.videoUrl}" frameborder="0" allow="autoplay; encrypted-media" onerror="this.src='${p.fbVideoUrl}'"></iframe>
                     </div>
                     <div class="product-info">
                         <div class="product-title" onclick="openProductDetails('${p.title}')">${p.title}</div>
@@ -722,11 +722,11 @@
 
         // Final Order submission call to Supabase (Zero database load during browsing)
         function submitFinalOrder(grandTotal) {
-            let name = document.getElementById('custName').value;
-            let phone = document.getElementById('custPhone').value;
-            let city = document.getElementById('custCity').value;
-            let addr = document.getElementById('custAddr').value;
-            let payment = document.getElementById('paymentMethod').value;
+            let name = document.getElementById('custName', '').value;
+            let phone = document.getElementById('custPhone', '').value;
+            let city = document.getElementById('custCity', '').value;
+            let addr = document.getElementById('custAddr', '').value;
+            let payment = document.getElementById('paymentMethod', '').value;
             let trx = document.getElementById('custTrx') ? document.getElementById('custTrx').value : 'Card';
             let cart = JSON.parse(localStorage.getItem('mme_cart_details') || '[]');
 
