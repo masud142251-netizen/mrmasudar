@@ -216,7 +216,7 @@
             width: 100%;
             height: 100%;
             border: none;
-            transform: scale(1.45); /* Hides all YouTube branding, titles, and watermarks */
+            transform: scale(1.45); /* Hides YouTube titles and watermarks completely */
             pointer-events: none;
         }
         .video-click-blocker {
@@ -428,37 +428,37 @@
             }
         });
 
-        // Nano-Speed Caching with Smart Auto-Clean & Fallback Engine
+        // Nano-Speed Caching with Active YouTube Short Video URL
         function getCachedProducts() {
             let cached = localStorage.getItem('mme_local_cache_products');
             if(cached) {
                 return JSON.parse(cached);
             }
-            // Working YouTube Short Video Link with Auto-Loop & Clean Mute State
+            // Working YouTube Short Video Link embedded directly
             let defaultProducts = [
                 { 
                     name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
-                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 },
                 { 
                     name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
-                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 },
                 { 
                     name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
-                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 },
                 { 
                     name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
-                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 },
                 { 
                     name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
-                    ytUrl: "https://www.youtube.com/embed/_pki54XHkro?autoplay=1&mute=1&loop=1&playlist=_pki54XHkro&controls=0&modestbranding=1&playsinline=1", 
+                    ytUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&playsinline=1", 
                     fbUrl: "" 
                 }
             ];
@@ -620,7 +620,6 @@
 
         function renderModalContent(p) {
             let baseVideo = p.ytUrl ? p.ytUrl : (p.fbUrl ? p.fbUrl : '');
-            // Toggle mute state based on user button click
             let detailVideoSrc = isVideoMuted ? baseVideo : baseVideo.replace('mute=1', 'mute=0');
 
             document.getElementById('modalBody').innerHTML = `
@@ -861,7 +860,6 @@
             closeModal();
         }
 
-        // Hidden Master Admin Panel Router (`/mr-master-admin`)
         function openHiddenAdminPanel() {
             let p = prompt("Enter Master Admin Password:");
             if(p === '1422511460601767319670Mrmasudar@@@') {
