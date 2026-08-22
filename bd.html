@@ -325,7 +325,7 @@
 </head>
 <body>
 
-    <!-- Admin Lock -->
+    <!-- Admin Lock (Connected with your Master Password) -->
     <div class="lock-btn-fixed" onclick="openAdminModal()"><i class="fa-solid fa-lock"></i></div>
 
     <!-- Floating Basket -->
@@ -334,7 +334,7 @@
         <span class="basket-count" id="cartBadge">0</span>
     </div>
 
-    <!-- Header & Search Bar (English Only) -->
+    <!-- Header & Search Bar -->
     <div class="market-header">
         <h1>MR MASUDAR ENTERPRISE</h1>
         <p style="color: var(--text-gray); font-size: 7px; letter-spacing: 1px; text-transform: uppercase; margin: 0;">Elite Luxury Bangladesh Market</p>
@@ -564,7 +564,6 @@
             document.getElementById('totalItemPrice').innerText = subtotal.toLocaleString();
         }
 
-        // Luxury Sound Effect & Large Coin Animation
         function playLuxurySound() {
             try {
                 let ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -724,11 +723,18 @@
                 return;
             }
 
+            // Bangladesh Market Commission Calculation (Platform 10%, Seller 90%, Affiliate 0%)
+            let platformFee = grandTotal * 0.10;
+            let sellerEarning = grandTotal - platformFee;
+
             let orderData = {
-                id: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+                id: 'ORD-BD-' + Math.floor(100000 + Math.random() * 900000),
+                market_type: 'bd_local',
                 name: name, phone: '+880' + phone, city: city, addr: addr,
                 payment: payment + (trx !== 'Card' ? ' (Trx: ' + trx + ')' : ''),
-                total: '৳ ' + grandTotal.toLocaleString(),
+                total_amount: grandTotal,
+                platform_fee: platformFee,
+                seller_earning: sellerEarning,
                 status: 'Paid / Pending Dispatch',
                 items: cart.map(i => `${i.name} (x${i.qty})`).join(', '),
                 date: new Date().toLocaleString()
@@ -740,24 +746,25 @@
 
             localStorage.removeItem('mme_cart_details');
             updateCartBadgeCount();
-            alert("Order placed successfully!");
+            alert("Order placed successfully! Bangladesh 10% platform fee calculated automatically.");
             closeModal();
         }
 
         function openAdminModal() {
-            let p = prompt("Enter Admin Password:");
-            if(p === 'mrbtrmlc') {
+            let p = prompt("Enter Master Admin Password:");
+            // Connected with your new secure master password
+            if(p === '1422511460601767319670Mrmasudar@@@') {
                 let orders = JSON.parse(localStorage.getItem('mme_orders') || '[]');
-                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.phone}</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">${o.total}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No orders yet.</td></tr>';
+                let rows = orders.length > 0 ? orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.name}<br>${o.phone}</td><td>${o.status}<br>${o.payment}</td><td><b>${o.items}</b><br><span style="color:var(--gold-primary);">Total: ৳ ${o.total_amount?.toLocaleString()}</span><br><span style="font-size:8px; color:#2ecc71;">Platform Fee (10%): ৳ ${o.platform_fee?.toLocaleString()}</span></td></tr>`).join('') : '<tr><td colspan="4" style="text-align:center;">No orders yet.</td></tr>';
                 document.getElementById('modalBody').innerHTML = `
                     <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 style="color:var(--gold-primary); text-align:center;">Master Admin Panel</h3>
+                    <h3 style="color:var(--gold-primary); text-align:center;">Master Admin Panel (Bangladesh Market)</h3>
                     <p style="font-size:10px; color:#2ecc71;">Total Orders: ${orders.length}</p>
-                    <div style="max-height:300px; overflow-y:auto;"><table class="admin-table"><thead><tr><th>ID</th><th>Customer</th><th>Payment</th><th>Total/Items</th></tr></thead><tbody>${rows}</tbody></table></div>
+                    <div style="max-height:300px; overflow-y:auto;"><table class="admin-table"><thead><tr><th>ID</th><th>Customer</th><th>Payment</th><th>Financial Breakdown</th></tr></thead><tbody>${rows}</tbody></table></div>
                 `;
                 document.getElementById('productModal').style.display = 'flex';
             } else if(p) {
-                alert("Incorrect Password!");
+                alert("Incorrect Master Password!");
             }
         }
 
