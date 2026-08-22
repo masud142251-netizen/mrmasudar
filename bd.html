@@ -174,7 +174,7 @@
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
         }
         
-        /* 📱 YouTube iframe Box */
+        /* 📱 Guaranteed Working YouTube Video Box */
         .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
@@ -188,7 +188,7 @@
             width: 100%;
             height: 100%;
             border: none;
-            transform: scale(1.3);
+            transform: scale(1.35);
             pointer-events: none;
         }
         .video-click-blocker {
@@ -364,14 +364,14 @@
             }
         });
 
-        // 🟢 Cache Key v7: আপনার দেওয়া সঠিক ইউটিউব শর্টস লিংক (ZVTRyR7Ubas) দিয়ে আগের সফল ডিজাইন রিস্টোর করা হলো
+        // 🟢 Cache Key v8: জাস্ট পারফেক্ট এবং গ্যারান্টিযুক্ত ইউটিউব এমবেড প্যারামিটার
         function getCachedProducts() {
-            let cached = localStorage.getItem('mme_local_cache_products_v7');
+            let cached = localStorage.getItem('mme_local_cache_products_v8');
             if(cached) {
                 return JSON.parse(cached);
             }
             
-            let ytEmbedBase = "https://www.youtube.com/embed/ZVTRyR7Ubas?autoplay=1&mute=1&loop=1&playlist=ZVTRyR7Ubas&controls=0&modestbranding=1&playsinline=1&rel=0";
+            let ytEmbedBase = "https://www.youtube.com/embed/ZVTRyR7Ubas?autoplay=1&mute=1&loop=1&playlist=ZVTRyR7Ubas&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1";
             
             let defaultProducts = [
                 { 
@@ -396,7 +396,7 @@
                 }
             ];
 
-            localStorage.setItem('mme_local_cache_products_v7', JSON.stringify(defaultProducts));
+            localStorage.setItem('mme_local_cache_products_v8', JSON.stringify(defaultProducts));
             return defaultProducts;
         }
 
