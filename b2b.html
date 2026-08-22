@@ -114,49 +114,49 @@
             border-color: #fff;
         }
 
-        /* Wholesale Market Banner */
+        /* Wholesale Market Banner Section */
         .wholesale-banner-card {
             max-width: 1200px;
-            margin: 0 auto 12px auto;
+            margin: 0 auto 10px auto;
             background: var(--surface-card);
             border: 1px solid var(--gold-primary);
-            border-radius: 16px;
-            padding: 18px;
+            border-radius: 14px;
+            padding: 15px;
             text-align: center;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
         }
         .wholesale-banner-card i {
-            font-size: 26px;
+            font-size: 24px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .wholesale-banner-card h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 17px;
+            font-size: 16px;
             color: #fff;
-            margin: 3px 0;
+            margin: 2px 0;
             letter-spacing: 1px;
         }
         .wholesale-banner-card p {
             color: var(--text-gray);
-            font-size: 8px;
-            margin: 0 0 10px 0;
+            font-size: 7px;
+            margin: 0 0 8px 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         .bulk-order-btn {
             background: var(--gold-gradient);
             border: none;
-            padding: 7px 20px;
+            padding: 6px 18px;
             font-weight: 800;
             text-transform: uppercase;
-            border-radius: 20px;
+            border-radius: 18px;
             cursor: pointer;
             color: #000;
-            font-size: 10px;
-            box-shadow: 0 3px 12px rgba(212, 175, 55, 0.4);
+            font-size: 9px;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
 
         /* Floating Basket with Center Jump Animation */
@@ -225,6 +225,7 @@
             transform: translateY(-3px);
         }
         
+        /* 🎬 Auto-Playing Video Box */
         .product-video-box {
             width: 100%;
             aspect-ratio: 9 / 16;
@@ -254,7 +255,7 @@
         .card-btn { flex: 1; background: transparent; border: none; padding: 6px; color: var(--gold-primary); font-size: 9px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .card-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
-        /* Modal Layout */
+        /* Modal Details Layout */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -366,6 +367,7 @@
         .input-box { width: 100%; background: #000; border: 1px solid #333; padding: 8px; color: #fff; border-radius: 6px; margin-top: 2px; font-size: 11px; box-sizing: border-box; outline: none; }
         .input-box:focus { border-color: var(--gold-primary); }
 
+        /* Glowing Luxury Payment Notice Board (English & bKash Only) */
         .payment-info-box {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.8));
             border: 1px solid var(--gold-primary);
@@ -379,6 +381,7 @@
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
+        /* Flying Coin Effect */
         .flying-coin {
             position: fixed;
             width: 22px;
@@ -431,7 +434,7 @@
         </div>
     </div>
 
-    <!-- Wholesale Market Banner -->
+    <!-- Wholesale Market Banner Section (Exact Match to Screenshot) -->
     <div class="wholesale-banner-card">
         <i class="fa-solid fa-warehouse"></i>
         <h3>WHOLESALE MARKET</h3>
@@ -464,11 +467,26 @@
             let ytEmbedBase = "https://www.youtube.com/embed/ZVTRyR7Ubas?autoplay=1&mute=1&loop=1&playlist=ZVTRyR7Ubas&controls=0&modestbranding=1&playsinline=1&rel=0";
             
             let defaultProducts = [
-                { name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, wholesalePrice: 11500, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", videoUrl: ytEmbedBase },
-                { name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, wholesalePrice: 6500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", videoUrl: ytEmbedBase },
-                { name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, wholesalePrice: 17500, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", videoUrl: ytEmbedBase },
-                { name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, wholesalePrice: 3500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", videoUrl: ytEmbedBase },
-                { name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, wholesalePrice: 36000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", videoUrl: ytEmbedBase }
+                { 
+                    name: "Designer Silk Saree", title: "Royal Katan Silk Saree", category: "Women's Fashion", price: 15000, bd: "৳ 15,000", shipping: 80, desc: "Exquisite hand-woven golden zari work for luxury occasions.", 
+                    videoUrl: ytEmbedBase 
+                },
+                { 
+                    name: "Executive Silk Suit", title: "Premium Men's Formal Wear", category: "Men's Fashion", price: 8500, bd: "৳ 8,500", shipping: 70, desc: "Tailored Italian cut luxury fabric designed for top executives.", 
+                    videoUrl: ytEmbedBase 
+                },
+                { 
+                    name: "Golden Baby Stroller", title: "Ultra Safe Luxury Pram", category: "Baby", price: 22000, bd: "৳ 22,000", shipping: 120, desc: "Gold-plated alloy frame with shock-absorbent wheels.", 
+                    videoUrl: ytEmbedBase 
+                },
+                { 
+                    name: "Luxury Gift Hamper", title: "Gold-Accent Gift Box", category: "Gift", price: 4500, bd: "৳ 4,500", shipping: 50, desc: "Exotic curated luxury gift items for special events.", 
+                    videoUrl: ytEmbedBase 
+                },
+                { 
+                    name: "Royal Gamar Bed", title: "Handcrafted Luxury Teak Bed", category: "Decor", price: 45000, bd: "৳ 45,000", shipping: 150, desc: "Pure high-gloss lacquer finish with solid Gamar wood structure.", 
+                    videoUrl: ytEmbedBase 
+                }
             ];
 
             localStorage.setItem('mme_local_cache_products_v23', JSON.stringify(defaultProducts));
@@ -596,15 +614,13 @@
         let activeShipping = 0;
         let activeTitle = "";
         let isVideoMuted = true;
-        let isWholesaleMode = false;
 
-        function openProductDetails(title, wholesale = false) {
-            isWholesaleMode = wholesale;
+        function openProductDetails(title) {
             let p = getCachedProducts().find(item => item.title === title) || getCachedProducts()[0];
-            activePrice = wholesale ? p.wholesalePrice : p.price;
+            activePrice = p.price;
             activeShipping = p.shipping;
-            activeTitle = p.title + (wholesale ? " [WHOLESALE]" : "");
-            currentQty = wholesale ? 5 : 1;
+            activeTitle = p.title;
+            currentQty = 1;
             isVideoMuted = true;
 
             renderModalContent(p);
@@ -614,8 +630,8 @@
         function openWholesaleModal() {
             let products = getCachedProducts();
             let html = products.map(p => `
-                <div class="cart-item-row" style="cursor:pointer;" onclick="openProductDetails('${p.title}', true)">
-                    <span><b>${p.title}</b><br><span style="color:var(--gold-primary);">Wholesale Price: ৳ ${p.wholesalePrice.toLocaleString()} (Min. 5 Pcs)</span></span>
+                <div class="cart-item-row" style="cursor:pointer;" onclick="openProductDetails('${p.title}')">
+                    <span><b>${p.title}</b><br><span style="color:var(--gold-primary);">Bulk B2B Price Available</span></span>
                     <button class="card-btn" style="flex:0; padding:4px 8px; border:1px solid var(--gold-primary); border-radius:6px;">Select</button>
                 </div>
             `).join('');
@@ -623,8 +639,8 @@
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
                 <div class="modal-scroll-body">
-                    <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:18px; text-align:center; margin-bottom:5px;">Wholesale & B2B Solutions</h3>
-                    <p style="color:#aaa; font-size:10px; text-align:center; margin-bottom:10px;">Select any luxury product for bulk wholesale pricing.</p>
+                    <h3 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); font-size:18px; text-align:center; margin-bottom:5px;">Wholesale Market & Bulk Solutions</h3>
+                    <p style="color:#aaa; font-size:10px; text-align:center; margin-bottom:10px;">Select any luxury product for bulk supply enquiries.</p>
                     <div style="max-height: 300px; overflow-y: auto;">${html}</div>
                 </div>
             `;
@@ -633,7 +649,6 @@
 
         function renderModalContent(p) {
             let detailVideoSrc = isVideoMuted ? p.videoUrl : p.videoUrl.replace('mute=1', 'mute=0');
-            let displayPrice = isWholesaleMode ? p.wholesalePrice : p.price;
 
             document.getElementById('modalBody').innerHTML = `
                 <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -649,22 +664,22 @@
                             </div>
                         </div>
                         <div>
-                            <span style="font-size:8px; color:var(--gold-primary); font-weight:bold; letter-spacing:1px;">${isWholesaleMode ? 'WHOLESALE B2B' : p.category}</span>
+                            <span style="font-size:8px; color:var(--gold-primary); font-weight:bold; letter-spacing:1px;">${p.category}</span>
                             <h2 style="font-family:'Cormorant Garamond', serif; color:#fff; font-size:18px; margin:2px 0;">${p.title}</h2>
                             <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                             <p style="color:#aaa; font-size:10px; line-height:1.4; margin:5px 0;">${p.desc}</p>
                             
-                            <div style="font-size:12px; color:var(--gold-primary); font-weight:bold;">Unit Price: ৳ <span id="unitPrice">${displayPrice.toLocaleString()}</span></div>
+                            <div style="font-size:12px; color:var(--gold-primary); font-weight:bold;">Unit Price: ৳ <span id="unitPrice">${activePrice.toLocaleString()}</span></div>
                             <div style="font-size:10px; color:#aaa;">Seller Shipping (Included): ৳ <span id="shippingFee">${activeShipping}</span></div>
 
                             <div class="qty-box">
                                 <span style="font-size:10px; color:var(--gold-light);">Quantity:</span>
                                 <button class="qty-btn" onclick="updateQty(-1)">-</button>
-                                <span id="prodQty" style="font-weight:bold; font-size:11px; min-width:15px; text-align:center;">${currentQty}</span>
+                                <span id="prodQty" style="font-weight:bold; font-size:11px; min-width:15px; text-align:center;">1</span>
                                 <button class="qty-btn" onclick="updateQty(1)">+</button>
                             </div>
 
-                            <div style="font-size:12px; color:#fff; font-weight:bold; text-align:center; margin-bottom:4px;">Subtotal: ৳ <span id="totalItemPrice">${((displayPrice * currentQty) + activeShipping).toLocaleString()}</span></div>
+                            <div style="font-size:12px; color:#fff; font-weight:bold; text-align:center; margin-bottom:4px;">Subtotal: ৳ <span id="totalItemPrice">${(activePrice + activeShipping).toLocaleString()}</span></div>
                         </div>
                     </div>
                 </div>
@@ -673,7 +688,7 @@
                     <button class="apply-btn" id="addToCartBtn">ADD TO CART</button>
                 </div>
             `;
-            document.getElementById('addToCartBtn').onclick = function(e) { addCartAndAnimate(e, activeTitle, displayPrice, activeShipping); };
+            document.getElementById('addToCartBtn').onclick = function(e) { addCartAndAnimate(e, activeTitle, activePrice, activeShipping); };
         }
 
         function toggleDetailVideoSound(title) {
@@ -684,8 +699,7 @@
 
         function updateQty(change) {
             currentQty += change;
-            let minLimit = isWholesaleMode ? 5 : 1;
-            if(currentQty < minLimit) currentQty = minLimit;
+            if(currentQty < 1) currentQty = 1;
             document.getElementById('prodQty').innerText = currentQty;
             let subtotal = (activePrice * currentQty) + activeShipping;
             document.getElementById('totalItemPrice').innerText = subtotal.toLocaleString();
@@ -788,6 +802,7 @@
                         <div class="grand-total-price">৳ ${grandTotal.toLocaleString()}</div>
                     </div>
 
+                    <!-- Glowing Luxury Payment Notice Board (English & bKash Only) -->
                     <div class="payment-info-box">
                         <b style="color: #fff; font-size: 11px;"><i class="fa-solid fa-circle-info" style="color:var(--gold-primary);"></i> PAYMENT INSTRUCTIONS:</b><br>
                         Please Send Money total <b>৳ ${grandTotal.toLocaleString()}</b> to bKash below:<br>
